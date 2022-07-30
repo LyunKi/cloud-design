@@ -1,0 +1,8 @@
+{
+  "name": "@cloud-design/icons",
+  "description": "React Native icons",
+  "devDependencies": {
+    "react-native-iconfont-cli": "^2.2.4",
+    "react-native-svg": "^12.4.3"
+  }
+}
