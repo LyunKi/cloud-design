@@ -4,8 +4,9 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "generate": "pnpm exec iconfont-rn",
-    "compile": "tsc"
+    "prebuild": "pnpm generate",
+    "generate": "pnpm dlx ts-node scripts/start.ts",
+    "build": "pnpm prebuild && tsc"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -18,7 +19,7 @@
     "@cloud-dragon/tsconfig-react": "^0.0.1",
     "@types/react": "^18.0.15",
     "@types/react-native": "^0.69.5",
-    "react": "^18.2.0",
-    "react-native-iconfont-cli": "^2.2.4"
+    "change-case": "^4.1.2",
+    "react": "^18.2.0"
   }
 }

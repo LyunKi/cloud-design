@@ -1,16 +1,18 @@
 import React from 'react'
-import OutlineIcon from '../generated/outline'
-
-export * from '../generated/outline'
+import { findIconByName } from './generated'
 
 export interface IconProps {
   name: string
   size?: number
-  color?: string | string[]
+  color?: string
 }
 
 export default function Icon(props: IconProps) {
-  const { name, ...rest } = props
-  const finalName = `${name}-outline` as any
-  return <OutlineIcon name={finalName} {...rest} />
+  const { name, size, color } = props
+  const Icon = findIconByName(name)!
+  return React.createElement(Icon, {
+    width: size,
+    height: size,
+    fill: color,
+  })
 }

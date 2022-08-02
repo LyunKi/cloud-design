@@ -6,7 +6,8 @@
   },
   "scripts": {
     "docs:dev": "dumi dev",
-    "docs:build": "dumi build",
+    "docs:build": "pnpm build:workspace && dumi build",
+    "build:workspace": "pnpm -r run build",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -17,14 +18,16 @@
     "@cloud-dragon/tsconfig-recommended": "^0.0.1",
     "@commitlint/cli": "^16.0.2",
     "@commitlint/config-conventional": "^16.0.0",
+    "@types/fs-extra": "^9.0.13",
     "dumi": "^1.1.46",
     "dumi-theme-mobile": "^1.1.23",
     "eslint": "^8.2.0",
+    "fs-extra": "^10.1.0",
     "husky": "^7.0.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.5.1",
-    "stylelint": "^14.2.0",
     "react-native": "^0.69.3",
+    "stylelint": "^14.2.0",
     "typescript": "^4.5.4",
     "umi-plugin-react-native": "^0.5.0"
   },

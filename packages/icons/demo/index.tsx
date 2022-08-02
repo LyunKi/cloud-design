@@ -7,21 +7,17 @@ export default function IconList() {
     <SafeAreaView>
       <ScrollView>
         <View style={{ flexWrap: 'wrap', flexDirection: 'row' }}>
-          {data.map((item, index) => {
-            const paddingLength = data.length % 4 || 4
+          {data.map((item) => {
             return (
               <View
                 key={item}
                 style={{
                   width: '25%',
-                  marginBottom: index < data.length - paddingLength ? 40 : 0,
                   alignItems: 'center',
                 }}
               >
-                <Icon name={item} />
-                <Text style={{ color: '#646566', marginTop: 10, fontSize: 10 }}>
-                  {item}
-                </Text>
+                <Icon name={item} size={24} color={'red'} />
+                <Text style={{ color: '#646566', fontSize: 10 }}>{item}</Text>
               </View>
             )
           })}

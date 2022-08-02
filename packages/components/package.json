@@ -4,6 +4,9 @@
   "dependencies": {
     "@cloud-design/icons": "*"
   },
+  "scripts": {
+    "build": "tsc"
+  },
   "devDependencies": {
     "react": "^18.2.0",
     "@cloud-dragon/tsconfig-react": "^0.0.1"
