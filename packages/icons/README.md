@@ -10,18 +10,16 @@ group:
 toc: menu
 ---
 
-# `@vant-react-native/icons`
+# `@cloud-design/icons`
 
-vant icons for react-native
+cloud design icons for react-native
 
 ## Install
 
 ```sh
-$ yarn add @vant-react-native/icons
-# or
-$ npm install @vant-react-native/icons
+$ npm install @cloud-design/icons
 ```
 
 ## Usage
 
-<code src="./demo/index.tsx" hideActions='["CSB"]'></code>
+<code src="./demo/index.tsx"></code>

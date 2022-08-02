@@ -8,13 +8,17 @@
     "compile": "tsc"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "react-native": "^0.69.3"
+  },
+  "dependencies": {
+    "react-native-svg": "^12.4.3"
   },
   "devDependencies": {
     "@cloud-dragon/tsconfig-react": "^0.0.1",
     "@types/react": "^18.0.15",
+    "@types/react-native": "^0.69.5",
     "react": "^18.2.0",
-    "react-native-iconfont-cli": "^2.2.4",
-    "react-native-svg": "^12.4.3"
+    "react-native-iconfont-cli": "^2.2.4"
   }
 }

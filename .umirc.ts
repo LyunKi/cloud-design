@@ -1,7 +1,7 @@
 import { defineConfig, IConfig } from 'dumi'
 
 export default defineConfig({
-  title: 'vant-react-native',
+  title: '@cloud-design',
   mode: 'site',
   logo: 'https://img01.yzcdn.cn/vant/logo.png',
   favicon: 'https://img01.yzcdn.cn/vant/logo.png',
