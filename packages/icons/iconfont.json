@@ -1,7 +1,7 @@
 {
   "symbol_url": "",
-  "use_typescript": false,
-  "save_dir": "./gen/outline",
+  "use_typescript": true,
+  "save_dir": "./generated/outline",
   "trim_icon_prefix": "",
   "default_icon_size": 18,
   "local_svgs": "./assets/outline/svg"

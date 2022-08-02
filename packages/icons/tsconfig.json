@@ -1,0 +1,7 @@
+{
+  "extends": "@cloud-dragon/tsconfig-react",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true
+  }
+}

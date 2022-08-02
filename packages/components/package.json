@@ -1,4 +1,15 @@
 {
   "name": "@cloud-design/components",
-  "description": "React Native UI components"
+  "description": "React Native UI components",
+  "dependencies": {
+    "@cloud-design/icons": "*"
+  },
+  "devDependencies": {
+    "react": "^18.2.0",
+    "@cloud-dragon/tsconfig-react": "^0.0.1"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "@types/react": "^18.0.15"
+  }
 }
