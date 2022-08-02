@@ -20,6 +20,8 @@ cloud design icons for react-native
 $ npm install @cloud-design/icons
 ```
 
+<API src='./src/index.tsx'></API>
+
 ## Usage
 
 <code src="./demo/index.tsx"></code>

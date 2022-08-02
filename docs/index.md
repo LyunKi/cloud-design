@@ -2,7 +2,7 @@
 title: cloud-design
 hero:
   title: cloud-design
-  desc: UI Components built on React Native
+  desc: React Native UI Library
   image: https://img01.yzcdn.cn/vant/logo.png
   actions:
     - text: Getting Started

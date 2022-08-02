@@ -1,7 +1,7 @@
 ---
-title: @cloud-design/components
+title: cloud-design
 hero:
-  title: @cloud-design/components
+  title: cloud-design
   desc: React Native UI 组件库
   image: https://img01.yzcdn.cn/vant/logo.png
   actions:

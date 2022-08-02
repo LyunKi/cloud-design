@@ -8,7 +8,7 @@ export interface IconProps {
 }
 
 export default function Icon(props: IconProps) {
-  const { name, size, color } = props
+  const { name, size = 24, color } = props
   const Icon = findIconByName(name)!
   return React.createElement(Icon, {
     width: size,
