@@ -12,8 +12,10 @@ export interface IconAnimationRegistry {
   shake: IconAnimation
 }
 
+export type SupportedAnimation = keyof IconAnimationRegistry
+
 export function getIconAnimation(
-  animation?: keyof IconAnimationRegistry,
+  animation?: SupportedAnimation,
   config?: AnimationConfig
 ): IconAnimation | undefined {
   switch (animation) {

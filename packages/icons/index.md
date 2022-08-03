@@ -12,9 +12,9 @@ toc: menu
 
 # `@cloud-design/icons`
 
-cloud design icons for react-native
+react-native icon 组件
 
-## Install
+## 安装
 
 ```sh
 $ npm install @cloud-design/icons
@@ -22,6 +22,6 @@ $ npm install @cloud-design/icons
 
 <API src='./src/index.tsx'></API>
 
-## Usage
+## 用例
 
 <code src="./demo/index.tsx"></code>

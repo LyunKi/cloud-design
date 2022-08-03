@@ -13,7 +13,7 @@ export const DEFAULT_CONFIG: AnimationConfig = {
 }
 
 /**
- * Base animation class. Creates `Animated.Value` and maps it to props of `Animated.View`
+ * Base animation class. Creates `Animated.Value` and maps it to props
  */
 export abstract class Animation<
   TConfig extends AnimationConfig,
@@ -34,14 +34,14 @@ export abstract class Animation<
     } as TConfig
   }
 
-  public start(callback?: Animated.EndCallback) {
+  public start = (callback?: Animated.EndCallback) => {
     this.endCallback = callback
     this.running = true
 
     this.animation.start(this.onAnimationEnd)
   }
 
-  public stop() {
+  public stop = () => {
     this.running = false
 
     this.animation.stop()
