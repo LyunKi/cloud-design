@@ -22,6 +22,6 @@ $ npm install @cloud-design/icons
 
 <API src='./src/index.tsx'></API>
 
-## 用例
+## icon 全览
 
 <code src="./demo/index.tsx"></code>

@@ -8,5 +8,9 @@ export default defineConfig({
   resolve: {
     includes: ['docs', 'packages/components', 'packages/icons'],
   },
+  locales: [
+    ['zh-CN', '中文'],
+    ['en-US', 'English'],
+  ],
   // more config: https://d.umijs.org/config
 } as IConfig)
