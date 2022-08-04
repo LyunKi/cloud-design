@@ -1,32 +1,22 @@
-const { resolve } = require('path')
+const { defaults: tsjPreset } = require('ts-jest/presets')
+const path = require('path')
 
 module.exports = {
+  ...tsjPreset,
   preset: 'react-native',
   testEnvironment: 'jsdom',
-  roots: ['<rootDir>'],
-  setupFilesAfterEnv: ['<rootDir>/config/jest/jest-setup.js'],
+  setupFilesAfterEnv: [
+    '@testing-library/jest-native/extend-expect',
+    `${__dirname}/config/jest/jest-setup.js`,
+  ],
   transform: {
-    '^.+\\.(ts|js|tsx|jsx)$': '@swc/jest',
+    '^.+\\.jsx$': 'babel-jest',
+    '^.+\\.tsx?$': 'ts-jest',
   },
-  transformIgnorePatterns: [
-    '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$',
-    '^.+\\.module\\.(css|sass|scss)$',
-  ],
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/config/jest/mocks/fileMock.js',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': `${__dirname}/config/jest/mocks/fileMock.js`,
     '\\.(css|scss|less)$': 'identity-obj-proxy',
+    '@cloud-design/(.*)$': path.resolve(__dirname, 'packages/$1/src'),
   },
-  moduleFileExtensions: [
-    'tsx',
-    'ts',
-    'web.js',
-    'js',
-    'web.ts',
-    'web.tsx',
-    'json',
-    'web.jsx',
-    'jsx',
-    'node',
-  ],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 }
