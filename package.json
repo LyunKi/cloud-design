@@ -7,7 +7,7 @@
   "scripts": {
     "docs:dev": "dumi dev",
     "docs:build": "pnpm build:workspace && dumi build",
-    "build:workspace": "pnpm -r run build",
+    "build:workspace": "pnpm --filter=!components build && pnpm --filter=components build",
     "prepare": "husky install"
   },
   "devDependencies": {
