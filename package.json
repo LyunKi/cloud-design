@@ -8,7 +8,7 @@
     "docs:dev": "dumi dev",
     "docs:build": "pnpm build:workspace && dumi build",
     "build:workspace": "pnpm --filter=!components build && pnpm --filter=components build",
-    "prepare": "husky install"
+    "prepare:husky": "husky install"
   },
   "devDependencies": {
     "@changesets/cli": "^2.19.0",
