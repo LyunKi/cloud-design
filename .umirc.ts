@@ -8,7 +8,10 @@ export default defineConfig({
   resolve: {
     includes: ['docs', 'packages/components', 'packages/icons'],
   },
-  publicPath: process.env.NODE_ENV === 'production' ? '/cloud-design/' : '/',
+  publicPath:
+    process.env.NODE_ENV === 'production'
+      ? 'https://lyunki.github.io//cloud-design/'
+      : '/',
   runtimePublicPath: true,
   hash: true,
   locales: [
