@@ -1,5 +1,6 @@
 import { defineConfig, IConfig } from 'dumi'
 
+const repo = 'cloud-design'
 export default defineConfig({
   title: '@cloud-design',
   mode: 'site',
@@ -8,11 +9,8 @@ export default defineConfig({
   resolve: {
     includes: ['docs', 'packages/components', 'packages/icons'],
   },
-  publicPath:
-    process.env.NODE_ENV === 'production'
-      ? 'https://lyunki.github.io//cloud-design/'
-      : '/',
-  runtimePublicPath: true,
+  base: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
   hash: true,
   locales: [
     ['zh-CN', '中文'],
