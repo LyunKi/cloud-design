@@ -11,6 +11,7 @@ export default defineConfig({
   },
   base: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
   publicPath: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
+  exportStatic: {},
   hash: true,
   locales: [
     ['zh-CN', '中文'],
