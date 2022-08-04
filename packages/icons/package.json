@@ -5,7 +5,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "generate": "pnpm exec ts-node scripts/start.ts",
-    "build": "pnpm generate && tsc"
+    "build": "tsc"
   },
   "peerDependencies": {
     "react": "^18.2.0",

@@ -132,7 +132,6 @@ dist
 
 pnpm-lock.yaml
 
-packages/icons/src/generated/
 .vscode/
 .umi/
 .umi-production
