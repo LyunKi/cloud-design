@@ -4,9 +4,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "prebuild": "pnpm generate",
-    "generate": "pnpm dlx ts-node scripts/start.ts",
-    "build": "pnpm prebuild && tsc"
+    "generate": "pnpm exec ts-node scripts/start.ts",
+    "build": "pnpm generate && tsc"
   },
   "peerDependencies": {
     "react": "^18.2.0",
