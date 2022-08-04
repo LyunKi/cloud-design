@@ -8,8 +8,7 @@ export default defineConfig({
   resolve: {
     includes: ['docs', 'packages/components', 'packages/icons'],
   },
-  base: 'cloud-design',
-  publicPath: '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/cloud-design/' : '/',
   hash: true,
   locales: [
     ['zh-CN', '中文'],
