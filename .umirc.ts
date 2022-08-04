@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     includes: ['docs', 'packages/components', 'packages/icons'],
   },
+  base: 'cloud-design',
   publicPath: '/',
   hash: true,
   locales: [
