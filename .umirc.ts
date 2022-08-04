@@ -8,9 +8,18 @@ export default defineConfig({
   resolve: {
     includes: ['docs', 'packages/components', 'packages/icons'],
   },
+  publicPath: '/',
+  hash: true,
   locales: [
     ['zh-CN', '中文'],
     ['en-US', 'English'],
+  ],
+  navs: [
+    null,
+    {
+      title: 'GitHub',
+      path: 'https://github.com/LyunKi/cloud-design',
+    },
   ],
   // more config: https://d.umijs.org/config
 } as IConfig)
