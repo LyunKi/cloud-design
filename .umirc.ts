@@ -9,6 +9,7 @@ export default defineConfig({
     includes: ['docs', 'packages/components', 'packages/icons'],
   },
   publicPath: process.env.NODE_ENV === 'production' ? '/cloud-design/' : '/',
+  runtimePublicPath: true,
   hash: true,
   locales: [
     ['zh-CN', '中文'],
