@@ -1,6 +1,6 @@
 {
   "name": "@cloud-design/icons",
-  "description": "React Native icons",
+  "description": "React Native UI Icons",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {

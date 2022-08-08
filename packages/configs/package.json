@@ -1,10 +1,11 @@
 {
-  "name": "@cloud-design/components",
-  "description": "React Native UI Components",
+  "name": "@cloud-design/configs",
+  "description": "React Native UI Configs",
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "@cloud-design/icons": "0.0.0"
   },
   "devDependencies": {
@@ -13,6 +14,7 @@
   },
   "peerDependencies": {
     "react": "^18.2.0",
+    "@types/lodash": "^4.14.182",
     "@types/react": "^18.0.15"
   }
 }
