@@ -2,7 +2,7 @@ import { I18n } from './I18n'
 import { Route } from './Route'
 import { Theme } from './Theme'
 
-export interface Application {
+export interface App {
   name: string
   route: Route
   theme: Theme

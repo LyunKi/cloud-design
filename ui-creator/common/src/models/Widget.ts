@@ -1,7 +1,7 @@
 import { Prop } from './Prop'
 
-export interface Component {
+export interface Widget {
   type: string
   props: Prop[]
-  children: Component[]
+  children: Widget[]
 }

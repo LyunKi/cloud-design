@@ -1,5 +1,5 @@
-export * from './Application'
-export * from './Component'
+export * from './App'
+export * from './Widget'
 export * from './Gui'
 export * from './I18n'
 export * from './Prop'

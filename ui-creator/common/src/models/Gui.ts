@@ -1,6 +1,6 @@
-import { Component } from './Component'
+import { Widget } from './Widget'
 
 export interface Gui {
   name: string
-  components: Component[]
+  components: Widget[]
 }
