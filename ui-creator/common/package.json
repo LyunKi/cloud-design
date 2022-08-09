@@ -1,0 +1,13 @@
+{
+  "name": "@ui-creator/common",
+  "description": "UI Creator common package",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@cloud-dragon/tsconfig-react": "^0.0.1",
+    "@cloud-dragon/common-types": "^0.0.1"
+  },
+  "peerDependencies": {}
+}
