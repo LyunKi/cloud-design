@@ -1,16 +1,21 @@
 {
-  "name": "@ui-creator/common",
-  "description": "UI Creator common package",
+  "name": "@ui-creator/react-builder",
+  "description": "UI Creator react builder",
   "module": "./dist/index.js",
   "main": "./src/index.ts",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
-  "dependencies": {},
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "dependencies": {
+    "@ui-creator/common": "workspace:*"
+  },
   "devDependencies": {
+    "@types/react": "^18.0.15",
     "@cloud-dragon/tsconfig-react": "^0.0.1",
     "@cloud-dragon/common-types": "^0.0.1"
-  },
-  "peerDependencies": {}
+  }
 }

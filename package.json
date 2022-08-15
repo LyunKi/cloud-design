@@ -6,8 +6,9 @@
   },
   "scripts": {
     "docs:dev": "dumi dev",
-    "docs:build": "pnpm build:workspace && dumi build",
-    "build:workspace": "pnpm --filter=!components build && pnpm --filter=components build",
+    "docs:build": "pnpm build:components && dumi build",
+    "build:components": "pnpm --filter \"./packages/**\" build",
+    "build:ui-creator": "pnpm --filter \"./ui-creator/**\" build",
     "prepare:husky": "husky install"
   },
   "devDependencies": {
