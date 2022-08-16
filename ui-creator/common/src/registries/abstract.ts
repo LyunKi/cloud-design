@@ -13,10 +13,6 @@ export interface InstanceKey {
 }
 
 export abstract class Registry<T> {
-  protected get registryName() {
-    return this.constructor.name
-  }
-
   protected instances: NamespacedInstances<T> = {}
 
   public getInstancesByNamespace(namespace: string) {

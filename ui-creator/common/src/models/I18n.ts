@@ -3,7 +3,9 @@ import { interpolate } from '@cloud-dragon/common-utils'
 import get from 'lodash/get'
 import isString from 'lodash/isString'
 
-export type I18nPacks = KV<KV<NestedString>>
+export type I18nPack = KV<NestedString>
+
+export type I18nPacks = KV<I18nPack>
 
 export const DEFAULT_LOCALE = 'zh_CN'
 

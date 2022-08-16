@@ -1,6 +1,8 @@
 import { KV, NestedString } from '@cloud-dragon/common-types'
 
-export type ThemePacks = KV<KV<NestedString>>
+export type ThemePack = KV<NestedString>
+
+export type ThemePacks = KV<ThemePack>
 
 export const DEFAULT_THEME = 'light'
 

@@ -1,7 +1,6 @@
 import {
   App,
-  Builder,
-  BuildOptions,
+  BuildAppOptions,
   Widget,
   WidgetSnippet,
   DEFAULT_LOCALE,
@@ -13,6 +12,11 @@ import {
   View,
   ViewChild,
   Prop,
+  AppBuilder,
+  I18nManager,
+  ThemeManager,
+  WidgetBuilder,
+  BuildWidgetOptions,
 } from '@ui-creator/common'
 import React, { ReactElement } from 'react'
 import { ConfigProvider, ConfigProviderProps } from '@cloud-design/configs'
@@ -21,16 +25,16 @@ import * as Linking from 'expo-linking'
 import { LinkingOptions, NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SafeAreaView } from 'react-native'
+import { ComponentRegistry } from '@ui-creator/common/src/registries'
 
-export class BasicCloudRnBuilder extends Builder<ReactElement> {
-  Stack = createNativeStackNavigator()
+export const CloudRnComponentRegistry = new ComponentRegistry()
+export const CloudRnI18nManager = new I18nManager()
+export const CloudRnThemeManager = new ThemeManager()
 
-  private parseConfigProps() {
-    return {
-      themePack: this.ThemeManager.themePack,
-      locale: this.I18nManager.locale,
-    }
-  }
+export const CLOUD_DESIGN_COMPONENT = '@cloud-design/components'
+
+export class BasicCloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
+  public ComponentRegistry: ComponentRegistry = CloudRnComponentRegistry
 
   private parseWidgetProps(props: Prop[]) {
     return props?.reduce((prev, prop) => {
@@ -40,17 +44,50 @@ export class BasicCloudRnBuilder extends Builder<ReactElement> {
     }, {} as KV)
   }
 
+  public build(widget: Widget, options?: BuildWidgetOptions): ReactElement {
+    const { children, type, props } = widget
+    const instance = this.getWidgetInstance(type)
+    return React.createElement(
+      instance,
+      this.parseWidgetProps(props),
+      children.map((child) => this.build(child, options))
+    )
+  }
+  public getWidgetInstance(type: string) {
+    return (
+      this.ComponentRegistry.getInstance({
+        namespace: CLOUD_DESIGN_COMPONENT,
+        type,
+      }) ?? 'div'
+    )
+  }
+}
+
+export const CloudRnWidgetBuilder = new BasicCloudRnWidgetBuilder()
+
+export class BasicCloudRnAppBuilder extends AppBuilder<
+  ReactElement,
+  ReactElement
+> {
+  public I18nManager: I18nManager = CloudRnI18nManager
+  public ThemeManager: ThemeManager = CloudRnThemeManager
+  public WidgetBuilder = CloudRnWidgetBuilder
+
+  private Stack = createNativeStackNavigator()
+
+  private parseConfigProps() {
+    return {
+      themePack: this.ThemeManager.themePack,
+      locale: this.I18nManager.locale,
+    }
+  }
+
   public buildWidgetSnippet = (widgetSnippet: WidgetSnippet) => {
     return widgetSnippet.children.map(this.buildWidget)
   }
 
   public buildWidget = (widget: Widget): ReactElement => {
-    const { children, type, props } = widget
-    return React.createElement(
-      type,
-      this.parseWidgetProps(props),
-      children.map(this.buildWidget)
-    )
+    return this.WidgetBuilder.build(widget)
   }
 
   private buildViewChild(viewChild: ViewChild) {
@@ -125,11 +162,12 @@ export class BasicCloudRnBuilder extends Builder<ReactElement> {
     )
   }
 
-  build(app: App, options: BuildOptions): ReactElement {
-    const { themePacks, navigation, i18nPacks } = app
+  build(app: App, options: BuildAppOptions): ReactElement {
+    const { navigation } = app
     const { theme = DEFAULT_THEME, locale = DEFAULT_LOCALE } = options
-    this.I18nManager.configure(locale, i18nPacks)
-    this.ThemeManager.configure(theme, themePacks)
+
+    this.I18nManager.locale = locale
+    this.ThemeManager.theme = theme
 
     const configProps =
       this.parseConfigProps() as unknown as ConfigProviderProps
@@ -141,4 +179,4 @@ export class BasicCloudRnBuilder extends Builder<ReactElement> {
   }
 }
 
-export const CloudRnBuilder = new BasicCloudRnBuilder()
+export const CloudRnAppBuilder = new BasicCloudRnAppBuilder()
