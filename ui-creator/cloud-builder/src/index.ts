@@ -162,7 +162,7 @@ export class BasicCloudRnAppBuilder extends AppBuilder<
     )
   }
 
-  build(app: App, options: BuildAppOptions): ReactElement {
+  public build(app: App, options: BuildAppOptions): ReactElement {
     const { navigation } = app
     const { theme = DEFAULT_THEME, locale = DEFAULT_LOCALE } = options
 
