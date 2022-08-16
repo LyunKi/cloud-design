@@ -1,10 +1,10 @@
-import { I18n } from './I18n'
-import { Route } from './Route'
-import { Theme } from './Theme'
+import { I18nPacks } from './I18n'
+import { Navigation } from './Navigation'
+import { ThemePacks } from './Theme'
 
 export interface App {
   name: string
-  route: Route
-  theme: Theme
-  i18n: I18n
+  navigation: Navigation
+  themePacks: ThemePacks
+  i18nPacks: I18nPacks
 }

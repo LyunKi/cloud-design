@@ -137,3 +137,4 @@ pnpm-lock.yaml
 .umi-production
 .env.local
 dist/
+.yalc/

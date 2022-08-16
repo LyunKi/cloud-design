@@ -1,3 +1,4 @@
+import { createNavigationContainerRef } from '@react-navigation/native'
 import { View } from './View'
 
 export interface RouteItem {
@@ -6,11 +7,12 @@ export interface RouteItem {
 }
 
 export interface RouteGroup {
-  options: any
   items: RouteItem[]
 }
 
-export interface Route {
+export interface Navigation {
   initialRouteName: string
   groups: RouteGroup[]
 }
+
+export const Navigator = createNavigationContainerRef()

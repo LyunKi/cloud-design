@@ -2,8 +2,8 @@ import { createContext, useContext } from 'react'
 
 export type SupportedLocale = 'zh-CN' | 'en-US'
 
-export const LocaleContext = createContext<SupportedLocale>('zh-CN')
+export const I18nContext = createContext<SupportedLocale>('zh-CN')
 
 export function useLocale() {
-  return useContext(LocaleContext)
+  return useContext(I18nContext)
 }

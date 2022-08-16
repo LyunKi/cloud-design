@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "packages": {
+    "@cloud-dragon/common-types": {
+      "signature": "69a22ef1c30424059b0c67a6a42bdb5e",
+      "file": true,
+      "replaced": "^0.0.1"
+    },
+    "@cloud-dragon/common-utils": {
+      "signature": "3a37f6a492332e4d2fab5d22ee4ef6ab",
+      "file": true
+    }
+  }
+}

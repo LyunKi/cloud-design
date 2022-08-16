@@ -1,16 +1,16 @@
 import React, { PropsWithChildren } from 'react'
-import { LocaleProvider, LocaleProviderProps } from './locale'
+import { I18nProvider, I18nProviderProps } from './i18n'
 import { ThemeProvider, ThemeProviderProps } from './theme'
 
 export interface ConfigProviderProps
   extends ThemeProviderProps,
-    LocaleProviderProps {}
+    I18nProviderProps {}
 
 export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
   const { themePack, locale, children } = props
   return (
     <ThemeProvider themePack={themePack}>
-      <LocaleProvider locale={locale}>{children}</LocaleProvider>
+      <I18nProvider locale={locale}>{children}</I18nProvider>
     </ThemeProvider>
   )
 }
