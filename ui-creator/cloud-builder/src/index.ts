@@ -18,7 +18,7 @@ import {
   WidgetBuilder,
   BuildWidgetOptions,
 } from '@ui-creator/common'
-import React, { ReactElement } from 'react'
+import React, { Fragment, ReactElement } from 'react'
 import { ConfigProvider, ConfigProviderProps } from '@cloud-design/configs'
 import { KV } from '@cloud-dragon/common-types'
 import * as Linking from 'expo-linking'
@@ -31,7 +31,7 @@ export const CloudRnComponentRegistry = new ComponentRegistry()
 export const CloudRnI18nManager = new I18nManager()
 export const CloudRnThemeManager = new ThemeManager()
 
-export const CLOUD_DESIGN_COMPONENT = '@cloud-design/components'
+export const CLOUD_DESIGN_NAMESPACE = '@cloud-design'
 
 export class BasicCloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
   public ComponentRegistry: ComponentRegistry = CloudRnComponentRegistry
@@ -53,12 +53,22 @@ export class BasicCloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
       children.map((child) => this.build(child, options))
     )
   }
+
+  public registerWidget(type: string, instance: React.ElementType) {
+    this.ComponentRegistry.registerInstances({
+      namespace: CLOUD_DESIGN_NAMESPACE,
+      instances: {
+        [type]: instance,
+      },
+    })
+  }
+
   public getWidgetInstance(type: string) {
     return (
       this.ComponentRegistry.getInstance({
-        namespace: CLOUD_DESIGN_COMPONENT,
+        namespace: CLOUD_DESIGN_NAMESPACE,
         type,
-      }) ?? 'div'
+      }) ?? Fragment
     )
   }
 }
