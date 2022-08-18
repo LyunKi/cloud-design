@@ -17,31 +17,52 @@ import {
   ThemeManager,
   WidgetBuilder,
   BuildWidgetOptions,
+  WidgetRegistry,
 } from '@ui-creator/common'
 import React, { Fragment, ReactElement } from 'react'
 import { ConfigProvider, ConfigProviderProps } from '@cloud-design/configs'
 import { KV } from '@cloud-dragon/common-types'
 import * as Linking from 'expo-linking'
-import { LinkingOptions, NavigationContainer } from '@react-navigation/native'
+import {
+  createNavigationContainerRef,
+  LinkingOptions,
+  NavigationContainer,
+} from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SafeAreaView } from 'react-native'
-import { ComponentRegistry } from '@ui-creator/common/src/registries'
+import snakeCase from 'lodash/snakeCase'
 
-export const CloudRnComponentRegistry = new ComponentRegistry()
+export const CloudRnWidgetRegistry = new WidgetRegistry()
 export const CloudRnI18nManager = new I18nManager()
 export const CloudRnThemeManager = new ThemeManager()
+export const Navigator = createNavigationContainerRef()
 
 export const CLOUD_DESIGN_NAMESPACE = '@cloud-design'
 
-export class BasicCloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
-  public ComponentRegistry: ComponentRegistry = CloudRnComponentRegistry
+const WIDGET_TYPE_RECORD: KV<number> = {}
 
-  private parseWidgetProps(props: Prop[]) {
-    return props?.reduce((prev, prop) => {
-      const { name, value } = prop
-      prev[name] = value
-      return prev
-    }, {} as KV)
+function generateWidgetKey(type: string) {
+  const count = WIDGET_TYPE_RECORD[type]
+  const idSuffix = (count ?? -1) + 1
+  const id = `${type}-${idSuffix}`
+  WIDGET_TYPE_RECORD[type] = idSuffix
+  return id
+}
+
+export class BasicCloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
+  public WidgetRegistry: WidgetRegistry = CloudRnWidgetRegistry
+
+  private parseWidgetProps(type: string, props: Prop[]) {
+    return props?.reduce(
+      (prev, prop) => {
+        const { name, value } = prop
+        prev[name] = value
+        return prev
+      },
+      {
+        key: generateWidgetKey(type),
+      } as KV
+    )
   }
 
   public build(widget: Widget, options?: BuildWidgetOptions): ReactElement {
@@ -49,13 +70,13 @@ export class BasicCloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
     const instance = this.getWidgetInstance(type)
     return React.createElement(
       instance,
-      this.parseWidgetProps(props),
-      children.map((child) => this.build(child, options))
+      this.parseWidgetProps(type, props),
+      children?.map((child) => this.build(child, options))
     )
   }
 
   public registerWidget(type: string, instance: React.ElementType) {
-    this.ComponentRegistry.registerInstances({
+    this.WidgetRegistry.registerInstances({
       namespace: CLOUD_DESIGN_NAMESPACE,
       instances: {
         [type]: instance,
@@ -65,7 +86,7 @@ export class BasicCloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
 
   public getWidgetInstance(type: string) {
     return (
-      this.ComponentRegistry.getInstance({
+      this.WidgetRegistry.getInstance({
         namespace: CLOUD_DESIGN_NAMESPACE,
         type,
       }) ?? Fragment
@@ -75,15 +96,16 @@ export class BasicCloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
 
 export const CloudRnWidgetBuilder = new BasicCloudRnWidgetBuilder()
 
+const Stack = createNativeStackNavigator()
+
 export class BasicCloudRnAppBuilder extends AppBuilder<
   ReactElement,
   ReactElement
 > {
+  public Navigator = Navigator
   public I18nManager: I18nManager = CloudRnI18nManager
   public ThemeManager: ThemeManager = CloudRnThemeManager
   public WidgetBuilder = CloudRnWidgetBuilder
-
-  private Stack = createNativeStackNavigator()
 
   private parseConfigProps() {
     return {
@@ -100,7 +122,7 @@ export class BasicCloudRnAppBuilder extends AppBuilder<
     return this.WidgetBuilder.build(widget)
   }
 
-  private buildViewChild(viewChild: ViewChild) {
+  private buildViewChild = (viewChild: ViewChild) => {
     return isWidgetSnippet(viewChild)
       ? this.buildWidgetSnippet(viewChild)
       : this.buildWidget(viewChild)
@@ -117,29 +139,28 @@ export class BasicCloudRnAppBuilder extends AppBuilder<
 
   private buildRouteItem = (item: RouteItem) => {
     const { name, view } = item
-    return React.createElement(
-      this.Stack.Screen,
-      {
-        name,
-      } as any,
-      this.buildView(view)
-    )
+    return React.createElement(Stack.Screen, {
+      name,
+      key: name,
+      component: () => this.buildView(view),
+    } as any)
   }
 
   private buildRouteGroup = (group: RouteGroup) => {
-    const { items } = group
+    const { items, name } = group
     return React.createElement(
-      this.Stack.Group,
+      Stack.Group,
       {
+        key: name,
         screenOptions: { headerShown: false },
       } as any,
       items.map(this.buildRouteItem)
     )
   }
 
-  private buildRouteGroups(groups: RouteGroup[]) {
+  private buildRouteGroups = (groups: RouteGroup[]) => {
     return React.createElement(
-      this.Stack.Navigator,
+      Stack.Navigator,
       null,
       groups.map(this.buildRouteGroup)
     )
@@ -152,7 +173,7 @@ export class BasicCloudRnAppBuilder extends AppBuilder<
       const { items } = group
       items.forEach((item) => {
         const { name } = item
-        screens[name] = name
+        screens[name] = snakeCase(name)
       })
     })
     const linking: LinkingOptions<any> = {
@@ -166,13 +187,13 @@ export class BasicCloudRnAppBuilder extends AppBuilder<
       NavigationContainer,
       {
         linking,
-        ref: this.Navigator,
+        ref: Navigator,
       } as any,
       this.buildRouteGroups(groups)
     )
   }
 
-  public build(app: App, options: BuildAppOptions): ReactElement {
+  public build(app: App, options: BuildAppOptions = {}): ReactElement {
     const { navigation } = app
     const { theme = DEFAULT_THEME, locale = DEFAULT_LOCALE } = options
 

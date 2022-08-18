@@ -1,25 +1,29 @@
 {
   "name": "@ui-creator/cloud-builder",
   "description": "UI Creator builder for cloud design",
-  "module": "./dist/index.js",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "typings": "./src/index.ts",
+  "version": "0.0.0",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "pnpm build"
   },
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
-    "@ui-creator/common": "workspace:*",
     "react": "^18.2.0"
   },
   "dependencies": {
     "@cloud-design/configs": "workspace:*",
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
-    "expo-linking": "^3.2.2"
+    "expo-linking": "^3.2.2",
+    "lodash": "^4.17.21",
+    "react-native-safe-area-context": "^4.3.1"
   },
   "devDependencies": {
-    "@cloud-dragon/common-types": "^0.0.1",
+    "@cloud-dragon/common-types": "^0.0.2",
     "@cloud-dragon/tsconfig-react": "^0.0.1",
     "@types/react": "^18.0.15",
     "@ui-creator/common": "workspace:*"

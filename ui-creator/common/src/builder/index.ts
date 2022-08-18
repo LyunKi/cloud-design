@@ -8,7 +8,7 @@ import {
   ThemePacks,
   Widget,
 } from '../models'
-import { ComponentRegistry } from '../registries'
+import { WidgetRegistry } from '../registries'
 
 export interface BuildAppOptions {
   theme?: string
@@ -32,7 +32,7 @@ export abstract class WidgetBuilder<WidgetInstance> extends Builder<
   BuildWidgetOptions,
   WidgetInstance
 > {
-  public abstract ComponentRegistry: ComponentRegistry
+  public abstract WidgetRegistry: WidgetRegistry
 
   public abstract build(
     config: Widget,
@@ -58,7 +58,7 @@ export abstract class AppBuilder<AppInstance, WidgetInstance> extends Builder<
     this.ThemeManager.setThemePacks(themePacks)
   }
 
-  public Navigator = Navigator
+  public abstract Navigator: any
 
   public abstract build(config: App, options?: BuildAppOptions): AppInstance
 }

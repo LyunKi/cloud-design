@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['@cloud-dragon/eslint-config'],
+  extends: ['@cloud-dragon/eslint-config/react'],
 }
