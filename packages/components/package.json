@@ -6,13 +6,13 @@
   "files": [
     "dist"
   ],
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "build": "tsc",
     "prepublish": "pnpm build"
   },
   "dependencies": {
-    "@cloud-design/icons": "0.0.0"
+    "@cloud-design/icons": "0.1.0"
   },
   "devDependencies": {
     "react": "^18.2.0",

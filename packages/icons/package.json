@@ -6,7 +6,7 @@
   "files": [
     "dist"
   ],
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "generate": "pnpm exec ts-node scripts/start.ts",
     "test": "jest --config ../../jest.config.js",
