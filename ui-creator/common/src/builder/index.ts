@@ -2,10 +2,9 @@ import {
   App,
   I18nManager,
   I18nPack,
-  I18nPacks,
   ThemeManager,
   ThemePack,
-  ThemePacks,
+  View,
   Widget,
 } from '../models'
 import { WidgetRegistry } from '../registries'
@@ -16,6 +15,11 @@ export interface BuildAppOptions {
 }
 
 export interface BuildWidgetOptions {
+  themePack: ThemePack
+  i18nPack: I18nPack
+}
+
+export interface BuildViewOptions {
   themePack: ThemePack
   i18nPack: I18nPack
 }
@@ -39,24 +43,27 @@ export abstract class WidgetBuilder<WidgetInstance> extends Builder<
     options?: BuildWidgetOptions
   ): WidgetInstance
 }
-export abstract class AppBuilder<AppInstance, WidgetInstance> extends Builder<
-  App,
-  BuildAppOptions,
-  AppInstance
+
+export abstract class ViewBuilder<WidgetInstance, ViewInstance> extends Builder<
+  View,
+  BuildViewOptions,
+  ViewInstance
 > {
+  public abstract WidgetBuilder: WidgetBuilder<WidgetInstance>
+
+  public abstract build(config: View, options?: BuildViewOptions): ViewInstance
+}
+
+export abstract class AppBuilder<
+  AppInstance,
+  WidgetInstance,
+  ViewInstance
+> extends Builder<App, BuildAppOptions, AppInstance> {
+  public abstract ViewBuilder: ViewBuilder<WidgetInstance, ViewInstance>
+
   public abstract I18nManager: I18nManager
 
   public abstract ThemeManager: ThemeManager
-
-  public abstract WidgetBuilder: WidgetBuilder<WidgetInstance>
-
-  public registerI18n(i18nPacks: I18nPacks) {
-    this.I18nManager.setI18nPacks(i18nPacks)
-  }
-
-  public registerTheme(themePacks: ThemePacks) {
-    this.ThemeManager.setThemePacks(themePacks)
-  }
 
   public abstract Navigator: any
 

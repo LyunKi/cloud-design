@@ -18,6 +18,7 @@ import {
   WidgetBuilder,
   BuildWidgetOptions,
   WidgetRegistry,
+  ViewBuilder,
 } from '@ui-creator/common'
 import React, { Fragment, ReactElement } from 'react'
 import { ConfigProvider, ConfigProviderProps } from '@cloud-design/configs'
@@ -96,23 +97,11 @@ export class BasicCloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
 
 export const CloudRnWidgetBuilder = new BasicCloudRnWidgetBuilder()
 
-const Stack = createNativeStackNavigator()
-
-export class BasicCloudRnAppBuilder extends AppBuilder<
+export class BasicCloudRnViewBuilder extends ViewBuilder<
   ReactElement,
   ReactElement
 > {
-  public Navigator = Navigator
-  public I18nManager: I18nManager = CloudRnI18nManager
-  public ThemeManager: ThemeManager = CloudRnThemeManager
   public WidgetBuilder = CloudRnWidgetBuilder
-
-  private parseConfigProps() {
-    return {
-      themePack: this.ThemeManager.themePack,
-      locale: this.I18nManager.locale,
-    }
-  }
 
   public buildWidgetSnippet = (widgetSnippet: WidgetSnippet) => {
     return widgetSnippet.children.map(this.buildWidget)
@@ -128,7 +117,7 @@ export class BasicCloudRnAppBuilder extends AppBuilder<
       : this.buildWidget(viewChild)
   }
 
-  private buildView = (view: View) => {
+  public build(view: View): ReactElement {
     const { children } = view
     return React.createElement(
       SafeAreaView,
@@ -136,13 +125,38 @@ export class BasicCloudRnAppBuilder extends AppBuilder<
       children.flatMap(this.buildViewChild)
     )
   }
+}
+
+export const CloudRnViewBuilder = new BasicCloudRnViewBuilder()
+
+const Stack = createNativeStackNavigator()
+
+export class BasicCloudRnAppBuilder extends AppBuilder<
+  ReactElement,
+  ReactElement,
+  ReactElement
+> {
+  public Navigator = Navigator
+
+  public I18nManager: I18nManager = CloudRnI18nManager
+
+  public ThemeManager: ThemeManager = CloudRnThemeManager
+
+  public ViewBuilder = CloudRnViewBuilder
+
+  private parseConfigProps() {
+    return {
+      themePack: this.ThemeManager.themePack,
+      locale: this.I18nManager.locale,
+    }
+  }
 
   private buildRouteItem = (item: RouteItem) => {
     const { name, view } = item
     return React.createElement(Stack.Screen, {
       name,
       key: name,
-      component: () => this.buildView(view),
+      component: () => this.ViewBuilder.build(view),
     } as any)
   }
 
