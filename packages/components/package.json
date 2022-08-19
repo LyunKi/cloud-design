@@ -6,8 +6,10 @@
   "files": [
     "dist"
   ],
+  "version": "0.0.0",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublish": "pnpm build"
   },
   "dependencies": {
     "@cloud-design/icons": "0.0.0"
