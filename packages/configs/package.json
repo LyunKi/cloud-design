@@ -19,7 +19,7 @@
     "react": "^18.2.0",
     "@types/lodash": "^4.14.182",
     "@types/react": "^18.0.15",
-    "@cloud-dragon/tsconfig-react": "^0.0.1"
+    "@cloud-dragon/common-types": "^0.0.2"
   },
   "peerDependencies": {
     "react": "^18.2.0"

@@ -1,3 +1,9 @@
 {
-  "extends": "@cloud-dragon/tsconfig-react"
+  "extends": "@cloud-dragon/tsconfig-react",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@cloud-design/*": ["./packages/*/src"]
+    }
+  }
 }

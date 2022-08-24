@@ -1,7 +1,8 @@
 import isString from 'lodash/isString'
 import reduce from 'lodash/reduce'
 import mapValues from 'lodash/mapValues'
-import { createContext, useContext } from 'react'
+import { createContext, useCallback, useContext } from 'react'
+import { KV } from '@cloud-dragon/common-types'
 import { EVA_THEME_PACK } from './eva'
 
 export type CloudDesignTheme = Record<string, string>
@@ -20,8 +21,8 @@ export const ThemeContext = createContext<CloudDesignTheme>(
 )
 
 export function useTheme(): CloudDesignTheme {
-  const themePack = useContext(ThemeContext)
-  return processThemePack(themePack)
+  const theme = useContext(ThemeContext)
+  return theme
 }
 
 export function isPresetThemePack(
@@ -55,4 +56,15 @@ export function getTheme(themePack: ThemePack): CloudDesignTheme {
     ? DEFAULT_THEME[themePack]
     : themePack
   return processThemePack(originThemePack)
+}
+
+export function getThemedStyle(theme: CloudDesignTheme, style: KV) {
+  return mapValues(style, (value) => {
+    return isReferenceValue(value) ? theme[value] : value
+  })
+}
+
+export function useThemed() {
+  const theme = useTheme()
+  return useCallback((style: KV) => getThemedStyle(theme, style), [theme])
 }
