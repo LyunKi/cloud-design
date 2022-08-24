@@ -6,6 +6,10 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    "./theme": "./dist/theme/",
+    "./i18n": "./dist/i18n/"
+  },
   "version": "0.1.0",
   "scripts": {
     "build": "tsc",

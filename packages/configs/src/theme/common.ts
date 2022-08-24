@@ -1,11 +1,17 @@
 import isString from 'lodash/isString'
 import reduce from 'lodash/reduce'
 import mapValues from 'lodash/mapValues'
-import { createContext, useCallback, useContext } from 'react'
+import React, {
+  ComponentType,
+  createContext,
+  PropsWithChildren,
+  useCallback,
+  useContext,
+} from 'react'
 import { KV } from '@cloud-dragon/common-types'
 import { EVA_THEME_PACK } from './eva'
 
-export type CloudDesignTheme = Record<string, string>
+export type CloudDesignTheme = KV<string>
 
 export type PresetThemePack = 'eva-light' | 'eva-dark'
 
@@ -67,4 +73,30 @@ export function getThemedStyle(theme: CloudDesignTheme, style: KV) {
 export function useThemed() {
   const theme = useTheme()
   return useCallback((style: KV) => getThemedStyle(theme, style), [theme])
+}
+
+export type PropsWithThemeStyle<Props = any> = Props & {
+  ts: KV
+}
+
+export type Themed<Props = any> = PropsWithThemeStyle<Props> & {
+  theme: CloudDesignTheme
+}
+
+export function withTheme<Props = any>(
+  Component: ComponentType<PropsWithChildren<PropsWithThemeStyle<Props>>>
+) {
+  return (props: PropsWithChildren<PropsWithThemeStyle<Props>>) => {
+    const { ts, children, ...others } = props
+    const theme = useTheme()
+    return React.createElement(
+      Component,
+      {
+        ts: getThemedStyle(theme, ts),
+        theme,
+        ...others,
+      } as any,
+      children
+    )
+  }
 }

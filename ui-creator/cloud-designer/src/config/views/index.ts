@@ -4,7 +4,7 @@ export const IndexView: View = {
   children: [
     {
       type: 'Text',
-      props: [{ name: 'value', value: '123' }],
+      props: [{ name: 'value', value: 'index' }],
     },
   ],
 }

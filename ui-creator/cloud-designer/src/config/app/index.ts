@@ -1,5 +1,6 @@
 import { App } from '@ui-creator/common'
 import { IndexRoute } from '../views'
+import { HomeRoute } from '../views/home'
 
 export const AppConfig: App = {
   name: 'cloud-designer',
@@ -7,8 +8,8 @@ export const AppConfig: App = {
     initialRouteName: 'Index',
     groups: [
       {
-        items: [IndexRoute],
-        name: 'IndexGroup',
+        items: [IndexRoute, HomeRoute],
+        name: 'Main',
       },
     ],
   },
