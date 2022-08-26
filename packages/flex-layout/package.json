@@ -9,7 +9,10 @@
   "version": "0.1.0",
   "scripts": {
     "build": "tsc",
-    "prepublish": "pnpm build"
+    "prepublish": "pnpm build",
+    "test": "jest",
+    "test:watch": "jest --watch ",
+    "test:updateSnap": "jest --updateSnapshot"
   },
   "devDependencies": {
     "@cloud-design/configs": "workspace:^0.1.0",

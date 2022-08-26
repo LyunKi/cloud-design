@@ -4,8 +4,9 @@ exports[`<View /> render correctly 1`] = `
 <View
   style={
     Object {
-      "color": "#F2F6FF",
-      "flexDirection": "row",
+      "alignItems": "center",
+      "flexDirection": "column",
+      "justifyContent": "center",
     }
   }
 />

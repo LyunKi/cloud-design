@@ -1,4 +1,4 @@
-const packageName = 'view'
+const packageName = 'flex-layout'
 
 module.exports = {
   ...require('../../jest.config.base'),

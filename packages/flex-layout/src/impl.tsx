@@ -3,7 +3,7 @@ import { View as RnView } from 'react-native'
 import { FlexLayoutProps } from './api'
 
 export function FlexLayout(props: PropsWithChildren<FlexLayoutProps>) {
-  const { children, direction, justify, align } = props
+  const { children, direction = 'row', justify, align } = props
   return (
     <RnView
       style={{
