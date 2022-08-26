@@ -9,7 +9,7 @@
     "test:updateSnap": "pnpm -r --no-bail run test:updateSnap",
     "docs:dev": "dumi dev",
     "docs:build": "pnpm build:components && dumi build",
-    "build:components": "pnpm --filter \"./packages/**\" build",
+    "build:components": "pnpm --filter @cloud-design/* --no-bail build",
     "build:ui-creator": "pnpm --filter \"./ui-creator/**\" build",
     "prepare:husky": "husky install"
   },

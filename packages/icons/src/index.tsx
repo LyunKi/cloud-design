@@ -24,7 +24,10 @@ export interface IconRef {
   stopAnimation?: Function
 }
 
-function Icon(props: IconProps, ref: Ref<IconRef>) {
+export const Icon = React.forwardRef(function (
+  props: IconProps,
+  ref: Ref<IconRef>
+) {
   const { name, size = 24, color, animation } = props
   const Icon = findIconByName(name)!
   const animationInstance = React.useMemo(() => {
@@ -49,6 +52,4 @@ function Icon(props: IconProps, ref: Ref<IconRef>) {
       })}
     </Animated.View>
   )
-}
-
-export default React.forwardRef(Icon)
+})

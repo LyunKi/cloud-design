@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react-native'
-import Icon from '@cloud-design/icons'
+import { Icon } from '@cloud-design/icons'
 import React from 'react'
 
 describe('<Icon />', () => {
