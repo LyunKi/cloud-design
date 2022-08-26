@@ -1,9 +1,9 @@
 import React, { PropsWithChildren } from 'react'
-import { I18nProvider, I18nProviderProps } from './i18n'
-import { ThemeProvider, ThemeProviderProps } from './theme'
+import { I18nProvider, I18nProviderProps } from './I18nProvider'
+import { ThemeProvider, ThemeProviderProps } from './ThemeProvider'
 
-export * from './i18n'
-export * from './theme'
+export * from './I18nProvider'
+export * from './ThemeProvider'
 
 export interface ConfigProviderProps
   extends ThemeProviderProps,

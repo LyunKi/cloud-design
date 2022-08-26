@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react-native'
-import { View } from '@cloud-design/view'
+import { View } from '@cloud-design/components'
 import React from 'react'
 
 describe('<View />', () => {

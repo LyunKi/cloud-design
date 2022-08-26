@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react-native'
-import { FlexLayout } from '@cloud-design/flex-layout'
 import React from 'react'
+import { FlexLayout } from '@cloud-design/components'
 
 describe('<View />', () => {
   it('render correctly', () => {

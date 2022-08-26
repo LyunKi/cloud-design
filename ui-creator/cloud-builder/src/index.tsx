@@ -21,7 +21,7 @@ import {
   ViewBuilder,
 } from '@ui-creator/common'
 import React, { Fragment, ReactElement } from 'react'
-import { ConfigProvider, ConfigProviderProps } from '@cloud-design/configs'
+import { ConfigProvider, ConfigProviderProps } from '@cloud-design/components'
 import { KV } from '@cloud-dragon/common-types'
 import * as Linking from 'expo-linking'
 import {
