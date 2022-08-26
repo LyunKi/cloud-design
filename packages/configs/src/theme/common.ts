@@ -53,7 +53,7 @@ function processThemePack(themePack: CloudDesignTheme): CloudDesignTheme {
     {} as CloudDesignTheme
   )
   return mapValues(themePack, (value) => {
-    return isReferenceValue(value) ? variables[value] : value
+    return isReferenceValue(value) ? variables[value.slice(1)] : value
   })
 }
 
@@ -66,7 +66,10 @@ export function getTheme(themePack: ThemePack): CloudDesignTheme {
 
 export function getThemedStyle(theme: CloudDesignTheme, style: KV) {
   return mapValues(style, (value) => {
-    return isReferenceValue(value) ? theme[value] : value
+    if (isReferenceValue(value)) {
+      return theme[value.slice(1)]
+    }
+    return value
   })
 }
 

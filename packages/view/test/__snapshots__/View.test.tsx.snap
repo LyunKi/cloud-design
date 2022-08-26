@@ -1,3 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<View /> render correctly 1`] = `<View />`;
+exports[`<View /> render correctly 1`] = `
+<View
+  style={
+    Object {
+      "color": "#F2F6FF",
+    }
+  }
+/>
+`;
