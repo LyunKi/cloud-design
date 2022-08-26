@@ -1,7 +1,7 @@
-import { KV } from '@cloud-dragon/common-types'
-import { Themed } from '@cloud-design/configs/theme'
+import { PropsWithThemeStyle } from '@cloud-design/configs'
+import { StyleProp, ViewStyle } from 'react-native'
 export interface BasicViewProps {
-  style: KV
+  style?: StyleProp<ViewStyle>
 }
 
-export type ViewProps = Themed<BasicViewProps>
+export type ViewProps = PropsWithThemeStyle<BasicViewProps>

@@ -1,8 +1,9 @@
-import React, { PropsWithChildren } from 'react'
-import { View as RnView } from 'react-native'
+import React from 'react'
+import { View as RnView, StyleSheet } from 'react-native'
+import { ThemedComponent, withTheme } from '@cloud-design/configs'
 import { ViewProps } from './api'
 
-export function View(props: PropsWithChildren<ViewProps>) {
-  const { children } = props
-  return <RnView>{children}</RnView>
-}
+export const View: ThemedComponent<ViewProps> = withTheme((props) => {
+  const { children, ts, style } = props
+  return <RnView style={StyleSheet.flatten([style, ts])}>{children}</RnView>
+})

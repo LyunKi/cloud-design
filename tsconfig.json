@@ -3,7 +3,11 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "dist",
-    "declaration": true
+    "declaration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@cloud-design/*": ["./packages/*/src"]
+    }
   },
   "include": ["**/**/src", "**/**/test"]
 }

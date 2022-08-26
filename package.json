@@ -5,6 +5,7 @@
     "pnpm": ">=6"
   },
   "scripts": {
+    "test": "jest",
     "docs:dev": "dumi dev",
     "docs:build": "pnpm build:components && dumi build",
     "build:components": "pnpm --filter \"./packages/**\" build",

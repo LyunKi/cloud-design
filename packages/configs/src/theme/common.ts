@@ -76,24 +76,28 @@ export function useThemed() {
 }
 
 export type PropsWithThemeStyle<Props = any> = Props & {
-  ts: KV
+  ts?: KV
 }
 
 export type Themed<Props = any> = PropsWithThemeStyle<Props> & {
-  theme: CloudDesignTheme
+  theme?: CloudDesignTheme
 }
+
+export type ThemedComponent<Props = any> = ComponentType<
+  PropsWithChildren<Themed<Props>>
+>
 
 export function withTheme<Props = any>(
   Component: ComponentType<PropsWithChildren<PropsWithThemeStyle<Props>>>
-) {
-  return (props: PropsWithChildren<PropsWithThemeStyle<Props>>) => {
-    const { ts, children, ...others } = props
+): ThemedComponent<Props> {
+  return (props) => {
+    const { ts = {}, children, theme: originTheme, ...others } = props
     const theme = useTheme()
     return React.createElement(
       Component,
       {
         ts: getThemedStyle(theme, ts),
-        theme,
+        theme: originTheme ?? theme,
         ...others,
       } as any,
       children

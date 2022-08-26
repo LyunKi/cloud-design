@@ -1,5 +1,5 @@
 {
-  "name": "@cloud-design/view",
+  "name": "@cloud-design/flex-layout",
   "description": "Cloud design UI lib FlexLayout component",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
