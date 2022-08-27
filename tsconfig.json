@@ -1,6 +1,11 @@
 {
   "extends": "@cloud-dragon/tsconfig-react",
   "compilerOptions": {
-    "declaration": true
-  }
+    "baseUrl": ".",
+    "paths": {
+      "@cloud-design/*": ["./packages/*/src"]
+    },
+    "rootDir": "."
+  },
+  "include": ["**/**/src", "**/**/test"]
 }
