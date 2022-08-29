@@ -4,10 +4,10 @@ import { ThemedComponent, withTheme } from '../ConfigProvider'
 import { ViewProps } from './api'
 
 export const View: ThemedComponent<ViewProps> = withTheme((props) => {
-  const { children, ts, style } = props
+  const { ts, style, value } = props
   return (
     <RnView style={StyleSheet.flatten([{ flexDirection: 'row' }, style, ts])}>
-      {children}
+      {value}
     </RnView>
   )
 })

@@ -21,24 +21,36 @@ import {
   ViewBuilder,
 } from '@ui-creator/common'
 import React, { Fragment, ReactElement } from 'react'
-import { ConfigProvider, ConfigProviderProps } from '@cloud-design/components'
+import {
+  ConfigProvider,
+  ConfigProviderProps,
+  FlexLayout,
+  View as ViewWidget,
+  Text,
+} from '@cloud-design/components'
 import { KV } from '@cloud-dragon/common-types'
 import * as Linking from 'expo-linking'
-import {
-  createNavigationContainerRef,
-  LinkingOptions,
-  NavigationContainer,
-} from '@react-navigation/native'
+import { LinkingOptions, NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SafeAreaView } from 'react-native'
 import snakeCase from 'lodash/snakeCase'
+import {
+  CloudRnI18nManager,
+  CloudRnThemeManager,
+  CloudRnWidgetRegistry,
+  CLOUD_DESIGN_NAMESPACE,
+} from './common'
 
-export const CloudRnWidgetRegistry = new WidgetRegistry()
-export const CloudRnI18nManager = new I18nManager()
-export const CloudRnThemeManager = new ThemeManager()
-export const Navigator = createNavigationContainerRef()
-
-export const CLOUD_DESIGN_NAMESPACE = '@cloud-design'
+export function loadPrelude() {
+  CloudRnWidgetRegistry.registerInstances({
+    namespace: CLOUD_DESIGN_NAMESPACE,
+    instances: {
+      FlexLayout,
+      View: ViewWidget,
+      Text,
+    },
+  })
+}
 
 const WIDGET_TYPE_RECORD: KV<number> = {}
 
@@ -74,15 +86,6 @@ export class BasicCloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
       this.parseWidgetProps(type, props),
       children?.map((child) => this.build(child, options))
     )
-  }
-
-  public registerWidget(type: string, instance: React.ElementType) {
-    this.WidgetRegistry.registerInstances({
-      namespace: CLOUD_DESIGN_NAMESPACE,
-      instances: {
-        [type]: instance,
-      },
-    })
   }
 
   public getWidgetInstance(type: string) {

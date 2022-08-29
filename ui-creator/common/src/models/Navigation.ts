@@ -14,3 +14,7 @@ export interface Navigation {
   initialRouteName: string
   groups: RouteGroup[]
 }
+
+export interface Navigator {
+  navigate(route: string): any
+}

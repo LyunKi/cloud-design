@@ -6,6 +6,7 @@ import {
   ThemePack,
   View,
   Widget,
+  Navigator,
 } from '../models'
 import { WidgetRegistry } from '../registries'
 
@@ -65,7 +66,7 @@ export abstract class AppBuilder<
 
   public abstract ThemeManager: ThemeManager
 
-  public abstract Navigator: any
+  public abstract Navigator: Navigator
 
   public abstract build(config: App, options?: BuildAppOptions): AppInstance
 }
