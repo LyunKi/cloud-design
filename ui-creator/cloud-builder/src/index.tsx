@@ -139,7 +139,7 @@ export class BasicCloudRnAppBuilder extends AppBuilder<
   ReactElement,
   ReactElement
 > {
-  public Navigator = Navigator
+  public Navigator = Navigator as any
 
   public I18nManager: I18nManager = CloudRnI18nManager
 
