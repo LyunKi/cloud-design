@@ -6,7 +6,7 @@
   "files": [
     "dist"
   ],
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "build": "tsc -p ./tsconfig.build.json",
     "prepublish": "pnpm build"

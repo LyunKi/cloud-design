@@ -1,5 +1,16 @@
 # @ui-creator/cloud-builder
 
+## 0.1.0
+
+### Minor Changes
+
+- 增加 Text 实现
+
+### Patch Changes
+
+- Updated dependencies
+  - @cloud-design/components@0.2.0
+
 ## 0.0.1
 
 ### Patch Changes
