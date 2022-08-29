@@ -1,14 +1,13 @@
 import { App } from '@ui-creator/common'
-import { IndexRoute } from '../views'
-import { HomeRoute } from '../views/home'
+import { AppListRoute } from '../views/AppList'
 
 export const AppConfig: App = {
   name: 'cloud-designer',
   navigation: {
-    initialRouteName: 'Index',
+    initialRouteName: 'AppList',
     groups: [
       {
-        items: [IndexRoute, HomeRoute],
+        items: [AppListRoute],
         name: 'Main',
       },
     ],

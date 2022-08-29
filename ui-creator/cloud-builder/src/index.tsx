@@ -30,7 +30,11 @@ import {
 } from '@cloud-design/components'
 import { KV } from '@cloud-dragon/common-types'
 import * as Linking from 'expo-linking'
-import { LinkingOptions, NavigationContainer } from '@react-navigation/native'
+import {
+  createNavigationContainerRef,
+  LinkingOptions,
+  NavigationContainer,
+} from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SafeAreaView } from 'react-native'
 import snakeCase from 'lodash/snakeCase'
@@ -139,7 +143,7 @@ export class BasicCloudRnAppBuilder extends AppBuilder<
   ReactElement,
   ReactElement
 > {
-  public Navigator = Navigator as any
+  public Navigator = createNavigationContainerRef()
 
   public I18nManager: I18nManager = CloudRnI18nManager
 
@@ -204,7 +208,7 @@ export class BasicCloudRnAppBuilder extends AppBuilder<
       NavigationContainer,
       {
         linking,
-        ref: Navigator,
+        ref: this.Navigator,
       } as any,
       this.buildRouteGroups(groups)
     )

@@ -4,9 +4,7 @@ import React from 'react'
 
 describe('<View />', () => {
   it('render correctly', () => {
-    const snapshot = render(
-      <View ts={{ color: '$color-primary-100' }} />
-    ).toJSON()
+    const snapshot = render(<View ts={{ color: 'black' }} />).toJSON()
     expect(snapshot).toMatchSnapshot()
   })
 })

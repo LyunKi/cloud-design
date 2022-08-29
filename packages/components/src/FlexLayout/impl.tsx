@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from 'react'
-import { View as RnView } from 'react-native'
+import { View } from '../View'
 import { FlexLayoutProps } from './api'
 
 export function FlexLayout(props: PropsWithChildren<FlexLayoutProps>) {
   const { children, direction = 'row', justify, align } = props
   return (
-    <RnView
+    <View
       style={{
         flexDirection: direction,
         justifyContent: justify,
@@ -13,6 +13,6 @@ export function FlexLayout(props: PropsWithChildren<FlexLayoutProps>) {
       }}
     >
       {children}
-    </RnView>
+    </View>
   )
 }

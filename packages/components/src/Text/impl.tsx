@@ -4,6 +4,6 @@ import { ThemedComponent, withTheme } from '../ConfigProvider'
 import { TextProps } from './api'
 
 export const Text: ThemedComponent<TextProps> = withTheme((props) => {
-  const { children, ts, style } = props
-  return <RnText style={StyleSheet.flatten([style, ts])}>{children}</RnText>
+  const { value, ts, style } = props
+  return <RnText style={StyleSheet.flatten([style, ts])}>{value}</RnText>
 })
