@@ -15,7 +15,7 @@
     "@cloud-dragon/common-utils": "^0.0.2"
   },
   "devDependencies": {
-    "@cloud-dragon/common-types": "^0.0.2",
+    "@cloud-dragon/common-types": "^0.1.0",
     "@cloud-dragon/tsconfig-react": "^0.0.1"
   }
 }

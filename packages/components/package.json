@@ -27,6 +27,6 @@
     "react-native": "^0.69.4",
     "@types/lodash": "^4.14.182",
     "@types/react": "^18.0.15",
-    "@cloud-dragon/common-types": "^0.0.2"
+    "@cloud-dragon/common-types": "^0.1.0"
   }
 }

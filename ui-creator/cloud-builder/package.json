@@ -12,10 +12,10 @@
     "dist"
   ],
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "@cloud-design/components": "workspace:*"
   },
   "dependencies": {
-    "@cloud-design/components": "workspace:*",
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
     "expo-linking": "^3.2.2",
@@ -23,7 +23,8 @@
     "react-native-safe-area-context": "^4.3.1"
   },
   "devDependencies": {
-    "@cloud-dragon/common-types": "^0.0.2",
+    "@cloud-design/components": "workspace:*",
+    "@cloud-dragon/common-types": "^0.1.0",
     "@cloud-dragon/tsconfig-react": "^0.0.1",
     "@types/react": "^18.0.15",
     "@ui-creator/common": "workspace:*"

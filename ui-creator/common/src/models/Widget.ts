@@ -5,3 +5,12 @@ export interface Widget {
   props: Prop[]
   children?: Widget[]
 }
+
+export interface WidgetDep {
+  name: string
+  version: string
+  specifiers: {
+    name: string
+    alias?: string
+  }[]
+}

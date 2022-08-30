@@ -3,11 +3,14 @@ import { View, RouteItem } from '@ui-creator/common'
 export const AppList: View = {
   children: [
     {
-      type: 'FlexLayout',
-      props: [{ name: 'align', value: 'center' }],
+      type: '@cloud-design/components:FlexLayout',
+      props: [
+        { name: 'align', value: 'center' },
+        { name: 'style', value: { height: '$rem:3' } },
+      ],
       children: [
         {
-          type: 'Text',
+          type: '@cloud-design/components:Text',
           props: [{ name: 'value', value: 'UI Creator' }],
         },
       ],

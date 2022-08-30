@@ -12,14 +12,10 @@ export const DEFAULT_LOCALE = 'zh_CN'
 export class I18nManager {
   public locale = DEFAULT_LOCALE
 
-  private i18nPacks: I18nPacks = {}
+  public i18nPacks: I18nPacks = {}
 
   public get i18nPack(): KV<NestedString> {
     return this.i18nPacks[this.locale]
-  }
-
-  public setI18nPacks(i18nPacks: I18nPacks) {
-    this.i18nPacks = i18nPacks
   }
 
   public t(key: string, context?: KV<any>) {
@@ -28,10 +24,5 @@ export class I18nManager {
       return key
     }
     return interpolate({ template, context }) ?? key
-  }
-
-  public configure(locale: string, i18nPacks: I18nPacks) {
-    this.locale = locale
-    this.i18nPacks = i18nPacks
   }
 }

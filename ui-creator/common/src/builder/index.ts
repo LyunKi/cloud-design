@@ -1,12 +1,11 @@
 import {
   App,
   I18nManager,
-  I18nPack,
   ThemeManager,
-  ThemePack,
   View,
   Widget,
   Navigator,
+  ConfigManager,
 } from '../models'
 import { WidgetRegistry } from '../registries'
 
@@ -15,58 +14,28 @@ export interface BuildAppOptions {
   locale?: string
 }
 
-export interface BuildWidgetOptions {
-  themePack: ThemePack
-  i18nPack: I18nPack
+export abstract class WidgetBuilder<WidgetInstance> {
+  public abstract widgetRegistry: WidgetRegistry
+
+  public abstract i18nManager: I18nManager
+
+  public abstract themeManager: ThemeManager
+
+  public abstract configManager: ConfigManager
+
+  public abstract navigator: Navigator
+
+  public abstract build(config: Widget): WidgetInstance
 }
 
-export interface BuildViewOptions {
-  themePack: ThemePack
-  i18nPack: I18nPack
+export abstract class ViewBuilder<ViewInstance, WidgetInstance> {
+  public abstract widgetBuilder: WidgetBuilder<WidgetInstance>
+
+  public abstract build(config: View): ViewInstance
 }
 
-export abstract class Builder<BuildConfig, BuildOptions, BuildResult> {
-  public abstract build(
-    config: BuildConfig,
-    options?: BuildOptions
-  ): BuildResult
-}
+export abstract class AppBuilder<AppInstance, ViewInstance, WidgetInstance> {
+  public abstract viewBuilder: ViewBuilder<ViewInstance, WidgetInstance>
 
-export abstract class WidgetBuilder<WidgetInstance> extends Builder<
-  Widget,
-  BuildWidgetOptions,
-  WidgetInstance
-> {
-  public abstract WidgetRegistry: WidgetRegistry
-
-  public abstract build(
-    config: Widget,
-    options?: BuildWidgetOptions
-  ): WidgetInstance
-}
-
-export abstract class ViewBuilder<WidgetInstance, ViewInstance> extends Builder<
-  View,
-  BuildViewOptions,
-  ViewInstance
-> {
-  public abstract WidgetBuilder: WidgetBuilder<WidgetInstance>
-
-  public abstract build(config: View, options?: BuildViewOptions): ViewInstance
-}
-
-export abstract class AppBuilder<
-  AppInstance,
-  WidgetInstance,
-  ViewInstance
-> extends Builder<App, BuildAppOptions, AppInstance> {
-  public abstract ViewBuilder: ViewBuilder<WidgetInstance, ViewInstance>
-
-  public abstract I18nManager: I18nManager
-
-  public abstract ThemeManager: ThemeManager
-
-  public abstract Navigator: Navigator
-
-  public abstract build(config: App, options?: BuildAppOptions): AppInstance
+  public abstract build(model: App, options?: BuildAppOptions): AppInstance
 }

@@ -1,16 +1,21 @@
 import React, { PropsWithChildren } from 'react'
+import { StyleSheet } from 'react-native'
 import { View } from '../View'
 import { FlexLayoutProps } from './api'
 
 export function FlexLayout(props: PropsWithChildren<FlexLayoutProps>) {
-  const { children, direction = 'row', justify, align } = props
+  const { children, direction = 'row', justify, align, style, ts } = props
   return (
     <View
-      style={{
-        flexDirection: direction,
-        justifyContent: justify,
-        alignItems: align,
-      }}
+      style={StyleSheet.flatten([
+        style,
+        ts,
+        {
+          flexDirection: direction,
+          justifyContent: justify,
+          alignItems: align,
+        },
+      ])}
     >
       {children}
     </View>
