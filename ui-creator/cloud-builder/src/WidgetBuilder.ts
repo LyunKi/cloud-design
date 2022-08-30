@@ -7,11 +7,12 @@ import {
   Widget,
   ConfigManager,
   isRemPropValue,
-  PropValue,
   I18nManager,
   Navigator,
   ThemeManager,
+  PropValue,
 } from '@ui-creator/common'
+import mapValues from 'lodash/mapValues'
 
 const WIDGET_TYPE_RECORD: KV<number> = {}
 
@@ -60,8 +61,16 @@ export class CloudRnWidgetBuilder extends WidgetBuilder<ReactElement> {
   private parseWidgetProps(type: string, props: Prop[]) {
     return props?.reduce(
       (prev, prop) => {
-        const { name, value } = prop
-        prev[name] = this.parsePropValue(value)
+        const { name, value, valueType } = prop
+        let propValue = value
+        if (valueType === 'object') {
+          propValue = mapValues(value, (v) => {
+            return this.parsePropValue(v)
+          })
+        } else {
+          propValue = this.parsePropValue(value)
+        }
+        prev[name] = propValue
         return prev
       },
       {

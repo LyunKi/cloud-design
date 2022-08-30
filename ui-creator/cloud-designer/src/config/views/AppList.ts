@@ -6,7 +6,8 @@ export const AppList: View = {
       type: '@cloud-design/components:FlexLayout',
       props: [
         { name: 'align', value: 'center' },
-        { name: 'style', value: { height: '$rem:3' } },
+        { name: 'justify', value: 'center' },
+        { name: 'style', value: { height: '$rem:3' }, valueType: 'object' },
       ],
       children: [
         {

@@ -13,4 +13,5 @@ export type PropValue = any | RemPropValue
 export interface Prop {
   name: string
   value: PropValue
+  valueType?: 'object'
 }
