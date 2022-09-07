@@ -4,9 +4,9 @@ import { ThemedComponent, withTheme } from '../ConfigProvider'
 import { ViewProps } from './api'
 
 export const View: ThemedComponent<ViewProps> = withTheme((props) => {
-  const { ts, style, children } = props
+  const { style, children } = props
   return (
-    <RnView style={StyleSheet.flatten([{ flexDirection: 'row' }, style, ts])}>
+    <RnView style={StyleSheet.flatten([{ flexDirection: 'row' }, style])}>
       {children}
     </RnView>
   )

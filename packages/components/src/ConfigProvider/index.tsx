@@ -10,9 +10,9 @@ export interface ConfigProviderProps
     I18nProviderProps {}
 
 export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
-  const { themePack, locale, children } = props
+  const { themePack, themeConfig, locale, children } = props
   return (
-    <ThemeProvider themePack={themePack}>
+    <ThemeProvider themePack={themePack} themeConfig={themeConfig}>
       <I18nProvider locale={locale}>{children}</I18nProvider>
     </ThemeProvider>
   )

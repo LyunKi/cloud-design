@@ -9,7 +9,6 @@ export function FlexLayout(props: PropsWithChildren<FlexLayoutProps>) {
     <View
       style={StyleSheet.flatten([
         style,
-        ts,
         {
           flexDirection: direction,
           justifyContent: justify,
