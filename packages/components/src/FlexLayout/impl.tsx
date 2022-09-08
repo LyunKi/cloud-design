@@ -15,6 +15,7 @@ export const FlexLayout = withTheme(
             flexDirection: direction,
             justifyContent: justify,
             alignItems: align,
+            width: 375,
           },
         ])}
       >

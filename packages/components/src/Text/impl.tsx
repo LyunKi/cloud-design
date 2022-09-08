@@ -4,14 +4,13 @@ import { ThemedComponent, ThemeManager, withTheme } from '../ConfigProvider'
 import { TextProps } from './api'
 
 export const Text: ThemedComponent<TextProps> = withTheme((props) => {
-  const { value, style, numberOfLines } = props
+  const { value, style, numberOfLines, size = 'md' } = props
+  const fontSize = `$fontSize.${size}`
   const defaultStyle = ThemeManager.themed({
     display: 'inline-block',
     color: '$color.font.default',
-    fontSize: '$fontSize.md',
-    lineHeight: '$rem:1.5',
+    fontSize,
   })
-  console.log('defaultStyle', defaultStyle)
   return (
     <RnText
       numberOfLines={numberOfLines}

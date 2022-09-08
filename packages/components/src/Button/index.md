@@ -28,9 +28,17 @@ import { Button } from '@cloud-design/components'
 
 ## 用例
 
+### 预置 形态
+
 ```jsx
 import React from 'react'
-import { Button } from '@cloud-design/components'
+import { FlexLayout, Button } from '@cloud-design/components'
 
-export default () => <Button value={'试试'} />
+export default () => (
+  <FlexLayout style={{ width: 375 }} align="center" justify="space-between">
+    {['solid', 'outline', 'ghost', 'link'].map((variant) => (
+      <Button key={variant} value={'Button'} variant={variant} />
+    ))}
+  </FlexLayout>
+)
 ```

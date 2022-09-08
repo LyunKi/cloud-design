@@ -29,7 +29,10 @@ export const Icon = React.forwardRef(function (
   ref: Ref<IconRef>
 ) {
   const { name, size = 24, color, animation } = props
-  const Icon = findIconByName(name)!
+  const Icon = findIconByName(name)
+  if (!Icon) {
+    return null
+  }
   const animationInstance = React.useMemo(() => {
     if (!animation) {
       return
