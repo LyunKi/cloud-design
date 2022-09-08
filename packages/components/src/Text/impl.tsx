@@ -11,6 +11,7 @@ export const Text: ThemedComponent<TextProps> = withTheme((props) => {
     fontSize: '$fontSize.md',
     lineHeight: '$rem:1.5',
   })
+  console.log('defaultStyle', defaultStyle)
   return (
     <RnText
       numberOfLines={numberOfLines}

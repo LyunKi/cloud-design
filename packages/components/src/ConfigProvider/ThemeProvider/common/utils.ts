@@ -17,6 +17,7 @@ import { StyleSheet } from 'react-native'
 import { KV } from '@cloud-dragon/common-types'
 import { mapValues } from 'lodash'
 import { DEFAULT_THEME } from './constants'
+import { CLOUD_THEME_PACK } from '../cloud'
 
 function isPresetThemePack(themePack: ThemePack): themePack is PresetThemePack {
   return isString(themePack)
@@ -36,8 +37,8 @@ function handleRemValue(value: string, baseFontSize: number) {
 }
 
 class ThemeManagerClass {
-  public theme: CloudDesignTheme = {}
   public themeConfig: ThemeConfig = DEFAULT_THEME_CONFIG
+  public theme: CloudDesignTheme = this.processThemePack(CLOUD_THEME_PACK.light)
 
   private handleThemeStyleValue(value: any) {
     const { baseFontSize = DEFAULT_BASE_FONT_SIZE } = this.themeConfig
