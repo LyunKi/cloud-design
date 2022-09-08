@@ -123,21 +123,26 @@ export function getTheme(
   return processThemePack(originThemePack, themeConfig)
 }
 
+function handleThemeStyleValue(value: any, themeConfig: ThemeConfig) {
+  const { baseFontSize = DEFAULT_BASE_FONT_SIZE } = themeConfig
+  if (isRemValue(value)) {
+    return handleRemValue(value, baseFontSize)
+  }
+  return value
+}
+
 function getThemedStyle(
   theme: CloudDesignTheme,
   style: KV,
   themeConfig: ThemeConfig
 ) {
-  const { baseFontSize = DEFAULT_BASE_FONT_SIZE } = themeConfig
   return mapValues(style, (value) => {
-    if (isRemValue(value)) {
-      return handleRemValue(value, baseFontSize)
-    }
     if (isReferenceValue(value)) {
       const path = value.slice(1)
+      console.log('theme', theme, path)
       return get(theme, path)
     }
-    return value
+    return handleThemeStyleValue(value, themeConfig)
   })
 }
 
@@ -161,6 +166,13 @@ export type Themed<Props = any> = PropsWithThemeStyle<Props> & {
 export type ThemedComponent<Props = any> = ComponentType<
   PropsWithChildren<Themed<Props>>
 >
+
+export function extendTheme(
+  themePack: CloudDesignTheme,
+  presetThemePack: PresetThemePack = 'cloud-light'
+) {
+  return merge({}, DEFAULT_THEME[presetThemePack], themePack)
+}
 
 export function withTheme<Props = any>(
   Component: ComponentType<PropsWithChildren<Themed<Props>>>

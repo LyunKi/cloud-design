@@ -1,5 +1,5 @@
 import { App } from '@ui-creator/common'
-import { AppListRoute } from '../views/AppList'
+import { HomeRoute } from '../views/Home'
 
 export const AppConfig: App = {
   name: 'cloud-designer',
@@ -9,12 +9,17 @@ export const AppConfig: App = {
       version: '*',
       specifiers: [{ name: 'Text' }, { name: 'FlexLayout' }],
     },
+    {
+      name: '@cloud-design/icons',
+      version: '*',
+      specifiers: [{ name: 'Icon' }],
+    },
   ],
   navigation: {
-    initialRouteName: 'AppList',
+    initialRouteName: 'Home',
     groups: [
       {
-        items: [AppListRoute],
+        items: [HomeRoute],
         name: 'Main',
       },
     ],

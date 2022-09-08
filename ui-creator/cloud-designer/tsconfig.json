@@ -1,7 +1,8 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "module": "esnext",
     "strict": true
   },
-  "include": ["src"]
+  "include": ["src", "typings"]
 }

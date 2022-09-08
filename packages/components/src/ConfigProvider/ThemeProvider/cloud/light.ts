@@ -1,6 +1,7 @@
+import merge from 'lodash/merge'
 import variables from './variables'
 
-export default {
+const LIGHT_THEME = merge({}, variables, {
   color: {
     ...variables.color,
     layoutBg: '$color.white',
@@ -8,7 +9,6 @@ export default {
       default: '$color.gray.800',
     },
   },
-  fontSize: {
-    ...variables.fontSize,
-  },
-}
+})
+
+export default LIGHT_THEME
