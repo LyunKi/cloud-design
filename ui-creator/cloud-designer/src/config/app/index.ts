@@ -7,12 +7,7 @@ export const AppConfig: App = {
     {
       name: '@cloud-design/components',
       version: '*',
-      specifiers: [{ name: 'Text' }, { name: 'FlexLayout' }],
-    },
-    {
-      name: '@cloud-design/icons',
-      version: '*',
-      specifiers: [{ name: 'Icon' }],
+      specifiers: [{ name: 'Text' }, { name: 'Icon' }, { name: 'FlexLayout' }],
     },
   ],
   navigation: {

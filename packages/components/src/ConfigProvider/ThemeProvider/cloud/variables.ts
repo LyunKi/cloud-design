@@ -210,9 +210,58 @@ const SPACING = {
   96: '$rem:24',
 }
 
+const RADIUS = {
+  sm: '$rem:0.125',
+  base: '$rem:0.25',
+  md: '$rem:0.375',
+  lg: '$rem:0.5',
+  xl: '$rem:0.75',
+  '2xl': '$rem:1',
+  '3xl': '$rem:1.5',
+  full: '9999px',
+}
+
+const _LARGE_SIZE = {
+  full: '100%',
+  '3xs': '14rem',
+  '2xs': '16rem',
+  xs: '20rem',
+  sm: '24rem',
+  md: '28rem',
+  lg: '32rem',
+  xl: '36rem',
+  '2xl': '42rem',
+  '3xl': '48rem',
+  '4xl': '56rem',
+  '5xl': '64rem',
+  '6xl': '72rem',
+  '7xl': '80rem',
+  '8xl': '90rem',
+}
+
+const CONTAINER = {
+  sm: '640px',
+  md: '768px',
+  lg: '1024px',
+  xl: '1280px',
+}
+
+const SIZE = {
+  ...SPACING,
+  ..._LARGE_SIZE,
+  container: {
+    sm: 640,
+    md: 768,
+    lg: 1024,
+    xl: 1280,
+  },
+}
+
 export default {
   fontSize: FONT_SIZE,
   color: COLOR,
   fontWeight: FONT_WEIGHT,
   spacing: SPACING,
+  radius: RADIUS,
+  size: SIZE,
 }

@@ -8,6 +8,9 @@ const DARK_THEME = merge({}, variables, {
     font: {
       default: '$color.whiteAlpha.900',
     },
+    brand: {
+      ...variables.color.teal,
+    },
   },
 })
 

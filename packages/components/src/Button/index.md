@@ -1,18 +1,18 @@
 ---
-title: Text
+title: Button
 nav:
   title: Components
   path: /components
 group:
-  title: Text
+  title: A
   path: /
-  order: 2
+  order: 1
 toc: menu
 ---
 
 # `@cloud-design/components`
 
-react-native Text 组件
+react-native Button 组件
 
 ## 安装
 
@@ -23,21 +23,14 @@ $ npm install @cloud-design/components
 ## 引入
 
 ```js
-import { Text } from '@cloud-design/components'
+import { Button } from '@cloud-design/components'
 ```
 
 ## 用例
 
 ```jsx
 import React from 'react'
-import { Text } from '@cloud-design/components'
+import { Button } from '@cloud-design/components'
 
-export default () => (
-  <Text
-    numberOfLines={2}
-    value={
-      '这是默认的字体，会自动在超过 2 行时折断，这是默认的字体，会自动在超过 2 行时折断'
-    }
-  />
-)
+export default () => <Button value={'试试'} />
 ```
