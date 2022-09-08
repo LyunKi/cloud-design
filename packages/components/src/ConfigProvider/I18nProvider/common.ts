@@ -1,9 +1,11 @@
-import { createContext, useContext } from 'react'
-
 export type SupportedLocale = 'zh-CN' | 'en-US'
 
-export const I18nContext = createContext<SupportedLocale>('zh-CN')
+class I18nManagerClass {
+  public locale: SupportedLocale = 'en-US'
 
-export function useLocale() {
-  return useContext(I18nContext)
+  public setLocale(locale: SupportedLocale) {
+    this.locale = locale
+  }
 }
+
+export const I18nManager = new I18nManagerClass()

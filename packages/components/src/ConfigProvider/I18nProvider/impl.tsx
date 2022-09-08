@@ -1,5 +1,5 @@
-import React, { PropsWithChildren } from 'react'
-import { I18nContext, SupportedLocale } from './common'
+import React, { PropsWithChildren, useEffect } from 'react'
+import { SupportedLocale, I18nManager } from './common'
 
 export interface I18nProviderProps {
   locale?: SupportedLocale
@@ -7,5 +7,13 @@ export interface I18nProviderProps {
 
 export function I18nProvider(props: PropsWithChildren<I18nProviderProps>) {
   const { children, locale = 'zh-CN' } = props
-  return <I18nContext.Provider value={locale}>{children}</I18nContext.Provider>
+  const [ready, setReady] = React.useState(false)
+  useEffect(() => {
+    I18nManager.setLocale(locale)
+    setReady(true)
+    return () => {
+      setReady(false)
+    }
+  }, [locale])
+  return <>{ready && props.children}</>
 }
