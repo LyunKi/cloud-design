@@ -1,11 +1,5 @@
-import React, { PropsWithChildren } from 'react'
-import {
-  ThemePack,
-  ThemeContext,
-  getTheme,
-  ThemeConfig,
-  getThemeConfig,
-} from './common'
+import React, { PropsWithChildren, useEffect } from 'react'
+import { ThemePack, ThemeConfig, ThemeManager } from './common'
 
 export interface ThemeProviderProps {
   themePack?: ThemePack
@@ -14,14 +8,14 @@ export interface ThemeProviderProps {
 
 export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
   const { themePack = 'cloud-light', themeConfig } = props
-  return (
-    <ThemeContext.Provider
-      value={{
-        theme: getTheme(themePack, themeConfig),
-        config: getThemeConfig(themeConfig),
-      }}
-    >
-      {props.children}
-    </ThemeContext.Provider>
-  )
+  const [ready, setReady] = React.useState(false)
+  useEffect(() => {
+    ThemeManager.setThemeConfig(themeConfig)
+    ThemeManager.setTheme(themePack)
+    setReady(true)
+    return () => {
+      setReady(false)
+    }
+  }, [themePack, themeConfig])
+  return <>{ready && props.children}</>
 }

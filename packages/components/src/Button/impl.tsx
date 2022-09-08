@@ -5,11 +5,11 @@ import { View } from '../View'
 import { Text } from '../Text'
 import { ButtonProps } from './api'
 
-function useComputedStyles({ variant, textTs, colorScheme }) {
-  return {
-    computedBgColor: 'white',
-  }
-}
+// function useComputedStyles({ variant, textTs, colorScheme }) {
+//   return {
+//     computedBgColor: 'white',
+//   }
+// }
 
 export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
   const {
@@ -19,11 +19,11 @@ export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
     variant = 'solid',
     colorScheme = 'brand',
   } = props
-  const { computedBgColor } = useComputedStyles({
-    variant,
-    textTs,
-    colorScheme,
-  })
+  // const { computedBgColor } = useComputedStyles({
+  //   variant,
+  //   textTs,
+  //   colorScheme,
+  // })
   return (
     <Pressable>
       <View
@@ -32,7 +32,7 @@ export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
           alignItems: 'center',
           justifyContent: 'center',
           height: '$size.10',
-          backgroundColor: computedBgColor,
+          // backgroundColor: computedBgColor,
         }}
       >
         <Text ts={textTs} value={value} />

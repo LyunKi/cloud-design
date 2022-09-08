@@ -211,8 +211,8 @@ const SPACING = {
 }
 
 const RADIUS = {
-  sm: '$rem:0.125',
-  base: '$rem:0.25',
+  xs: '$rem:0.125',
+  sm: '$rem:0.25',
   md: '$rem:0.375',
   lg: '$rem:0.5',
   xl: '$rem:0.75',
@@ -237,13 +237,6 @@ const _LARGE_SIZE = {
   '6xl': '72rem',
   '7xl': '80rem',
   '8xl': '90rem',
-}
-
-const CONTAINER = {
-  sm: '640px',
-  md: '768px',
-  lg: '1024px',
-  xl: '1280px',
 }
 
 const SIZE = {

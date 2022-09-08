@@ -1,12 +1,11 @@
 import React from 'react'
 import { Text as RnText, StyleSheet } from 'react-native'
-import { ThemedComponent, useThemed, withTheme } from '../ConfigProvider'
+import { ThemedComponent, ThemeManager, withTheme } from '../ConfigProvider'
 import { TextProps } from './api'
 
 export const Text: ThemedComponent<TextProps> = withTheme((props) => {
   const { value, style, numberOfLines } = props
-  const themed = useThemed()
-  const defaultStyle = themed({
+  const defaultStyle = ThemeManager.themed({
     display: 'inline-block',
     color: '$color.font.default',
     fontSize: '$fontSize.md',
