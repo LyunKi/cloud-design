@@ -67,21 +67,16 @@ export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
     variant = 'solid',
     colorScheme = 'brand',
     textTs,
+    onPress,
   } = props
   return (
-    <Pressable>
+    <Pressable onPress={onPress}>
       {({ pressed }) => {
         const { computedViewStyle, computedTextStyle } = computeStyles({
           variant,
           colorScheme,
           pressed,
         })
-        console.log(
-          'computedViewStyle, computedTextStyle',
-          variant,
-          computedViewStyle,
-          computedTextStyle
-        )
         return (
           <View
             ts={{
