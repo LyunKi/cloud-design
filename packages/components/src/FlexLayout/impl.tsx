@@ -6,16 +6,24 @@ import { FlexLayoutProps } from './api'
 
 export const FlexLayout = withTheme(
   (props: PropsWithChildren<FlexLayoutProps>) => {
-    const { children, direction = 'row', justify, align, style } = props
+    const {
+      children,
+      direction = 'row',
+      justify,
+      align,
+      style,
+      spacing,
+    } = props
     return (
       <View
         style={StyleSheet.flatten([
-          style,
           {
             flexDirection: direction,
             justifyContent: justify,
             alignItems: align,
+            gap: spacing,
           },
+          style,
         ])}
       >
         {children}

@@ -1,12 +1,44 @@
 import React from 'react'
 import { Pressable } from 'react-native'
-import { ThemedComponent, ThemeManager, withTheme } from '../ConfigProvider'
+import {
+  styles,
+  ThemedComponent,
+  ThemeManager,
+  withTheme,
+} from '../ConfigProvider'
 import { View } from '../View'
 import { Text } from '../Text'
 import { ButtonProps, ButtonStatus } from './api'
 import { KV } from '@cloud-dragon/common-types'
 
-function computeStyles({ variant, colorScheme, pressed }: any): any {
+function getColorSchemeByStatus(status: ButtonStatus) {
+  switch (status) {
+    case 'primary':
+      return 'brand'
+    case 'secondary':
+      return 'gray'
+    case 'info':
+      return 'blue'
+    case 'warning':
+      return 'orange'
+    case 'success':
+      return 'green'
+    case 'error':
+      return 'red'
+    case 'disabled':
+      return 'blackAlpha'
+  }
+}
+
+function computeStyles({ variant, status, pressed }: any): any {
+  if (status === 'secondary') {
+    return {
+      computedViewStyle: {
+        backgroundColor: pressed ? `$color.gray.300` : `$color.gray.100`,
+      },
+    }
+  }
+  const colorScheme = getColorSchemeByStatus(status)
   const color = `$color.${colorScheme}.500`
   const weightColor = `$color.${colorScheme}.700`
   const lightColor = `$color.${colorScheme}.100`
@@ -61,21 +93,6 @@ function computeStyles({ variant, colorScheme, pressed }: any): any {
   }
 }
 
-function getColorSchemeByStatus(status: ButtonStatus) {
-  switch (status) {
-    case 'primary':
-      return 'brand'
-    case 'info':
-      return 'blue'
-    case 'warning':
-      return 'orange'
-    case 'success':
-      return 'green'
-    case 'error':
-      return 'red'
-  }
-}
-
 export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
   const {
     value,
@@ -87,13 +104,20 @@ export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
     renderLeft,
     renderRight,
   } = props
-  const colorScheme = getColorSchemeByStatus(status)
+  const disabled = status === 'disabled'
+  const conditionStyle = styles([
+    disabled,
+    {
+      cursor: 'not-allowed',
+      opacity: `$opacity.disabled`,
+    },
+  ])
   return (
-    <Pressable onPress={onPress}>
+    <Pressable disabled={status === 'disabled'} onPress={onPress}>
       {({ pressed }) => {
         const { computedViewStyle, computedTextStyle } = computeStyles({
           variant,
-          colorScheme,
+          status,
           pressed,
         })
         const mergedStyle: KV = {
@@ -105,6 +129,7 @@ export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
         return (
           <View
             ts={{
+              ...conditionStyle,
               borderRadius: '$radius.md',
               alignItems: 'center',
               justifyContent: 'center',

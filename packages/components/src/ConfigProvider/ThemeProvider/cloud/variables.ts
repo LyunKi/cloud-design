@@ -250,6 +250,10 @@ const SIZE = {
   },
 }
 
+const OPACITY = {
+  disabled: 0.4,
+}
+
 export default {
   fontSize: FONT_SIZE,
   color: COLOR,
@@ -257,4 +261,5 @@ export default {
   spacing: SPACING,
   radius: RADIUS,
   size: SIZE,
+  opacity: OPACITY,
 }

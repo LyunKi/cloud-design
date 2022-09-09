@@ -73,9 +73,36 @@ import { FlexLayout, Button } from '@cloud-design/components'
 
 export default () => (
   <FlexLayout style={{ gap: 16 }} align="center">
-    {['primary', 'info', 'success', 'warning', 'error'].map((status) => (
+    {[
+      'primary',
+      'disabled',
+      'secondary',
+      'info',
+      'success',
+      'warning',
+      'error',
+    ].map((status) => (
       <Button key={status} value={'Button'} status={status} />
     ))}
   </FlexLayout>
 )
+```
+
+test
+
+```jsx
+import React, { useState } from 'react'
+import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native'
+import { FlexLayout, Button } from '@cloud-design/components'
+
+const App = () => {
+  const [modalVisible, setModalVisible] = useState(false)
+  return (
+    <Modal>
+      <Button value={'Button'} />
+    </Modal>
+  )
+}
+
+export default App
 ```

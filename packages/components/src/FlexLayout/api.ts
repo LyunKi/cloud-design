@@ -3,6 +3,7 @@ import { PropsWithThemeStyle } from '../ConfigProvider'
 
 export interface BasicFlexLayoutProps {
   direction?: FlexStyle['flexDirection']
+  spacing?: number
   justify?: FlexStyle['justifyContent']
   align?: FlexStyle['alignItems']
   style?: StyleProp<ViewStyle>

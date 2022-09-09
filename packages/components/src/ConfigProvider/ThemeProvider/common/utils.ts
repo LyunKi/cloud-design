@@ -132,3 +132,19 @@ export function extendTheme(
 ) {
   return merge({}, DEFAULT_THEME[presetThemePack], themePack)
 }
+
+type ConditionStyle = [boolean, KV]
+
+export function styles(...conditionStyles: ConditionStyle[]) {
+  return reduce(
+    conditionStyles,
+    (record, value) => {
+      const [condition, style] = value
+      if (condition) {
+        Object.assign(record, style)
+      }
+      return record
+    },
+    {}
+  )
+}
