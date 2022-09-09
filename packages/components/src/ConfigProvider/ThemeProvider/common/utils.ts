@@ -41,6 +41,10 @@ class ThemeManagerClass {
   public theme: CloudDesignTheme = this.processThemePack(CLOUD_THEME_PACK.light)
 
   private handleThemeStyleValue(value: any) {
+    if (isReferenceValue(value)) {
+      const path = value.slice(1)
+      return get(this.theme, path)
+    }
     const { baseFontSize = DEFAULT_BASE_FONT_SIZE } = this.themeConfig
     if (isRemValue(value)) {
       return handleRemValue(value, baseFontSize)
@@ -87,10 +91,6 @@ class ThemeManagerClass {
 
   public themed(style: KV) {
     return mapValues(style, (value) => {
-      if (isReferenceValue(value)) {
-        const path = value.slice(1)
-        return get(this.theme, path)
-      }
       return this.handleThemeStyleValue(value)
     })
   }

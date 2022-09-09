@@ -1,9 +1,10 @@
 import React from 'react'
 import { Pressable } from 'react-native'
-import { ThemedComponent, withTheme } from '../ConfigProvider'
+import { ThemedComponent, ThemeManager, withTheme } from '../ConfigProvider'
 import { View } from '../View'
 import { Text } from '../Text'
-import { ButtonProps } from './api'
+import { ButtonProps, ButtonStatus } from './api'
+import { KV } from '@cloud-dragon/common-types'
 
 function computeStyles({ variant, colorScheme, pressed }: any): any {
   const color = `$color.${colorScheme}.500`
@@ -60,15 +61,33 @@ function computeStyles({ variant, colorScheme, pressed }: any): any {
   }
 }
 
+function getColorSchemeByStatus(status: ButtonStatus) {
+  switch (status) {
+    case 'primary':
+      return 'brand'
+    case 'info':
+      return 'blue'
+    case 'warning':
+      return 'orange'
+    case 'success':
+      return 'green'
+    case 'error':
+      return 'red'
+  }
+}
+
 export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
   const {
-    value = '',
+    value,
     style,
     variant = 'solid',
-    colorScheme = 'brand',
+    status = 'primary',
     textTs,
     onPress,
+    renderLeft,
+    renderRight,
   } = props
+  const colorScheme = getColorSchemeByStatus(status)
   return (
     <Pressable onPress={onPress}>
       {({ pressed }) => {
@@ -77,6 +96,12 @@ export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
           colorScheme,
           pressed,
         })
+        const mergedStyle: KV = {
+          fontSize: '$fontSize.md',
+          fontWeight: '$fontWeight.semibold',
+          ...computedTextStyle,
+          ...textTs,
+        }
         return (
           <View
             ts={{
@@ -85,18 +110,22 @@ export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
               justifyContent: 'center',
               height: '$size.10',
               paddingHorizontal: '$spacing.4',
+              gap: '$rem: 0.5',
               ...computedViewStyle,
               ...style,
             }}
           >
-            <Text
-              ts={{
-                ...computedTextStyle,
-                ...textTs,
-                fontWeight: '$fontWeight.semibold',
-              }}
-              value={value}
-            />
+            {renderLeft &&
+              renderLeft({
+                color: mergedStyle.color,
+                size: mergedStyle.fontSize,
+              })}
+            {value && <Text ts={mergedStyle} value={value} />}
+            {renderRight &&
+              renderRight({
+                color: mergedStyle.color,
+                size: mergedStyle.fontSize,
+              })}
           </View>
         )
       }}

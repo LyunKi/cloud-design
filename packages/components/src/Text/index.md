@@ -4,7 +4,7 @@ nav:
   title: Components
   path: /components
 group:
-  title: Text
+  title: Components
   path: /
   order: 2
 toc: menu
@@ -14,21 +14,21 @@ toc: menu
 
 react-native Text 组件
 
-## 安装
+## Install
 
 ```sh
 $ npm install @cloud-design/components
 ```
 
-## 引入
+## Import
 
 ```js
 import { Text } from '@cloud-design/components'
 ```
 
-## 用例
+## Useages
 
-### 多行截断
+### Text with numberOfLines
 
 ```jsx
 import React from 'react'
@@ -45,16 +45,16 @@ export default () => (
 )
 ```
 
-### 预置 Size
+### Text with size
 
 ```jsx
 import React from 'react'
 import { FlexLayout, Text } from '@cloud-design/components'
 
 export default () => (
-  <FlexLayout ts={{ width: 375 }} align="center" justify="space-between">
+  <FlexLayout ts={{ gap: 16 }} align="center">
     {['xs', 'sm', 'md', 'lg', 'xl'].map((size) => (
-      <Text key={size} value={'Text'} numberOfLines={2} size={size} />
+      <Text key={size} value={'Text'} size={size} />
     ))}
   </FlexLayout>
 )

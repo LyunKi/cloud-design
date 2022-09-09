@@ -7,14 +7,14 @@ export default defineConfig({
   logo: 'https://img01.yzcdn.cn/vant/logo.png',
   favicon: 'https://img01.yzcdn.cn/vant/logo.png',
   resolve: {
-    includes: ['docs', 'packages/components', 'packages/icons'],
+    includes: ['docs', 'packages/components'],
   },
   base: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
   publicPath: process.env.NODE_ENV === 'production' ? `/${repo}/` : '/',
   exportStatic: {},
   locales: [
-    ['zh-CN', '中文'],
     ['en-US', 'English'],
+    ['zh-CN', '中文'],
   ],
   navs: [
     null,

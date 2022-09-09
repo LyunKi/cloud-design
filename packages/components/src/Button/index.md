@@ -4,40 +4,77 @@ nav:
   title: Components
   path: /components
 group:
-  title: A
+  title: Components
   path: /
-  order: 1
+  order: 2
 toc: menu
 ---
 
 # `@cloud-design/components`
 
-react-native Button 组件
+react-native Button component
 
-## 安装
+## Install
 
 ```sh
 $ npm install @cloud-design/components
 ```
 
-## 引入
+## Import
 
 ```js
 import { Button } from '@cloud-design/components'
 ```
 
-## 用例
+## Useages
 
-### 预置 形态
+### Button with variant
 
 ```jsx
 import React from 'react'
 import { FlexLayout, Button } from '@cloud-design/components'
 
 export default () => (
-  <FlexLayout style={{ width: 375 }} align="center" justify="space-between">
+  <FlexLayout style={{ gap: 16 }} align="center">
     {['solid', 'outline', 'ghost', 'link'].map((variant) => (
       <Button key={variant} value={'Button'} variant={variant} />
+    ))}
+  </FlexLayout>
+)
+```
+
+### Button with icon
+
+```jsx
+import React from 'react'
+import { FlexLayout, Button, Icon } from '@cloud-design/components'
+
+export default () => (
+  <FlexLayout style={{ gap: 16 }} align="center">
+    <Button
+      value={'Button'}
+      renderLeft={(props) => <Icon {...props} name="star" />}
+    />
+    <Button renderLeft={(props) => <Icon {...props} name="star" />} />
+    <Button renderRight={(props) => <Icon {...props} name="star" />} />
+    <Button
+      value={'Button'}
+      renderRight={(props) => <Icon {...props} name="star" />}
+    />
+  </FlexLayout>
+)
+```
+
+### Button with status
+
+```jsx
+import React from 'react'
+import { FlexLayout, Button } from '@cloud-design/components'
+
+export default () => (
+  <FlexLayout style={{ gap: 16 }} align="center">
+    {['primary', 'info', 'success', 'warning', 'error'].map((status) => (
+      <Button key={status} value={'Button'} status={status} />
     ))}
   </FlexLayout>
 )
