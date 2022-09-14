@@ -26,7 +26,7 @@ $ npm install @cloud-design/components
 import { Text } from '@cloud-design/components'
 ```
 
-## Useages
+## Usages
 
 ### Text with numberOfLines
 

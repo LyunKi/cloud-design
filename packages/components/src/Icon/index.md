@@ -26,6 +26,8 @@ $ npm install @cloud-design/components
 import { Icon } from '@cloud-design/components'
 ```
 
-## Icon overview map
+## Usages
+
+### Icon overview map
 
 <code src="./demo/index.tsx"></code>

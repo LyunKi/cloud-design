@@ -26,7 +26,7 @@ $ npm install @cloud-design/components
 import { Button } from '@cloud-design/components'
 ```
 
-## Useages
+## Usages
 
 ### Button with variant
 

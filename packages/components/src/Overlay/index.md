@@ -26,7 +26,9 @@ $ npm install @cloud-design/components
 import { Overlay } from '@cloud-design/components'
 ```
 
-## Useages
+## Usages
+
+### Basic Usage
 
 ```jsx
 /**

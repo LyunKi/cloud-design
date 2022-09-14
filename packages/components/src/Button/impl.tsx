@@ -1,10 +1,11 @@
 import React, { forwardRef } from 'react'
 import { Pressable } from 'react-native'
-import { styles, ThemedComponent, withTheme } from '../ConfigProvider'
+import { ThemedComponent, withTheme } from '../ConfigProvider'
 import { View } from '../View'
 import { Text } from '../Text'
 import { ButtonProps, ButtonStatus } from './api'
 import { KV } from '@cloud-dragon/common-types'
+import { styles } from '../common/utils'
 
 function getColorSchemeByStatus(status: ButtonStatus) {
   switch (status) {

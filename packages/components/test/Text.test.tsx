@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react-native'
-import { Text } from '@cloud-design/components'
+import { Text } from '@cloud-design/components/src'
 import React from 'react'
 
 describe('<Text />', () => {

@@ -12,7 +12,7 @@ const DEFAULT_NAMESPACE = '@ui-creator/cloud-designer'
 async function parseWidgetDeps(widgetDeps: WidgetDep[]) {
   const tasks = widgetDeps.map(async (dep) => {
     const { name, specifiers } = dep
-    const mod: any = await import('@cloud-design/components')
+    const mod: any = await import('@cloud-design/components/src')
     const instances: KV = {}
     specifiers.forEach((specifier) => {
       const { name, alias } = specifier
