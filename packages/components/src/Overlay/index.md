@@ -46,21 +46,18 @@ import {
 
 export default () => {
   return (
-    <ConfigProvider>
-      <FlexLayout>
-        <Overlay
-          renderTrigger={(props) => <Button {...props} value={'Trigger'} />}
-          getContentPosition={(triggerRect) => {
-            return {
-              left: triggerRect.x,
-              top: triggerRect.y + triggerRect.height,
-            }
-          }}
-        >
-          <Text value={'Overlay content'} />
-        </Overlay>
-      </FlexLayout>
-    </ConfigProvider>
+    <FlexLayout>
+      <Overlay
+        renderTrigger={(props) => <Button {...props} value={'Trigger'} />}
+        renderContent={() => <Text value={'Overlay content'} />}
+        getContentPosition={(triggerRect) => {
+          return {
+            left: triggerRect.x,
+            top: triggerRect.y + triggerRect.height,
+          }
+        }}
+      />
+    </FlexLayout>
   )
 }
 ```

@@ -16,11 +16,21 @@ interface TriggerProps {
   onPress: Function
 }
 
+interface MaskProps {
+  ts?: KV
+  disableCloseOnPress?: boolean
+}
+
+interface ContentProps {
+  ts?: KV
+  onPress: Function
+}
+
 export interface OverlayProps {
   renderTrigger: (triggerProps: TriggerProps) => ReactElement
-  maskTs?: KV
-  hideMask?: boolean
-  contentTs?: KV
+  renderContent: (contentProps: ContentProps) => ReactElement
+  mask?: MaskProps
+  contentContainerTs?: KV
   getContentPosition?: (rect: TriggerRect) => {
     left: number
     top: number

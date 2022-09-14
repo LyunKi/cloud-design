@@ -8,7 +8,7 @@ export interface ThemeProviderProps {
 }
 
 export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
-  const { themePack = 'cloud-light', themeConfig } = props
+  const { themePack, themeConfig } = props
   const [ready, setReady] = React.useState(false)
   const window = Dimensions.get('window')
   useEffect(() => {
@@ -17,7 +17,9 @@ export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
       windowWidth: window.width,
       windowHeight: window.height,
     })
-    ThemeManager.setTheme(themePack)
+    if (themePack) {
+      ThemeManager.setTheme(themePack)
+    }
     setReady(true)
     const subscription = Dimensions.addEventListener('change', ({ window }) => {
       ThemeManager.updateThemeConfig({

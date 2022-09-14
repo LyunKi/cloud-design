@@ -15,5 +15,5 @@ export function I18nProvider(props: PropsWithChildren<I18nProviderProps>) {
       setReady(false)
     }
   }, [locale])
-  return <>{ready && props.children}</>
+  return <>{ready && children}</>
 }

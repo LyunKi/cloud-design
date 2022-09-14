@@ -1,16 +1,15 @@
-import React, { PropsWithChildren, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Modal } from 'react-native'
 import { View } from '../View'
 import { OverlayProps } from './api'
 
-export const Overlay = (props: PropsWithChildren<OverlayProps>) => {
+export const Overlay = (props: OverlayProps) => {
   const {
     renderTrigger,
-    maskTs,
-    contentTs,
+    mask,
+    contentContainerTs: contentTs,
     getContentPosition,
-    children,
-    hideMask,
+    renderContent,
   } = props
   const [visible, setVisible] = useState(false)
   const triggerRef: any = useRef()
@@ -35,7 +34,7 @@ export const Overlay = (props: PropsWithChildren<OverlayProps>) => {
         ...position,
       }}
     >
-      {children}
+      {renderContent({ onPress: toggle })}
     </View>
   )
   return (
@@ -46,14 +45,14 @@ export const Overlay = (props: PropsWithChildren<OverlayProps>) => {
         visible={visible}
         onRequestClose={toggle}
       >
-        {!hideMask ? (
+        {mask ? (
           <View
-            onPress={toggle}
+            onPress={mask.disableCloseOnPress ? undefined : toggle}
             ts={{
               backgroundColor: 'transparent',
               width: '$vw:100',
               height: '$vh:100',
-              ...maskTs,
+              ...mask.ts,
             }}
           >
             {ModalContent}

@@ -46,15 +46,12 @@ import {
 
 export default () => {
   return (
-    <ConfigProvider>
-      <FlexLayout>
-        <Menu
-          renderTrigger={(props) => <Button {...props} value={'MenuTrigger'} />}
-        >
-          <Text value={'Overlay content'} />
-        </Menu>
-      </FlexLayout>
-    </ConfigProvider>
+    <FlexLayout>
+      <Menu
+        renderTrigger={(props) => <Button {...props} value={'MenuTrigger'} />}
+        renderContent={() => <Text value={'Overlay content'} />}
+      />
+    </FlexLayout>
   )
 }
 ```

@@ -2,8 +2,12 @@ import React, { PropsWithChildren } from 'react'
 import { Overlay } from '../Overlay'
 import { MenuProps } from './api'
 
-export const Menu = (props: PropsWithChildren<MenuProps>) => {
-  const { renderTrigger, children } = props
+interface MenuContentProps {}
+
+export const MenuContent = (props: PropsWithChildren<MenuContentProps>) => {}
+
+export const Menu = (props: MenuProps) => {
+  const { renderTrigger, renderContent } = props
   return (
     <Overlay
       renderTrigger={renderTrigger}
@@ -13,8 +17,7 @@ export const Menu = (props: PropsWithChildren<MenuProps>) => {
           top: triggerRect.y + triggerRect.height + 8,
         }
       }}
-    >
-      {children}
-    </Overlay>
+      renderContent={renderContent}
+    />
   )
 }

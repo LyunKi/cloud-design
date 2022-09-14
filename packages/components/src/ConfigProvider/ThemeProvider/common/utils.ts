@@ -13,7 +13,6 @@ import { StyleSheet } from 'react-native'
 import { KV } from '@cloud-dragon/common-types'
 import { mapValues } from 'lodash'
 import { DEFAULT_THEME } from './constants'
-import { CLOUD_THEME_PACK } from '../cloud'
 
 function isPresetThemePack(themePack: ThemePack): themePack is PresetThemePack {
   return isString(themePack)
@@ -51,13 +50,11 @@ function handleVhValue(value: string, windowHeight: number) {
 
 class ThemeManagerClass {
   public themeConfig: ThemeConfig = DEFAULT_THEME_CONFIG
-  public theme: CloudDesignTheme = this.processThemePack(CLOUD_THEME_PACK.light)
+  public theme: CloudDesignTheme = this.processThemePack(
+    DEFAULT_THEME['cloud-light']
+  )
 
-  private handleThemeStyleValue(value: any) {
-    if (isReferenceValue(value)) {
-      const path = value.slice(1)
-      return get(this.theme, path)
-    }
+  private handlePresetThemeValue(value: any) {
     const { baseFontSize, windowHeight, windowWidth } = this.themeConfig
     if (isRemValue(value)) {
       return handleRemValue(value, baseFontSize)
@@ -71,6 +68,14 @@ class ThemeManagerClass {
     return value
   }
 
+  private handleThemeStyleValue(value: any) {
+    if (isReferenceValue(value)) {
+      const path = value.slice(1)
+      return get(this.theme, path)
+    }
+    return this.handlePresetThemeValue(value)
+  }
+
   private processThemePack(themePack: CloudDesignTheme): CloudDesignTheme {
     const parseThemeVariables = (
       themeObject: CloudDesignTheme
@@ -81,7 +86,7 @@ class ThemeManagerClass {
           if (isObject(value)) {
             records[key] = parseThemeVariables(value)
           } else {
-            records[key] = this.handleThemeStyleValue(value)
+            records[key] = this.handlePresetThemeValue(value)
           }
           return records
         },
