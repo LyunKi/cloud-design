@@ -1,5 +1,5 @@
 ---
-title: Overlay
+title: Menu
 nav:
   title: Components
   path: /components
@@ -12,7 +12,7 @@ toc: menu
 
 # `@cloud-design/components`
 
-react-native Overlay component
+react-native Menu component
 
 ## Install
 
@@ -23,7 +23,7 @@ $ npm install @cloud-design/components
 ## Import
 
 ```js
-import { Overlay } from '@cloud-design/components'
+import { Menu } from '@cloud-design/components'
 ```
 
 ## Useages
@@ -38,7 +38,7 @@ import {
   View,
   Button,
   Text,
-  Overlay,
+  Menu,
   ConfigProvider,
 } from '@cloud-design/components'
 
@@ -46,17 +46,11 @@ export default () => {
   return (
     <ConfigProvider>
       <FlexLayout>
-        <Overlay
-          renderTrigger={(props) => <Button {...props} value={'Trigger'} />}
-          getContentPosition={(triggerRect) => {
-            return {
-              left: triggerRect.x,
-              top: triggerRect.y + triggerRect.height,
-            }
-          }}
+        <Menu
+          renderTrigger={(props) => <Button {...props} value={'MenuTrigger'} />}
         >
           <Text value={'Overlay content'} />
-        </Overlay>
+        </Menu>
       </FlexLayout>
     </ConfigProvider>
   )

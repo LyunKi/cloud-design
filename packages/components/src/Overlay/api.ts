@@ -3,10 +3,12 @@ import { ReactElement } from 'react'
 import { View } from 'react-native'
 
 interface TriggerRect {
-  left: number
-  top: number
+  x: number
+  y: number
   height: number
   width: number
+  pageX: number
+  pageY: number
 }
 
 interface TriggerProps {

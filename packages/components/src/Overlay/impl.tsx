@@ -21,8 +21,8 @@ export const Overlay = (props: PropsWithChildren<OverlayProps>) => {
   const toggle = () => {
     if (!visible && getContentPosition) {
       //@ts-ignore
-      triggerRef.current?.measure((_x, _y, width, height, px, py) => {
-        setPosition(getContentPosition({ left: px, top: py, width, height }))
+      triggerRef.current?.measure((x, y, width, height, pageX, pageY) => {
+        setPosition(getContentPosition({ x, y, width, height, pageX, pageY }))
       })
     }
     setVisible((prev) => !prev)
@@ -50,6 +50,7 @@ export const Overlay = (props: PropsWithChildren<OverlayProps>) => {
           <View
             onPress={toggle}
             ts={{
+              backgroundColor: 'transparent',
               width: '$vw:100',
               height: '$vh:100',
               ...maskTs,
