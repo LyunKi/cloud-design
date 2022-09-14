@@ -1,11 +1,7 @@
 import { NestedString } from '@cloud-dragon/common-types'
 import { reduce, isObject, get, isString, merge } from 'lodash'
-import React, { ComponentType, PropsWithChildren } from 'react'
-import {
-  ThemeConfig,
-  DEFAULT_BASE_FONT_SIZE,
-  DEFAULT_THEME_CONFIG,
-} from './config'
+import React, { ComponentType, forwardRef, PropsWithChildren } from 'react'
+import { ThemeConfig, DEFAULT_THEME_CONFIG } from './config'
 import {
   CloudDesignTheme,
   PresetThemePack,
@@ -24,7 +20,7 @@ function isPresetThemePack(themePack: ThemePack): themePack is PresetThemePack {
 }
 
 function isReferenceValue(value: string | NestedString): value is string {
-  return isString(value) && value.startsWith('$') && !value.startsWith('$rem:')
+  return isString(value) && value.startsWith('$') && !value.includes(':')
 }
 
 function isRemValue(value: any) {
@@ -36,6 +32,23 @@ function handleRemValue(value: string, baseFontSize: number) {
   return baseFontSize * multiple
 }
 
+function isVwValue(value: any) {
+  return isString(value) && value.startsWith('$vw:')
+}
+
+function handleVwValue(value: string, windowWidth: number) {
+  const multiple = Number(value.slice(4))
+  return (windowWidth / 100) * multiple
+}
+
+function isVhValue(value: any) {
+  return isString(value) && value.startsWith('$vh:')
+}
+function handleVhValue(value: string, windowHeight: number) {
+  const multiple = Number(value.slice(4))
+  return (windowHeight / 100) * multiple
+}
+
 class ThemeManagerClass {
   public themeConfig: ThemeConfig = DEFAULT_THEME_CONFIG
   public theme: CloudDesignTheme = this.processThemePack(CLOUD_THEME_PACK.light)
@@ -45,9 +58,15 @@ class ThemeManagerClass {
       const path = value.slice(1)
       return get(this.theme, path)
     }
-    const { baseFontSize = DEFAULT_BASE_FONT_SIZE } = this.themeConfig
+    const { baseFontSize, windowHeight, windowWidth } = this.themeConfig
     if (isRemValue(value)) {
       return handleRemValue(value, baseFontSize)
+    }
+    if (isVwValue(value)) {
+      return handleVwValue(value, windowWidth)
+    }
+    if (isVhValue(value)) {
+      return handleVhValue(value, windowHeight)
     }
     return value
   }
@@ -95,8 +114,12 @@ class ThemeManagerClass {
     })
   }
 
-  public setThemeConfig(themeConfig?: ThemeConfig) {
+  public setThemeConfig(themeConfig?: Partial<ThemeConfig>) {
     this.themeConfig = merge({}, DEFAULT_THEME_CONFIG, themeConfig)
+  }
+
+  public updateThemeConfig(themeConfig?: Partial<ThemeConfig>) {
+    merge(this.themeConfig, themeConfig)
   }
 
   public setTheme(themePack: ThemePack) {
@@ -112,18 +135,20 @@ export const ThemeManager = new ThemeManagerClass()
 export function withTheme<Props = any>(
   Component: ComponentType<PropsWithChildren<Themed<Props>>>
 ): ThemedComponent<Props> {
-  return (props) => {
+  //@ts-ignore
+  return forwardRef((props, ref) => {
     const { ts = {}, children, style, theme: originTheme, ...others } = props
     return React.createElement(
       Component,
       {
         style: StyleSheet.flatten([ThemeManager.themed(ts), style]),
         theme: originTheme ?? ThemeManager.theme,
+        ref,
         ...others,
       } as any,
       children
     )
-  }
+  })
 }
 
 export function extendTheme(

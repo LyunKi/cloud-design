@@ -6,6 +6,7 @@ export interface BasicFlexLayoutProps {
   spacing?: number
   justify?: FlexStyle['justifyContent']
   align?: FlexStyle['alignItems']
+  wrap?: boolean
   style?: StyleProp<ViewStyle>
 }
 

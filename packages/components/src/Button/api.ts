@@ -25,6 +25,7 @@ export interface BasicButtonProps {
   onPress?: (event?: GestureResponderEvent) => void
   renderLeft?: (props?: AccessoryProps) => ReactElement
   renderRight?: (props?: AccessoryProps) => ReactElement
+  viewRef?: any
 }
 
 export type ButtonProps = PropsWithThemeStyle<BasicButtonProps>

@@ -1,11 +1,6 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { Pressable } from 'react-native'
-import {
-  styles,
-  ThemedComponent,
-  ThemeManager,
-  withTheme,
-} from '../ConfigProvider'
+import { styles, ThemedComponent, withTheme } from '../ConfigProvider'
 import { View } from '../View'
 import { Text } from '../Text'
 import { ButtonProps, ButtonStatus } from './api'
@@ -93,67 +88,71 @@ function computeStyles({ variant, status, pressed }: any): any {
   }
 }
 
-export const Button: ThemedComponent<ButtonProps> = withTheme((props) => {
-  const {
-    value,
-    style,
-    variant = 'solid',
-    status = 'primary',
-    textTs,
-    onPress,
-    renderLeft,
-    renderRight,
-  } = props
-  const disabled = status === 'disabled'
-  const conditionStyle = styles([
-    disabled,
-    {
-      cursor: 'not-allowed',
-      opacity: `$opacity.disabled`,
-    },
-  ])
-  return (
-    <Pressable disabled={status === 'disabled'} onPress={onPress}>
-      {({ pressed }) => {
-        const { computedViewStyle, computedTextStyle } = computeStyles({
-          variant,
-          status,
-          pressed,
-        })
-        const mergedStyle: KV = {
-          fontSize: '$fontSize.md',
-          fontWeight: '$fontWeight.semibold',
-          ...computedTextStyle,
-          ...textTs,
-        }
-        return (
-          <View
-            ts={{
-              ...conditionStyle,
-              borderRadius: '$radius.md',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '$size.10',
-              paddingHorizontal: '$spacing.4',
-              gap: '$rem: 0.5',
-              ...computedViewStyle,
-              ...style,
-            }}
-          >
-            {renderLeft &&
-              renderLeft({
-                color: mergedStyle.color,
-                size: mergedStyle.fontSize,
-              })}
-            {value && <Text ts={mergedStyle} value={value} />}
-            {renderRight &&
-              renderRight({
-                color: mergedStyle.color,
-                size: mergedStyle.fontSize,
-              })}
-          </View>
-        )
-      }}
-    </Pressable>
-  )
-})
+export const Button: ThemedComponent<ButtonProps> = withTheme(
+  forwardRef((props) => {
+    const {
+      value,
+      style,
+      variant = 'solid',
+      status = 'primary',
+      textTs,
+      onPress,
+      renderLeft,
+      renderRight,
+      viewRef,
+    } = props
+    const disabled = status === 'disabled'
+    const conditionStyle = styles([
+      disabled,
+      {
+        cursor: 'not-allowed',
+        opacity: `$opacity.disabled`,
+      },
+    ])
+    return (
+      <Pressable disabled={disabled} onPress={onPress}>
+        {({ pressed }) => {
+          const { computedViewStyle, computedTextStyle } = computeStyles({
+            variant,
+            status,
+            pressed,
+          })
+          const mergedStyle: KV = {
+            fontSize: '$fontSize.md',
+            fontWeight: '$fontWeight.semibold',
+            ...computedTextStyle,
+            ...textTs,
+          }
+          return (
+            <View
+              ref={viewRef}
+              ts={{
+                ...conditionStyle,
+                borderRadius: '$radius.md',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '$size.10',
+                paddingHorizontal: '$spacing.4',
+                gap: '$rem: 0.5',
+                ...computedViewStyle,
+                ...style,
+              }}
+            >
+              {renderLeft &&
+                renderLeft({
+                  color: mergedStyle.color,
+                  size: mergedStyle.fontSize,
+                })}
+              {value && <Text ts={mergedStyle} value={value} />}
+              {renderRight &&
+                renderRight({
+                  color: mergedStyle.color,
+                  size: mergedStyle.fontSize,
+                })}
+            </View>
+          )
+        }}
+      </Pressable>
+    )
+  })
+)

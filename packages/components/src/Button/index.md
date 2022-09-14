@@ -35,7 +35,7 @@ import React from 'react'
 import { FlexLayout, Button } from '@cloud-design/components'
 
 export default () => (
-  <FlexLayout style={{ gap: 16 }} align="center">
+  <FlexLayout wrap spacing={16} align="center">
     {['solid', 'outline', 'ghost', 'link'].map((variant) => (
       <Button key={variant} value={'Button'} variant={variant} />
     ))}
@@ -50,7 +50,7 @@ import React from 'react'
 import { FlexLayout, Button, Icon } from '@cloud-design/components'
 
 export default () => (
-  <FlexLayout style={{ gap: 16 }} align="center">
+  <FlexLayout wrap spacing={16} align="center">
     <Button
       value={'Button'}
       renderLeft={(props) => <Icon {...props} name="star" />}
@@ -72,7 +72,7 @@ import React from 'react'
 import { FlexLayout, Button } from '@cloud-design/components'
 
 export default () => (
-  <FlexLayout style={{ gap: 16 }} align="center">
+  <FlexLayout wrap spacing={16} align="center">
     {[
       'primary',
       'disabled',
@@ -86,23 +86,4 @@ export default () => (
     ))}
   </FlexLayout>
 )
-```
-
-test
-
-```jsx
-import React, { useState } from 'react'
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from 'react-native'
-import { FlexLayout, Button } from '@cloud-design/components'
-
-const App = () => {
-  const [modalVisible, setModalVisible] = useState(false)
-  return (
-    <Modal>
-      <Button value={'Button'} />
-    </Modal>
-  )
-}
-
-export default App
 ```

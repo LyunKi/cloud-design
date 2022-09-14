@@ -13,6 +13,7 @@ export const FlexLayout = withTheme(
       align,
       style,
       spacing,
+      wrap,
     } = props
     return (
       <View
@@ -22,6 +23,7 @@ export const FlexLayout = withTheme(
             justifyContent: justify,
             alignItems: align,
             gap: spacing,
+            flexWrap: wrap ? 'wrap' : 'nowrap',
           },
           style,
         ])}

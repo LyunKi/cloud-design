@@ -1,5 +1,7 @@
+import { GestureResponderEvent } from 'react-native'
 import { PropsWithThemeStyle } from '../ConfigProvider'
 
-export interface BasicViewProps {}
-
-export type ViewProps = PropsWithThemeStyle<BasicViewProps>
+export interface ViewProps {
+  onPress?: (event: GestureResponderEvent) => any
+  ref?: any
+}
