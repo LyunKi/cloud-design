@@ -4,5 +4,6 @@
     "rootDir": "src",
     "outDir": "dist"
   },
+  "exclude": ["**/**/demo"],
   "include": ["src"]
 }
