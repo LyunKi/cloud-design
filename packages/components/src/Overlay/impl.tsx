@@ -7,7 +7,7 @@ export const Overlay = (props: OverlayProps) => {
   const {
     renderTrigger,
     mask,
-    contentContainerTs: contentTs,
+    contentContainerTs,
     getContentPosition,
     renderContent,
   } = props
@@ -30,7 +30,7 @@ export const Overlay = (props: OverlayProps) => {
     <View
       ts={{
         position: 'absolute',
-        ...contentTs,
+        ...contentContainerTs,
         ...position,
       }}
     >
@@ -47,7 +47,7 @@ export const Overlay = (props: OverlayProps) => {
       >
         {mask ? (
           <View
-            onPress={mask.disableCloseOnPress ? undefined : toggle}
+            onPress={mask.disableCloseOnPress ? toggle : undefined}
             ts={{
               backgroundColor: 'transparent',
               width: '$vw:100',
