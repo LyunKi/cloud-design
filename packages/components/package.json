@@ -13,7 +13,7 @@
     "test:watch": "jest --watch ",
     "test:updateSnap": "jest --updateSnapshot"
   },
-  "version": "0.2.0",
+  "version": "0.3.0",
   "dependencies": {
     "lodash": "^4.17.21",
     "@cloud-design/icons": "0.2.0"

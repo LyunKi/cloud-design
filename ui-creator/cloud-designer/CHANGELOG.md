@@ -1,5 +1,13 @@
 # @ui-creator/cloud-designer
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @cloud-design/components@0.3.0
+  - @ui-creator/cloud-builder@1.0.0
+
 ## 1.1.0
 
 ### Minor Changes

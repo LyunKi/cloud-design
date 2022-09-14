@@ -1,5 +1,11 @@
 # @cloud-design/components
 
+## 0.3.0
+
+### Minor Changes
+
+- add Button , Overlay component
+
 ## 0.2.0
 
 ### Minor Changes
