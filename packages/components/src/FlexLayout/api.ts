@@ -1,5 +1,5 @@
 import { FlexStyle, StyleProp, ViewStyle } from 'react-native'
-import { PropsWithThemeStyle } from '../common/theme'
+import { Themeable } from '../common/theme'
 
 export interface BasicFlexLayoutProps {
   direction?: FlexStyle['flexDirection']
@@ -10,4 +10,4 @@ export interface BasicFlexLayoutProps {
   style?: StyleProp<ViewStyle>
 }
 
-export type FlexLayoutProps = PropsWithThemeStyle<BasicFlexLayoutProps>
+export type FlexLayoutProps = Themeable<BasicFlexLayoutProps>

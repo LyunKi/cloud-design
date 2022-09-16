@@ -1,8 +1,8 @@
 import { merge } from 'lodash'
 import React, {
+  PropsWithChildren,
   ComponentType,
   forwardRef,
-  PropsWithChildren,
   useContext,
 } from 'react'
 import { StyleSheet } from 'react-native'
@@ -11,25 +11,24 @@ import {
   CloudDesignTheme,
   PresetThemePack,
   Themed,
-  ThemedComponent,
+  ThemeComponent,
 } from './types'
 import { DEFAULT_THEME } from './constants'
 import { ThemeManager } from './ThemeManager'
 
 export function withTheme<Props = any>(
-  Component: ComponentType<PropsWithChildren<Themed<Props>>>
-): ThemedComponent<Props> {
+  Component: ComponentType<Themed<PropsWithChildren<Props>>>
+): ThemeComponent<Props> {
   //@ts-ignore
   return forwardRef((props, ref) => {
     const ready = useContext(ConfigContext)
-    const { ts = {}, children, style, theme: originTheme, ...others } = props
+    const { ts = {}, children, style, ...others } = props
     return (
       ready &&
       React.createElement(
         Component,
         {
           style: StyleSheet.flatten([ThemeManager.themed(ts), style]),
-          theme: originTheme ?? ThemeManager.theme,
           ref,
           ...others,
         } as any,

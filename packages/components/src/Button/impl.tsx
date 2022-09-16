@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { Pressable } from 'react-native'
 import { KV } from '@cloud-dragon/common-types'
-import { ThemedComponent, withTheme } from '../common/theme'
+import { ThemeComponent, withTheme } from '../common/theme'
 import { View } from '../View'
 import { Text } from '../Text'
 import { styles } from '../common/utils'
@@ -89,13 +89,13 @@ function computeStyles({ variant, status, pressed }: any): any {
   }
 }
 
-export const Button: ThemedComponent<ButtonProps> = withTheme(
+export const Button: ThemeComponent<ButtonProps> = withTheme(
   forwardRef((props) => {
     const {
       value,
       style,
-      variant = 'solid',
-      status = 'primary',
+      variant,
+      status,
       textTs,
       onPress,
       renderLeft,
@@ -118,7 +118,7 @@ export const Button: ThemedComponent<ButtonProps> = withTheme(
             status,
             pressed,
           })
-          const mergedStyle: KV = {
+          const mergedTs: KV = {
             fontSize: '$fontSize.md',
             fontWeight: '$fontWeight.semibold',
             ...computedTextStyle,
@@ -141,14 +141,14 @@ export const Button: ThemedComponent<ButtonProps> = withTheme(
             >
               {renderLeft &&
                 renderLeft({
-                  color: mergedStyle.color,
-                  size: mergedStyle.fontSize,
+                  color: mergedTs.color,
+                  size: mergedTs.fontSize,
                 })}
-              {value && <Text ts={mergedStyle} value={value} />}
+              {value && <Text ts={mergedTs} value={value} />}
               {renderRight &&
                 renderRight({
-                  color: mergedStyle.color,
-                  size: mergedStyle.fontSize,
+                  color: mergedTs.color,
+                  size: mergedTs.fontSize,
                 })}
             </View>
           )
@@ -157,3 +157,8 @@ export const Button: ThemedComponent<ButtonProps> = withTheme(
     )
   })
 )
+
+Button.defaultProps = {
+  variant: 'solid',
+  status: 'primary',
+}

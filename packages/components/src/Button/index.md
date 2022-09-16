@@ -26,6 +26,10 @@ $ npm install @cloud-design/components
 import { Button } from '@cloud-design/components'
 ```
 
+## API
+
+<API hideTitle src="./impl.tsx"></API>
+
 ## Usages
 
 ### Button with variant

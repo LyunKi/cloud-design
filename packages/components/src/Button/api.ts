@@ -1,7 +1,6 @@
-import { KV } from '@cloud-dragon/common-types'
 import { ReactElement } from 'react'
-import { GestureResponderEvent } from 'react-native'
-import { PropsWithThemeStyle } from '../common/theme'
+import { GestureResponderEvent, View } from 'react-native'
+import { Themeable, ThemeStyle } from '../common/theme'
 
 interface AccessoryProps {
   color: string
@@ -21,11 +20,11 @@ export interface BasicButtonProps {
   variant?: 'solid' | 'outline' | 'ghost' | 'link'
   status?: ButtonStatus
   value?: string
-  textTs?: KV
-  onPress?: (event?: GestureResponderEvent) => void
+  textTs?: ThemeStyle
+  onPress?: (event?: GestureResponderEvent) => any
   renderLeft?: (props?: AccessoryProps) => ReactElement
   renderRight?: (props?: AccessoryProps) => ReactElement
-  viewRef?: any
+  viewRef?: React.Ref<View>
 }
 
-export type ButtonProps = PropsWithThemeStyle<BasicButtonProps>
+export type ButtonProps = Themeable<BasicButtonProps>

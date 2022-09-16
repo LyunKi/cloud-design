@@ -5,11 +5,11 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native'
 import { styles } from '../common/utils'
-import { ThemedComponent, withTheme } from '../common/theme'
+import { ThemeComponent, withTheme } from '../common/theme'
 import { ViewProps } from './api'
 
-export const View: ThemedComponent<ViewProps> = withTheme(
-  forwardRef((props, ref: any) => {
+export const View: ThemeComponent<ViewProps> = withTheme(
+  forwardRef((props, ref?: React.Ref<RnView>) => {
     const { style, children, onPress } = props
     const Inner = (
       <RnView

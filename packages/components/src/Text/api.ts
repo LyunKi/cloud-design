@@ -1,5 +1,5 @@
 import { Size } from '../common/types'
-import { PropsWithThemeStyle } from '../common/theme'
+import { Themeable } from '../common/theme'
 
 export interface BasicTextProps {
   value?: string
@@ -7,4 +7,4 @@ export interface BasicTextProps {
   numberOfLines?: number
 }
 
-export type TextProps = PropsWithThemeStyle<BasicTextProps>
+export type TextProps = Themeable<BasicTextProps>
