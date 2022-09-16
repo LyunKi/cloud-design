@@ -1,17 +1,7 @@
-import { NestedString } from '@cloud-dragon/common-types'
-import { reduce, isObject, get, isString, merge } from 'lodash'
-import React, { ComponentType, forwardRef, PropsWithChildren } from 'react'
-import { ThemeConfig, DEFAULT_THEME_CONFIG } from './config'
-import {
-  CloudDesignTheme,
-  PresetThemePack,
-  Themed,
-  ThemedComponent,
-  ThemePack,
-} from './types'
-import { StyleSheet } from 'react-native'
-import { KV } from '@cloud-dragon/common-types'
-import { mapValues } from 'lodash'
+import { NestedString, KV } from '@cloud-dragon/common-types'
+import { reduce, isObject, get, isString, merge, mapValues } from 'lodash'
+import { ThemeContext, DEFAULT_THEME_CONFIG } from './config'
+import { CloudDesignTheme, PresetThemePack, ThemePack } from './types'
 import { DEFAULT_THEME } from './constants'
 
 function isPresetThemePack(themePack: ThemePack): themePack is PresetThemePack {
@@ -49,13 +39,13 @@ function handleVhValue(value: string, windowHeight: number) {
 }
 
 class ThemeManagerClass {
-  public themeConfig: ThemeConfig = DEFAULT_THEME_CONFIG
+  public themeContext: ThemeContext = DEFAULT_THEME_CONFIG
   public theme: CloudDesignTheme = this.processThemePack(
     DEFAULT_THEME['cloud-light']
   )
 
   private handlePresetThemeValue(value: any) {
-    const { baseFontSize, windowHeight, windowWidth } = this.themeConfig
+    const { baseFontSize, windowHeight, windowWidth } = this.themeContext
     if (isRemValue(value)) {
       return handleRemValue(value, baseFontSize)
     }
@@ -119,12 +109,12 @@ class ThemeManagerClass {
     })
   }
 
-  public setThemeConfig(themeConfig?: Partial<ThemeConfig>) {
-    this.themeConfig = merge({}, DEFAULT_THEME_CONFIG, themeConfig)
+  public setThemeContext(themeContext?: Partial<ThemeContext>) {
+    this.themeContext = merge({}, DEFAULT_THEME_CONFIG, themeContext)
   }
 
-  public updateThemeConfig(themeConfig?: Partial<ThemeConfig>) {
-    merge(this.themeConfig, themeConfig)
+  public updateThemeContext(themeContext?: Partial<ThemeContext>) {
+    merge(this.themeContext, themeContext)
   }
 
   public setTheme(themePack: ThemePack) {
@@ -136,29 +126,3 @@ class ThemeManagerClass {
 }
 
 export const ThemeManager = new ThemeManagerClass()
-
-export function withTheme<Props = any>(
-  Component: ComponentType<PropsWithChildren<Themed<Props>>>
-): ThemedComponent<Props> {
-  //@ts-ignore
-  return forwardRef((props, ref) => {
-    const { ts = {}, children, style, theme: originTheme, ...others } = props
-    return React.createElement(
-      Component,
-      {
-        style: StyleSheet.flatten([ThemeManager.themed(ts), style]),
-        theme: originTheme ?? ThemeManager.theme,
-        ref,
-        ...others,
-      } as any,
-      children
-    )
-  })
-}
-
-export function extendTheme(
-  themePack: CloudDesignTheme,
-  presetThemePack: PresetThemePack = 'cloud-light'
-) {
-  return merge({}, DEFAULT_THEME[presetThemePack], themePack)
-}

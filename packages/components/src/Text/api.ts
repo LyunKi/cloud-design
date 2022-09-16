@@ -1,6 +1,5 @@
-import { StyleProp, TextStyle } from 'react-native'
 import { Size } from '../common/types'
-import { PropsWithThemeStyle } from '../ConfigProvider'
+import { PropsWithThemeStyle } from '../common/theme'
 
 export interface BasicTextProps {
   value?: string

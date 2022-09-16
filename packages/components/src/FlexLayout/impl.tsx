@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import { StyleSheet } from 'react-native'
-import { withTheme } from '../ConfigProvider'
+import { withTheme } from '../common/theme'
 import { View } from '../View'
 import { FlexLayoutProps } from './api'
 

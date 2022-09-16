@@ -1,6 +1,6 @@
 import React from 'react'
 import { Icon as OriginIcon, IconProps } from '@cloud-design/icons'
-import { ThemeManager } from '../ConfigProvider'
+import { ThemeManager } from '../common/theme'
 
 export const Icon = (props: IconProps) => {
   const { size, color = '$color.font.default' } = props

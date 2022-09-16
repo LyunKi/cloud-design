@@ -15,18 +15,19 @@
   },
   "version": "0.3.0",
   "dependencies": {
-    "lodash": "^4.17.21",
-    "@cloud-design/icons": "0.2.0"
+    "@cloud-design/icons": "0.2.0",
+    "@cloud-dragon/common-hooks": "^0.1.0",
+    "lodash": "^4.17.21"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-native": "^0.69.4"
   },
   "devDependencies": {
-    "react": "^18.2.0",
-    "react-native": "^0.69.4",
+    "@cloud-dragon/common-types": "^0.1.0",
     "@types/lodash": "^4.14.182",
     "@types/react": "^18.0.15",
-    "@cloud-dragon/common-types": "^0.1.0"
+    "react": "^18.2.0",
+    "react-native": "^0.69.4"
   }
 }

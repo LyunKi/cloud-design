@@ -1,7 +1,7 @@
 import { KV } from '@cloud-dragon/common-types'
 import { ReactElement } from 'react'
 import { GestureResponderEvent } from 'react-native'
-import { PropsWithThemeStyle } from '../ConfigProvider'
+import { PropsWithThemeStyle } from '../common/theme'
 
 interface AccessoryProps {
   color: string

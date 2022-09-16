@@ -1,7 +1,7 @@
-export type SupportedLocale = 'zh-CN' | 'en-US'
+export type SupportedLocale = 'zh_CN' | 'en_US'
 
 class I18nManagerClass {
-  public locale: SupportedLocale = 'en-US'
+  public locale: SupportedLocale = 'en_US'
 
   public setLocale(locale: SupportedLocale) {
     this.locale = locale

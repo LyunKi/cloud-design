@@ -5,7 +5,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native'
 import { styles } from '../common/utils'
-import { ThemedComponent, withTheme } from '../ConfigProvider'
+import { ThemedComponent, withTheme } from '../common/theme'
 import { ViewProps } from './api'
 
 export const View: ThemedComponent<ViewProps> = withTheme(

@@ -1,20 +1,53 @@
-import React, { PropsWithChildren } from 'react'
-import { I18nProvider, I18nProviderProps } from './I18nProvider'
-import { ThemeProvider, ThemeProviderProps } from './ThemeProvider'
+import React, { PropsWithChildren, useEffect } from 'react'
+import { Dimensions } from 'react-native'
+import { I18nManager, SupportedLocale } from '../common/i18n'
+import { ThemeContext, ThemeManager, ThemePack } from '../common/theme'
 
-export * from './I18nProvider'
-export * from './ThemeProvider'
+export interface ThemeConfig {
+  themePack?: ThemePack
+  themeContext?: Partial<Omit<ThemeContext, 'windowWidth' | 'windowHeight'>>
+}
 
-export interface ConfigProviderProps
-  extends ThemeProviderProps,
-    I18nProviderProps {}
+export interface I18nConfig {
+  locale?: SupportedLocale
+}
+
+export interface ConfigProviderProps extends ThemeConfig, I18nConfig {}
+
+export const ConfigContext = React.createContext<any>(false)
 
 export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
-  const { themePack, themeConfig, locale, children } = props
+  const { themePack, themeContext, locale = 'zh_CN', children } = props
+  const [ready, setReady] = React.useState<any>(false)
+  useEffect(() => {
+    const window = Dimensions.get('window')
+    ThemeManager.setThemeContext({
+      ...themeContext,
+      windowWidth: window.width,
+      windowHeight: window.height,
+    })
+    if (themePack) {
+      ThemeManager.setTheme(themePack)
+    }
+    const subscription = Dimensions.addEventListener('change', ({ window }) => {
+      ThemeManager.updateThemeContext({
+        windowWidth: window.width,
+        windowHeight: window.height,
+      })
+      setReady({})
+    })
 
+    I18nManager.setLocale(locale)
+
+    setReady({})
+    return () => {
+      setReady(false)
+      subscription?.remove()
+    }
+  }, [locale, themePack, themeContext])
   return (
-    <ThemeProvider themePack={themePack} themeConfig={themeConfig}>
-      <I18nProvider locale={locale}>{children}</I18nProvider>
-    </ThemeProvider>
+    <ConfigContext.Provider value={ready}>
+      {ready && children}
+    </ConfigContext.Provider>
   )
 }

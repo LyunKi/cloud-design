@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text as RnText, StyleSheet } from 'react-native'
-import { ThemedComponent, ThemeManager, withTheme } from '../ConfigProvider'
+import { ThemedComponent, ThemeManager, withTheme } from '../common/theme'
 import { TextProps } from './api'
 
 export const Text: ThemedComponent<TextProps> = withTheme((props) => {
