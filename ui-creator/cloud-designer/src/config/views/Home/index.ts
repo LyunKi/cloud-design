@@ -8,7 +8,7 @@ const HOME: View = {
         { name: 'direction', value: 'column' },
         {
           name: 'ts',
-          value: { background: '$color.layoutBg' },
+          value: { background: '$color.bg.layout' },
           valueType: 'object',
         },
       ],

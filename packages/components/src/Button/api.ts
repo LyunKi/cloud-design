@@ -18,6 +18,9 @@ export type ButtonStatus =
 
 export interface BasicButtonProps {
   variant?: 'solid' | 'outline' | 'ghost' | 'link'
+  /**
+   * Enum: 'primary'| 'secondary' | 'info' | 'warning'  | 'success'  | 'error' | 'disabled'
+   */
   status?: ButtonStatus
   value?: string
   textTs?: ThemeStyle

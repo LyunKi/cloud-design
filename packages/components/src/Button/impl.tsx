@@ -21,16 +21,24 @@ function getColorSchemeByStatus(status: ButtonStatus) {
       return 'green'
     case 'error':
       return 'red'
-    case 'disabled':
-      return 'blackAlpha'
   }
 }
 
 function computeStyles({ variant, status, pressed }: any): any {
+  if (status === 'disabled') {
+    return {
+      computedViewStyle: {
+        backgroundColor: '$color.bg.disabled',
+      },
+    }
+  }
   if (status === 'secondary') {
     return {
       computedViewStyle: {
-        backgroundColor: pressed ? `$color.gray.300` : `$color.gray.100`,
+        backgroundColor: pressed ? `$color.bg.secondary` : `transparent`,
+        borderColor: `$color.border.default`,
+        borderWidth: 1,
+        borderStyle: 'solid',
       },
     }
   }
@@ -45,7 +53,7 @@ function computeStyles({ variant, status, pressed }: any): any {
           backgroundColor: pressed ? weightColor : color,
         },
         computedTextStyle: {
-          color: '$color.white',
+          color: '$color.font.reverse',
         },
       }
     }
@@ -53,7 +61,7 @@ function computeStyles({ variant, status, pressed }: any): any {
       return {
         computedViewStyle: {
           borderStyle: 'solid',
-          backgroundColor: pressed ? lightColor : `$color.white`,
+          backgroundColor: pressed ? lightColor : `$color.bg.layout`,
           borderWidth: 1,
           borderColor: color,
         },
@@ -65,7 +73,7 @@ function computeStyles({ variant, status, pressed }: any): any {
     case 'ghost': {
       return {
         computedViewStyle: {
-          backgroundColor: pressed ? lightColor : `$color.white`,
+          backgroundColor: pressed ? lightColor : `$color.bg.layout`,
         },
         computedTextStyle: {
           color,

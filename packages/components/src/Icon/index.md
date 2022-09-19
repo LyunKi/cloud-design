@@ -26,6 +26,10 @@ $ npm install @cloud-design/components
 import { Icon } from '@cloud-design/components'
 ```
 
+## API
+
+<API hideTitle src="./index.tsx"></API>
+
 ## Usages
 
 ### Icon overview map

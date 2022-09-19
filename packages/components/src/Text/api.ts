@@ -3,6 +3,9 @@ import { Themeable } from '../common/theme'
 
 export interface BasicTextProps {
   value?: string
+  /**
+   * Enum: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+   */
   size?: Size
   numberOfLines?: number
 }

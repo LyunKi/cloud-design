@@ -26,6 +26,10 @@ $ npm install @cloud-design/components
 import { Divider } from '@cloud-design/components'
 ```
 
+## API
+
+<API hideTitle src="./impl.tsx"></API>
+
 ## Usages
 
 ### Divider with orientation
