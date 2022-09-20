@@ -80,7 +80,7 @@ export default () => (
     {[
       'primary',
       'disabled',
-      'secondary',
+      'normal',
       'info',
       'success',
       'warning',

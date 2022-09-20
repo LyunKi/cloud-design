@@ -14,7 +14,7 @@ interface AccessoryProps {
 
 export type ButtonStatus =
   | 'primary'
-  | 'secondary'
+  | 'normal'
   | 'info'
   | 'warning'
   | 'success'
@@ -24,7 +24,7 @@ export type ButtonStatus =
 export interface BasicButtonProps {
   variant?: 'solid' | 'outline' | 'ghost' | 'link'
   /**
-   * Enum: 'primary'| 'secondary' | 'info' | 'warning'  | 'success'  | 'error' | 'disabled'
+   * Enum: 'primary'| 'normal' | 'info' | 'warning'  | 'success'  | 'error' | 'disabled'
    */
   status?: ButtonStatus
   value?: string

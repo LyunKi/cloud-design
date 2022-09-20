@@ -27,11 +27,13 @@ function computeStyles({ variant, status, pressed, hovered }: any): any {
   if (status === 'disabled') {
     return {
       computedViewStyle: {
+        cursor: 'not-allowed',
+        opacity: `$opacity.disabled`,
         backgroundColor: '$color.bg.disabled',
       },
     }
   }
-  if (status === 'secondary') {
+  if (status === 'normal') {
     return {
       computedViewStyle: {
         backgroundColor: 'transparent',
@@ -39,13 +41,13 @@ function computeStyles({ variant, status, pressed, hovered }: any): any {
           [
             hovered,
             {
-              backgroundColor: '$color.bg.secondary.hovered',
+              backgroundColor: '$color.bg.normal.hovered',
             },
           ],
           [
             pressed,
             {
-              backgroundColor: '$color.bg.secondary.pressed',
+              backgroundColor: '$color.bg.normal.pressed',
             },
           ]
         ),
@@ -96,7 +98,6 @@ function computeStyles({ variant, status, pressed, hovered }: any): any {
       const pressedBg = ThemeManager.isDark
         ? opacity(darkBg, '3d')
         : `$color.${colorScheme}.100`
-      console.log('hoveredBg', hoveredBg, pressedBg)
       return {
         computedViewStyle: {
           backgroundColor: '$color.bg.layout',
@@ -167,13 +168,6 @@ export const Button: ThemeComponent<ButtonProps> = withTheme(
       viewRef,
     } = props
     const disabled = status === 'disabled'
-    const conditionStyle = styles([
-      disabled,
-      {
-        cursor: 'not-allowed',
-        opacity: `$opacity.disabled`,
-      },
-    ])
     return (
       <Pressable disabled={disabled} onPress={onPress}>
         {({ pressed, hovered }) => {
@@ -183,7 +177,6 @@ export const Button: ThemeComponent<ButtonProps> = withTheme(
             pressed,
             hovered,
           })
-          console.log('computeStyles', computedViewStyle, computedTextStyle)
           const mergedTs: KV = {
             fontSize: '$fontSize.md',
             fontWeight: '$fontWeight.semibold',
@@ -194,7 +187,6 @@ export const Button: ThemeComponent<ButtonProps> = withTheme(
             <View
               ref={viewRef}
               ts={{
-                ...conditionStyle,
                 borderRadius: '$radius.md',
                 alignItems: 'center',
                 justifyContent: 'center',
