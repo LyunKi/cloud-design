@@ -9,7 +9,10 @@ const LIGHT_THEME = merge({}, variables, {
     bg: {
       disabled: '$color.gray.100',
       layout: '$color.white',
-      secondary: '$color.gray.200',
+      secondary: {
+        pressed: '$color.gray.200',
+        hovered: '$color.gray.100',
+      },
     },
     font: {
       default: '$color.gray.800',

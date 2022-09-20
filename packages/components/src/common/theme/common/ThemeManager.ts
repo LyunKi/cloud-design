@@ -40,9 +40,16 @@ function handleVhValue(value: string, windowHeight: number) {
 
 class ThemeManagerClass {
   public themeContext: ThemeContext = DEFAULT_THEME_CONFIG
+
   public theme: CloudDesignTheme = this.processThemePack(
     DEFAULT_THEME['cloud-light']
   )
+
+  public mode = 'light'
+
+  public get isDark() {
+    return this.mode === 'dark'
+  }
 
   private handlePresetThemeValue(value: any) {
     const { baseFontSize, windowHeight, windowWidth } = this.themeContext
@@ -58,7 +65,7 @@ class ThemeManagerClass {
     return value
   }
 
-  private handleThemeStyleValue(value: any) {
+  public handleThemeStyleValue(value: any) {
     if (isReferenceValue(value)) {
       const path = value.slice(1)
       return get(this.theme, path)

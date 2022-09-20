@@ -13,8 +13,8 @@ export const Menu = (props: MenuProps) => {
       renderTrigger={renderTrigger}
       getContentPosition={(triggerRect) => {
         return {
-          left: triggerRect.x,
-          top: triggerRect.y + triggerRect.height + 8,
+          left: triggerRect.pageX,
+          top: triggerRect.pageY + triggerRect.height + 8 + window.scrollY,
         }
       }}
       renderContent={renderContent}

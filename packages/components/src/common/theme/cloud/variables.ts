@@ -254,7 +254,7 @@ const OPACITY = {
   disabled: 0.4,
 }
 
-export default {
+const VARIABLES = {
   fontSize: FONT_SIZE,
   color: COLOR,
   fontWeight: FONT_WEIGHT,
@@ -263,3 +263,5 @@ export default {
   size: SIZE,
   opacity: OPACITY,
 }
+
+export default VARIABLES

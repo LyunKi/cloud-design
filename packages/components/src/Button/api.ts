@@ -1,5 +1,10 @@
 import { ReactElement } from 'react'
-import { GestureResponderEvent, View } from 'react-native'
+import {
+  GestureResponderEvent,
+  NativeSyntheticEvent,
+  TargetedEvent,
+  View,
+} from 'react-native'
 import { Themeable, ThemeStyle } from '../common/theme'
 
 interface AccessoryProps {
@@ -27,6 +32,9 @@ export interface BasicButtonProps {
   onPress?: (event?: GestureResponderEvent) => any
   renderLeft?: (props?: AccessoryProps) => ReactElement
   renderRight?: (props?: AccessoryProps) => ReactElement
+  onFocus?: (event: NativeSyntheticEvent<TargetedEvent>) => void
+  onLongPress?: (event: GestureResponderEvent) => void
+  onBlur?: (event: NativeSyntheticEvent<TargetedEvent>) => void
   viewRef?: React.Ref<View>
 }
 

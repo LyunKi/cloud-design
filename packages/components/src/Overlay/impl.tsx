@@ -47,7 +47,7 @@ export const Overlay = (props: OverlayProps) => {
       >
         {mask ? (
           <View
-            onPress={mask.disableCloseOnPress ? toggle : undefined}
+            onPress={mask.disableCloseOnPress ? undefined : toggle}
             ts={{
               backgroundColor: 'transparent',
               width: '$vw:100',

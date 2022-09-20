@@ -1,18 +1,16 @@
 import React, { forwardRef } from 'react'
 import { Pressable } from 'react-native'
 import { KV } from '@cloud-dragon/common-types'
-import { ThemeComponent, withTheme } from '../common/theme'
+import { ThemeComponent, ThemeManager, withTheme } from '../common/theme'
 import { View } from '../View'
 import { Text } from '../Text'
-import { styles } from '../common/utils'
+import { opacity, styles } from '../common/utils'
 import { ButtonProps, ButtonStatus } from './api'
 
 function getColorSchemeByStatus(status: ButtonStatus) {
   switch (status) {
     case 'primary':
       return 'brand'
-    case 'secondary':
-      return 'gray'
     case 'info':
       return 'blue'
     case 'warning':
@@ -24,7 +22,8 @@ function getColorSchemeByStatus(status: ButtonStatus) {
   }
 }
 
-function computeStyles({ variant, status, pressed }: any): any {
+function computeStyles({ variant, status, pressed, hovered }: any): any {
+  console.log('hovered', hovered)
   if (status === 'disabled') {
     return {
       computedViewStyle: {
@@ -35,7 +34,21 @@ function computeStyles({ variant, status, pressed }: any): any {
   if (status === 'secondary') {
     return {
       computedViewStyle: {
-        backgroundColor: pressed ? `$color.bg.secondary` : `transparent`,
+        backgroundColor: 'transparent',
+        ...styles(
+          [
+            hovered,
+            {
+              backgroundColor: '$color.bg.secondary.hovered',
+            },
+          ],
+          [
+            pressed,
+            {
+              backgroundColor: '$color.bg.secondary.pressed',
+            },
+          ]
+        ),
         borderColor: `$color.border.default`,
         borderWidth: 1,
         borderStyle: 'solid',
@@ -43,37 +56,68 @@ function computeStyles({ variant, status, pressed }: any): any {
     }
   }
   const colorScheme = getColorSchemeByStatus(status)
-  const color = `$color.${colorScheme}.500`
-  const weightColor = `$color.${colorScheme}.700`
-  const lightColor = `$color.${colorScheme}.100`
+  const colorBase = ThemeManager.isDark ? 200 : 500
+  const color = `$color.${colorScheme}.${colorBase}`
   switch (variant) {
     case 'solid': {
+      const hoveredBg = `$color.${colorScheme}.${colorBase + 100}`
+      const pressedBg = `$color.${colorScheme}.${colorBase + 200}`
       return {
         computedViewStyle: {
-          backgroundColor: pressed ? weightColor : color,
+          backgroundColor: color,
+          ...styles(
+            [
+              hovered,
+              {
+                backgroundColor: hoveredBg,
+              },
+            ],
+            [
+              pressed,
+              {
+                backgroundColor: pressedBg,
+              },
+            ]
+          ),
         },
         computedTextStyle: {
           color: '$color.font.reverse',
         },
       }
     }
-    case 'outline': {
-      return {
-        computedViewStyle: {
-          borderStyle: 'solid',
-          backgroundColor: pressed ? lightColor : `$color.bg.layout`,
-          borderWidth: 1,
-          borderColor: color,
-        },
-        computedTextStyle: {
-          color,
-        },
-      }
-    }
+    case 'outline':
     case 'ghost': {
+      const darkBg = ThemeManager.handleThemeStyleValue(
+        `$color.${colorScheme}.200`
+      )
+      const hoveredBg = ThemeManager.isDark
+        ? opacity(darkBg, '1f')
+        : `$color.${colorScheme}.50`
+      const pressedBg = ThemeManager.isDark
+        ? opacity(darkBg, '3d')
+        : `$color.${colorScheme}.100`
+      console.log('hoveredBg', hoveredBg, pressedBg)
       return {
         computedViewStyle: {
-          backgroundColor: pressed ? lightColor : `$color.bg.layout`,
+          backgroundColor: '$color.bg.layout',
+          ...styles(
+            [
+              hovered,
+              {
+                backgroundColor: hoveredBg,
+              },
+            ],
+            [
+              pressed,
+              {
+                backgroundColor: pressedBg,
+              },
+            ],
+            [
+              variant === 'outline',
+              { borderStyle: 'solid', borderWidth: 1, borderColor: color },
+            ]
+          ),
         },
         computedTextStyle: {
           color,
@@ -81,16 +125,28 @@ function computeStyles({ variant, status, pressed }: any): any {
       }
     }
     case 'link': {
-      const pressedStyle = pressed && {
-        textDecorationLine: 'underline',
-        textDecorationStyle: 'solid',
-        textDecorationColor: weightColor,
-      }
+      const pressedColor = `$color.${colorScheme}.${colorBase + 200}`
       return {
         computedViewStyle: {},
         computedTextStyle: {
-          ...pressedStyle,
-          color: pressed ? weightColor : color,
+          color,
+          ...styles(
+            [
+              hovered || pressed,
+              {
+                textDecorationLine: 'underline',
+                textDecorationStyle: 'solid',
+                textDecorationColor: color,
+              },
+            ],
+            [
+              pressed,
+              {
+                color: pressedColor,
+                textDecorationColor: pressedColor,
+              },
+            ]
+          ),
         },
       }
     }
@@ -120,12 +176,14 @@ export const Button: ThemeComponent<ButtonProps> = withTheme(
     ])
     return (
       <Pressable disabled={disabled} onPress={onPress}>
-        {({ pressed }) => {
+        {({ pressed, hovered }) => {
           const { computedViewStyle, computedTextStyle } = computeStyles({
             variant,
             status,
             pressed,
+            hovered,
           })
+          console.log('computeStyles', computedViewStyle, computedTextStyle)
           const mergedTs: KV = {
             fontSize: '$fontSize.md',
             fontWeight: '$fontWeight.semibold',

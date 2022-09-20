@@ -31,9 +31,6 @@ import { Overlay } from '@cloud-design/components'
 ### Basic Usage
 
 ```jsx
-/**
- * iframe: true
- */
 import React from 'react'
 import {
   FlexLayout,
@@ -52,8 +49,8 @@ export default () => {
         renderContent={() => <Text value={'Overlay content'} />}
         getContentPosition={(triggerRect) => {
           return {
-            left: triggerRect.x,
-            top: triggerRect.y + triggerRect.height,
+            left: triggerRect.pageX,
+            top: triggerRect.pageY + triggerRect.height + window.scrollY,
           }
         }}
       />

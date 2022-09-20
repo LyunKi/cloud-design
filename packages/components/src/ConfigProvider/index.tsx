@@ -5,6 +5,7 @@ import { ThemeContext, ThemeManager, ThemePack } from '../common/theme'
 
 export interface ThemeConfig {
   themePack?: ThemePack
+  themeMode: 'dark' | 'light'
   themeContext?: Partial<Omit<ThemeContext, 'windowWidth' | 'windowHeight'>>
 }
 
@@ -17,10 +18,17 @@ export interface ConfigProviderProps extends ThemeConfig, I18nConfig {}
 export const ConfigContext = React.createContext<any>(false)
 
 export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
-  const { themePack, themeContext, locale = 'zh_CN', children } = props
+  const {
+    themePack,
+    themeMode = 'light',
+    themeContext,
+    locale = 'zh_CN',
+    children,
+  } = props
   const [ready, setReady] = React.useState<any>(false)
   useEffect(() => {
     const window = Dimensions.get('window')
+    ThemeManager.mode = themeMode
     ThemeManager.setThemeContext({
       ...themeContext,
       windowWidth: window.width,

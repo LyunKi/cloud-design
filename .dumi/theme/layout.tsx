@@ -12,7 +12,9 @@ export default ({ children, ...props }) => {
   const themePack = CLOUD_THEME_PACK[prefer]
   return (
     <Layout {...props}>
-      <ConfigProvider themePack={themePack}>{children}</ConfigProvider>
+      <ConfigProvider themeMode={prefer} themePack={themePack}>
+        {children}
+      </ConfigProvider>
     </Layout>
   )
 }

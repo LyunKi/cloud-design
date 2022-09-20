@@ -31,9 +31,6 @@ import { Menu } from '@cloud-design/components'
 ### Basic Usage
 
 ```jsx
-/**
- * iframe: true
- */
 import React from 'react'
 import {
   FlexLayout,

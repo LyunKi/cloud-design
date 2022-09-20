@@ -51,7 +51,8 @@
   "pnpm": {
     "overrides": {
       "react": "18.0.0",
-      "react-dom": "18.0.0"
+      "react-dom": "18.0.0",
+      "react-native-web": "0.18.8"
     }
   }
 }
