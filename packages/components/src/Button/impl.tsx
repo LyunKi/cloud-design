@@ -22,44 +22,88 @@ function getColorSchemeByStatus(status: ButtonStatus) {
   }
 }
 
-function computeStyles({ variant, status, pressed, hovered }: any): any {
-  console.log('hovered', hovered)
-  if (status === 'disabled') {
-    return {
-      computedViewStyle: {
-        cursor: 'not-allowed',
-        opacity: `$opacity.disabled`,
-        backgroundColor: '$color.bg.disabled',
-      },
+function computeNormalStyle({ variant, pressed, hovered }: any) {
+  switch (variant) {
+    case 'solid': {
+      const colorScheme = ThemeManager.isDark ? 'whiteAlpha' : 'gray'
+      const bgBase = ThemeManager.isDark ? 200 : 100
+      const bg = `$color.${colorScheme}.${bgBase}`
+      const hoveredBg = `$color.${colorScheme}.${bgBase + 100}`
+      const pressedBg = `$color.${colorScheme}.${bgBase + 200}`
+      return {
+        computedViewStyle: {
+          backgroundColor: bg,
+          ...styles(
+            [
+              hovered,
+              {
+                backgroundColor: hoveredBg,
+              },
+            ],
+            [
+              pressed,
+              {
+                backgroundColor: pressedBg,
+              },
+            ]
+          ),
+        },
+      }
+    }
+    case 'outline':
+    case 'ghost': {
+      return {
+        computedViewStyle: {
+          backgroundColor: 'transparent',
+          ...styles(
+            [
+              hovered,
+              {
+                backgroundColor: '$color.bg.normal.hovered',
+              },
+            ],
+            [
+              pressed,
+              {
+                backgroundColor: '$color.bg.normal.pressed',
+              },
+            ],
+            [
+              variant === 'outline',
+              {
+                borderColor: `$color.border.default`,
+                borderWidth: 1,
+                borderStyle: 'solid',
+              },
+            ]
+          ),
+        },
+      }
+    }
+    case 'link': {
+      return {
+        computedViewStyle: {},
+        computedTextStyle: {
+          ...styles([
+            hovered || pressed,
+            {
+              textDecorationLine: 'underline',
+              textDecorationStyle: 'solid',
+              textDecorationColor: '$color.font.default',
+            },
+          ]),
+        },
+      }
     }
   }
-  if (status === 'normal') {
-    return {
-      computedViewStyle: {
-        backgroundColor: 'transparent',
-        ...styles(
-          [
-            hovered,
-            {
-              backgroundColor: '$color.bg.normal.hovered',
-            },
-          ],
-          [
-            pressed,
-            {
-              backgroundColor: '$color.bg.normal.pressed',
-            },
-          ]
-        ),
-        borderColor: `$color.border.default`,
-        borderWidth: 1,
-        borderStyle: 'solid',
-      },
-    }
-  }
+}
+
+function computeColoredStyle({ variant, status, pressed, hovered }: any) {
   const colorScheme = getColorSchemeByStatus(status)
   const colorBase = ThemeManager.isDark ? 200 : 500
   const color = `$color.${colorScheme}.${colorBase}`
+  const fontColor =
+    status === 'normal' ? '$color.font.default' : '$color.font.reverse'
   switch (variant) {
     case 'solid': {
       const hoveredBg = `$color.${colorScheme}.${colorBase + 100}`
@@ -83,7 +127,7 @@ function computeStyles({ variant, status, pressed, hovered }: any): any {
           ),
         },
         computedTextStyle: {
-          color: '$color.font.reverse',
+          color: fontColor,
         },
       }
     }
@@ -154,6 +198,22 @@ function computeStyles({ variant, status, pressed, hovered }: any): any {
   }
 }
 
+function computeStyles({ variant, status, pressed, hovered }: any): any {
+  if (status === 'disabled') {
+    return {
+      computedViewStyle: {
+        cursor: 'not-allowed',
+        opacity: `$opacity.disabled`,
+        backgroundColor: '$color.bg.disabled',
+      },
+    }
+  }
+  if (status === 'normal') {
+    return computeNormalStyle({ variant, pressed, hovered })
+  }
+  return computeColoredStyle({ variant, status, pressed, hovered })
+}
+
 export const Button: ThemeComponent<ButtonProps> = withTheme(
   forwardRef((props) => {
     const {
@@ -166,6 +226,7 @@ export const Button: ThemeComponent<ButtonProps> = withTheme(
       renderLeft,
       renderRight,
       viewRef,
+      isActive,
     } = props
     const disabled = status === 'disabled'
     return (
@@ -174,7 +235,7 @@ export const Button: ThemeComponent<ButtonProps> = withTheme(
           const { computedViewStyle, computedTextStyle } = computeStyles({
             variant,
             status,
-            pressed,
+            pressed: isActive || pressed,
             hovered,
           })
           const mergedTs: KV = {
@@ -218,5 +279,5 @@ export const Button: ThemeComponent<ButtonProps> = withTheme(
 
 Button.defaultProps = {
   variant: 'solid',
-  status: 'primary',
+  status: 'normal',
 }

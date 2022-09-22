@@ -39,6 +39,8 @@ import {
   Text,
   Menu,
   ConfigProvider,
+  MenuContent,
+  MenuItem,
 } from '@cloud-design/components'
 
 export default () => {
@@ -46,7 +48,12 @@ export default () => {
     <FlexLayout>
       <Menu
         renderTrigger={(props) => <Button {...props} value={'MenuTrigger'} />}
-        renderContent={() => <Text value={'Overlay content'} />}
+        renderContent={() => (
+          <MenuContent>
+            <MenuItem value={'Menu Item 1'} />
+            <MenuItem value={'Menu Item 2'} />
+          </MenuContent>
+        )}
       />
     </FlexLayout>
   )

@@ -6,6 +6,18 @@ const LIGHT_THEME = merge({}, variables, {
     border: {
       default: '$color.gray.200',
     },
+    normal: {
+      50: '$color.gray.100',
+      100: '$color.gray.200',
+      200: 'transparent',
+      300: '#CBD5E0',
+      400: '#A0AEC0',
+      500: '$color.gray.100',
+      600: '$color.gray.200',
+      700: '$color.gray.300',
+      800: '#1A202C',
+      900: '#171923',
+    },
     bg: {
       disabled: '$color.gray.100',
       layout: '$color.white',

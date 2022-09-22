@@ -22,6 +22,7 @@ export type ButtonStatus =
   | 'disabled'
 
 export interface BasicButtonProps {
+  isActive?: boolean
   variant?: 'solid' | 'outline' | 'ghost' | 'link'
   /**
    * Enum: 'primary'| 'normal' | 'info' | 'warning'  | 'success'  | 'error' | 'disabled'

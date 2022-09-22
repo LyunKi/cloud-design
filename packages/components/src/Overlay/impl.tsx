@@ -45,23 +45,23 @@ export const Overlay = (props: OverlayProps) => {
         visible={visible}
         onRequestClose={toggle}
       >
-        {mask ? (
-          <View
-            onPress={mask.disableCloseOnPress ? undefined : toggle}
-            ts={{
-              backgroundColor: 'transparent',
-              width: '$vw:100',
-              height: '$vh:100',
-              ...mask.ts,
-            }}
-          >
-            {ModalContent}
-          </View>
-        ) : (
-          ModalContent
-        )}
+        <View
+          onPress={mask?.disableCloseOnPress ? undefined : toggle}
+          ts={{
+            backgroundColor: 'transparent',
+            width: '$vw:100',
+            height: '$vh:100',
+            ...mask?.ts,
+          }}
+        >
+          {ModalContent}
+        </View>
       </Modal>
-      {renderTrigger({ viewRef: triggerRef, onPress: toggle })}
+      {renderTrigger({
+        viewRef: triggerRef,
+        onPress: toggle,
+        isActive: !!visible,
+      })}
     </>
   )
 }

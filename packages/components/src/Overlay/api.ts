@@ -14,6 +14,7 @@ interface TriggerRect {
 interface TriggerProps {
   viewRef: React.RefObject<View>
   onPress: Function
+  isActive: boolean
 }
 
 interface MaskProps {

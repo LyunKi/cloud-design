@@ -41,7 +41,12 @@ import { FlexLayout, Button } from '@cloud-design/components'
 export default () => (
   <FlexLayout wrap spacing={16} align="center">
     {['solid', 'outline', 'ghost', 'link'].map((variant) => (
-      <Button key={variant} value={'Button'} variant={variant} />
+      <Button
+        status="primary"
+        key={variant}
+        value={'Button'}
+        variant={variant}
+      />
     ))}
   </FlexLayout>
 )
