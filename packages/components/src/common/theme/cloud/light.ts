@@ -5,6 +5,10 @@ const LIGHT_THEME = merge({}, variables, {
   color: {
     border: {
       default: '$color.gray.200',
+      input: '$color.gray.300',
+    },
+    placeholder: {
+      default: '$color.gray.500',
     },
     normal: {
       50: '$color.gray.100',

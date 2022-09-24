@@ -35,8 +35,8 @@ import React from 'react'
 import { FlexLayout, Input } from '@cloud-design/components'
 
 export default () => (
-  <FlexLayout wrap spacing={16} align="center">
-    <Input />
+  <FlexLayout ts={{ width: 375 }} wrap spacing={16} align="center">
+    <Input placeholder="Basic Usage" />
   </FlexLayout>
 )
 ```

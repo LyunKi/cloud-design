@@ -215,7 +215,7 @@ function computeStyles({ variant, status, pressed, hovered }: any): any {
 }
 
 export const Button: React.FC<ButtonProps> = withTheme(
-  forwardRef((props) => {
+  forwardRef((props: ButtonProps) => {
     const {
       value,
       style,

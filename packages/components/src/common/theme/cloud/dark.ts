@@ -5,6 +5,10 @@ const DARK_THEME = merge({}, variables, {
   color: {
     border: {
       default: '$color.whiteAlpha.300',
+      input: '$color.whiteAlpha.400',
+    },
+    placeholder: {
+      default: '$color.whiteAlpha.400',
     },
     bg: {
       disabled: '$color.whiteAlpha.200',
