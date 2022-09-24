@@ -164,6 +164,7 @@ const FONT_SIZE = {
   xs: '$rem:0.75',
   sm: '$rem:0.875',
   md: '$rem:1',
+  default: '$rem:1',
   lg: '$rem:1.125',
   xl: '$rem:1.25',
 }

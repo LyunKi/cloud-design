@@ -1,6 +1,7 @@
 import React, { forwardRef, Ref, useState } from 'react'
-import { TextInput, StyleSheet } from 'react-native'
+import { TextInput } from 'react-native'
 import { styles, ThemeManager } from '../common'
+import { FlexLayout } from '../FlexLayout'
 import { InputProps } from './api'
 
 export const Input: React.FC<InputProps> = forwardRef(
@@ -13,53 +14,53 @@ export const Input: React.FC<InputProps> = forwardRef(
       onBlur,
       onFocus,
       autoFocus,
+      inputTs,
       ...rest
     } = props
     const [focused, setFocused] = useState(autoFocus)
-    const themedStyle = ThemeManager.themed({
-      borderColor: '$color.border.input',
-      borderWidth: 1,
-      paddingHorizontal: '$rem:1',
-      height: '$rem:2.5',
-      lineHeight: '$rem:1.5',
-      borderRadius: '$radius.md',
-      outline: 'none',
-      width: '100%',
-      ...styles(
-        [
-          !value,
-          {
-            color: '$color.',
-          },
-        ],
-        [
-          focused,
-          {
-            borderColor: '$color.blue.500',
-          },
-        ]
-      ),
-      ...ts,
-    })
     return (
-      <TextInput
-        autoFocus={autoFocus}
-        ref={ref}
-        onFocus={(e) => {
-          setFocused(true)
-          onFocus?.(e)
+      <FlexLayout
+        ts={{
+          borderColor: '$color.border.input',
+          borderWidth: 1,
+          height: '$rem:2.5',
+          borderRadius: '$radius.md',
+          width: '100%',
+          ...styles([
+            focused,
+            {
+              borderColor: '$color.blue.500',
+              borderWidth: 2,
+            },
+          ]),
+          ...ts,
         }}
-        onBlur={(e) => {
-          setFocused(false)
-          onBlur?.(e)
-        }}
-        placeholder={placeholder}
-        placeholderTextColor={ThemeManager.handleThemeStyleValue(
-          '$color.placeholder.default'
-        )}
-        style={StyleSheet.flatten([themedStyle, style])}
-        {...rest}
-      />
+      >
+        <TextInput
+          autoFocus={autoFocus}
+          ref={ref}
+          onFocus={(e) => {
+            setFocused(true)
+            onFocus?.(e)
+          }}
+          onBlur={(e) => {
+            setFocused(false)
+            onBlur?.(e)
+          }}
+          placeholder={placeholder}
+          placeholderTextColor={ThemeManager.themedValue(
+            '$color.placeholder.default'
+          )}
+          style={ThemeManager.themed({
+            paddingHorizontal: '$rem:1',
+            lineHeight: '$rem:1.5',
+            outline: 'none',
+            flex: 1,
+            ...inputTs,
+          })}
+          {...rest}
+        />
+      </FlexLayout>
     )
   }
 )

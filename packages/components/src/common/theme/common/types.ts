@@ -22,3 +22,8 @@ export type Themed<Props = any> = Props & {
 }
 
 export type ThemeComponent<Props = any> = React.FC<Props>
+
+export interface AccessoryProps {
+  color: string
+  size: number
+}

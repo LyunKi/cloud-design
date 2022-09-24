@@ -5,12 +5,7 @@ import {
   TargetedEvent,
   View,
 } from 'react-native'
-import { Themeable, ThemeStyle } from '../common/theme'
-
-interface AccessoryProps {
-  color: string
-  size: number
-}
+import { AccessoryProps, Themeable, ThemeStyle } from '../common'
 
 export type ButtonStatus =
   | 'primary'

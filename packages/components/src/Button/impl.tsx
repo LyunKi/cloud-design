@@ -133,9 +133,7 @@ function computeColoredStyle({ variant, status, pressed, hovered }: any) {
     }
     case 'outline':
     case 'ghost': {
-      const darkBg = ThemeManager.handleThemeStyleValue(
-        `$color.${colorScheme}.200`
-      )
+      const darkBg = ThemeManager.themedValue(`$color.${colorScheme}.200`)
       const hoveredBg = ThemeManager.isDark
         ? opacity(darkBg, '1f')
         : `$color.${colorScheme}.50`

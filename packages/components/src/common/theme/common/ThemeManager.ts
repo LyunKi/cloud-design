@@ -65,7 +65,7 @@ class ThemeManagerClass {
     return value
   }
 
-  public handleThemeStyleValue(value: any) {
+  public themedValue(value: any) {
     if (isReferenceValue(value)) {
       const path = value.slice(1)
       return get(this.theme, path)
@@ -112,7 +112,7 @@ class ThemeManagerClass {
 
   public themed(style?: KV) {
     return mapValues(style, (value) => {
-      return this.handleThemeStyleValue(value)
+      return this.themedValue(value)
     })
   }
 
