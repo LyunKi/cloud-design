@@ -26,10 +26,6 @@ $ npm install @cloud-design/components
 import { Text } from '@cloud-design/components'
 ```
 
-## API
-
-<API hideTitle src="./impl.tsx"></API>
-
 ## Usages
 
 ### Text with numberOfLines

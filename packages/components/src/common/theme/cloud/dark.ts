@@ -15,7 +15,7 @@ const DARK_THEME = merge({}, variables, {
       },
     },
     font: {
-      default: '$color.whiteAlpha.900',
+      default: '$color.gray.100',
       reverse: '$color.gray.800',
     },
     brand: {

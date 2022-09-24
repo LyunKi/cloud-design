@@ -110,7 +110,7 @@ class ThemeManagerClass {
     return parseTheme(variables)
   }
 
-  public themed(style: KV) {
+  public themed(style?: KV) {
     return mapValues(style, (value) => {
       return this.handleThemeStyleValue(value)
     })
