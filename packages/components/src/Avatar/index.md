@@ -40,10 +40,7 @@ export default () => (
       size={'$fontSize.md'}
       src={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
     />
-    <Avatar
-      size={24}
-      src={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
-    />
+    <Avatar size={24} />
     <Avatar
       size={'$rem:2'}
       src={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
