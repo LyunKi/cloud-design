@@ -10,9 +10,9 @@ group:
 toc: menu
 ---
 
-# `@cloud-design/components`
+# @cloud-design/components
 
-react-native Menu component
+React Native Menu component
 
 ## Install
 

@@ -10,9 +10,9 @@ group:
 toc: menu
 ---
 
-# `@cloud-design/components`
+# @cloud-design/components
 
-react-native Button component
+React Native Button component
 
 ## Install
 

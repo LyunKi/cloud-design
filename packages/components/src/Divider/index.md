@@ -10,9 +10,9 @@ group:
 toc: menu
 ---
 
-# `@cloud-design/components`
+# @cloud-design/components
 
-react-native Divider component
+React Native Divider component
 
 ## Install
 

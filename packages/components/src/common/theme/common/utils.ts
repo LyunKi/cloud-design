@@ -6,21 +6,15 @@ import React, {
   useContext,
 } from 'react'
 import { StyleSheet } from 'react-native'
-import { ConfigContext } from '../../../ConfigProvider'
-import {
-  CloudDesignTheme,
-  PresetThemePack,
-  Themed,
-  ThemeComponent,
-} from './types'
+import { ConfigContext } from '../../context'
+import { CloudDesignTheme, PresetThemePack, Themed } from './types'
 import { DEFAULT_THEME } from './constants'
 import { ThemeManager } from './ThemeManager'
 
 export function withTheme<Props = any>(
   Component: ComponentType<Themed<PropsWithChildren<Props>>>
-): ThemeComponent<Props> {
-  //@ts-ignore
-  return forwardRef((props, ref) => {
+) {
+  return forwardRef((props: any, ref) => {
     const ready = useContext(ConfigContext)
     const { ts = {}, children, style, ...others } = props
     return (

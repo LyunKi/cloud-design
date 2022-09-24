@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { Pressable } from 'react-native'
 import { KV } from '@cloud-dragon/common-types'
-import { ThemeComponent, ThemeManager, withTheme } from '../common/theme'
+import { ThemeManager, withTheme } from '../common/theme'
 import { View } from '../View'
 import { Text } from '../Text'
 import { opacity, styles } from '../common/utils'
@@ -214,7 +214,7 @@ function computeStyles({ variant, status, pressed, hovered }: any): any {
   return computeColoredStyle({ variant, status, pressed, hovered })
 }
 
-export const Button: ThemeComponent<ButtonProps> = withTheme(
+export const Button: React.FC<ButtonProps> = withTheme(
   forwardRef((props) => {
     const {
       value,

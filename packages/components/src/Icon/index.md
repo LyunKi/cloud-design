@@ -10,9 +10,9 @@ group:
 toc: menu
 ---
 
-# `@cloud-design/components`
+# @cloud-design/components
 
-react-native Icon component
+React Native Icon component
 
 ## Install
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Text as RnText, StyleSheet } from 'react-native'
-import { ThemeComponent, ThemeManager, withTheme } from '../common/theme'
+import { ThemeManager, withTheme } from '../common/theme'
 import { TextProps } from './api'
 
-export const Text: ThemeComponent<TextProps> = withTheme((props) => {
+export const Text: React.FC<TextProps> = withTheme((props) => {
   const { value, style, numberOfLines, size = 'md' } = props
   const fontSize = `$fontSize.${size}`
   const defaultStyle = ThemeManager.themed({

@@ -10,9 +10,9 @@ group:
 toc: menu
 ---
 
-# `@cloud-design/components`
+# @cloud-design/components
 
-react-native Text 组件
+React Native Text 组件
 
 ## Install
 

@@ -1,3 +1,4 @@
+import { PropsWithRef, PropsWithChildren } from 'react'
 import { GestureResponderEvent } from 'react-native'
 import { Themeable } from '../common/theme'
 
@@ -6,4 +7,6 @@ export interface BasicViewProps {
   ref?: any
 }
 
-export type ViewProps = Themeable<BasicViewProps>
+export type ViewProps = PropsWithRef<
+  PropsWithChildren<Themeable<BasicViewProps>>
+>

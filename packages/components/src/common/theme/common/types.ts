@@ -1,5 +1,4 @@
 import { KV } from '@cloud-dragon/common-types'
-import { PropsWithChildren, PropsWithRef } from 'react'
 
 export type CloudDesignTheme = KV<any>
 
@@ -22,6 +21,4 @@ export type Themed<Props = any> = Props & {
   style?: ThemedStyle
 }
 
-export type ThemeComponent<Props = any> = React.FC<
-  Themeable<PropsWithRef<PropsWithChildren<Props>>>
->
+export type ThemeComponent<Props = any> = React.FC<Props>

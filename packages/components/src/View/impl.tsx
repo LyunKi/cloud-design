@@ -5,10 +5,10 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native'
 import { styles } from '../common/utils'
-import { ThemeComponent, withTheme } from '../common/theme'
+import { withTheme } from '../common/theme'
 import { ViewProps } from './api'
 
-export const View: ThemeComponent<ViewProps> = withTheme(
+export const View: React.FC<ViewProps> = withTheme(
   forwardRef((props, ref?: React.Ref<RnView>) => {
     const { style, children, onPress } = props
     const Inner = (

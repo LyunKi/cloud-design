@@ -1,5 +1,6 @@
 import React, { PropsWithChildren, useEffect } from 'react'
 import { Dimensions } from 'react-native'
+import { ConfigContext } from '../common/context'
 import { I18nManager, SupportedLocale } from '../common/i18n'
 import { ThemeContext, ThemeManager, ThemePack } from '../common/theme'
 
@@ -14,8 +15,6 @@ export interface I18nConfig {
 }
 
 export interface ConfigProviderProps extends ThemeConfig, I18nConfig {}
-
-export const ConfigContext = React.createContext<any>(false)
 
 export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
   const {
