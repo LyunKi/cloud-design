@@ -1,4 +1,9 @@
-import { FlexStyle, StyleProp, ViewStyle } from 'react-native'
+import {
+  FlexStyle,
+  StyleProp,
+  ViewStyle,
+  GestureResponderEvent,
+} from 'react-native'
 import { Themeable } from '../common/theme'
 
 export interface BasicFlexLayoutProps {
@@ -8,6 +13,7 @@ export interface BasicFlexLayoutProps {
   align?: FlexStyle['alignItems']
   wrap?: boolean
   style?: StyleProp<ViewStyle>
+  onPress?: (event: GestureResponderEvent) => any
 }
 
 export type FlexLayoutProps = Themeable<BasicFlexLayoutProps>

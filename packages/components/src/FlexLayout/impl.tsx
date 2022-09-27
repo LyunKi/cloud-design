@@ -14,9 +14,11 @@ export const FlexLayout = withTheme(
       style,
       spacing,
       wrap,
+      onPress,
     } = props
     return (
       <View
+        onPress={onPress}
         style={StyleSheet.flatten([
           {
             flexDirection: direction,

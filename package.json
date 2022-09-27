@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.19.0",
-    "@cloud-dragon/eslint-config": "^0.0.2",
+    "@cloud-dragon/eslint-config": "^0.1.0",
     "@cloud-dragon/prettier-config": "^0.0.3",
     "@cloud-dragon/stylelint-config-standard": "^0.0.1",
     "@cloud-dragon/tsconfig-recommended": "^0.0.1",

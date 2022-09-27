@@ -1,8 +1,26 @@
-import React, { forwardRef, Ref, useState } from 'react'
+import React, { forwardRef, Ref, useRef, useState } from 'react'
 import { TextInput, StyleSheet } from 'react-native'
-import { styles, ThemeManager } from '../common'
+import { combineRefs } from '@cloud-dragon/react-utils'
+import { AccessoryProps, styles, ThemeManager } from '../common'
 import { FlexLayout } from '../FlexLayout'
-import { InputProps } from './api'
+import { Icon } from '../Icon'
+import { Button } from '../Button'
+import { InputProps, SearchFormat } from './api'
+
+function renderSearch({ onSearch }: SearchFormat, value?: string) {
+  return (props: AccessoryProps) => {
+    return (
+      <Button
+        variant="ghost"
+        style={{ backgroundColor: 'transparent' }}
+        onPress={() => onSearch(value)}
+        renderLeft={() => {
+          return <Icon {...props} name="search" />
+        }}
+      />
+    )
+  }
+}
 
 export const Input: React.FC<InputProps> = forwardRef(
   (props, ref: Ref<TextInput>) => {
@@ -17,8 +35,14 @@ export const Input: React.FC<InputProps> = forwardRef(
       inputTs,
       renderLeft,
       renderRight,
+      format,
       ...rest
     } = props
+    const innerRef = useRef<TextInput>()
+    let computedRenderRight = renderRight
+    if (!computedRenderRight && format?.type === 'search') {
+      computedRenderRight = renderSearch(format, innerRef.current?.value)
+    }
     const [focused, setFocused] = useState(autoFocus)
     const containerTs = StyleSheet.flatten([
       ThemeManager.themed({
@@ -51,14 +75,15 @@ export const Input: React.FC<InputProps> = forwardRef(
     })
     const accessoryProps = {
       color: containerTs.borderColor,
-      size: containerTs.height,
+      size: computedInputTs.fontSize,
     }
+    const computedRenderLeft = renderLeft ?? renderLeft
     return (
       <FlexLayout style={containerTs}>
-        {renderLeft && renderLeft(accessoryProps)}
+        {computedRenderLeft && computedRenderLeft(accessoryProps)}
         <TextInput
           autoFocus={autoFocus}
-          ref={ref}
+          ref={combineRefs(innerRef, ref)}
           onFocus={(e) => {
             setFocused(true)
             onFocus?.(e)
@@ -75,7 +100,7 @@ export const Input: React.FC<InputProps> = forwardRef(
           style={computedInputTs}
           {...rest}
         />
-        {renderRight && renderRight(accessoryProps)}
+        {computedRenderRight && computedRenderRight(accessoryProps)}
       </FlexLayout>
     )
   }

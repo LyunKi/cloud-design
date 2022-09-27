@@ -45,33 +45,54 @@ export default () => (
 
 ```jsx
 import React from 'react'
-import { FlexLayout, Input, Icon } from '@cloud-design/components'
+import { FlexLayout, Input, Icon, Button } from '@cloud-design/components'
 
 export default () => (
   <FlexLayout ts={{ width: 375 }} wrap spacing={16} align="center">
     <Input
       placeholder="Input with Icons"
-      renderLeft={({ color, size }) => (
-        <FlexLayout
-          ts={{ width: size, height: size }}
-          align="center"
-          justify="center"
-        >
-          <Icon color={color} size={size * 0.5} name="smartphone-outline" />
-        </FlexLayout>
+      renderLeft={(props) => (
+        <Button
+          variant="ghost"
+          style={{ backgroundColor: 'transparent' }}
+          renderLeft={() => {
+            return <Icon {...props} name="smartphone-outline" />
+          }}
+        />
       )}
     />
     <Input
       placeholder="Input with Icons"
-      renderRight={({ color, size }) => (
-        <FlexLayout
-          ts={{ width: size, height: size }}
-          align="center"
-          justify="center"
-        >
-          <Icon color={color} size={size * 0.5} name="eye-outline" />
-        </FlexLayout>
+      renderRight={(props) => (
+        <Button
+          variant="ghost"
+          style={{ backgroundColor: 'transparent' }}
+          renderLeft={() => {
+            return <Icon {...props} name="eye-outline" />
+          }}
+        />
       )}
+    />
+  </FlexLayout>
+)
+```
+
+### Input with preset formats
+
+```jsx
+import React from 'react'
+import { FlexLayout, Input, Icon } from '@cloud-design/components'
+
+export default () => (
+  <FlexLayout ts={{ width: 375 }} wrap spacing={16} align="center">
+    <Input
+      placeholder="Search Input"
+      format={{
+        type: 'search',
+        onSearch: (v) => {
+          console.log('search', v)
+        },
+      }}
     />
   </FlexLayout>
 )
