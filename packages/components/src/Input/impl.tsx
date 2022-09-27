@@ -22,6 +22,25 @@ function renderSearch({ onSearch }: SearchFormat, value?: string) {
   }
 }
 
+function rednerPassword(
+  secureTextEntry: boolean,
+  setSecureTextEntry: Function
+) {
+  return (props: AccessoryProps) => {
+    const icon = secureTextEntry ? 'eye-outline' : 'eye-off'
+    return (
+      <Button
+        variant="ghost"
+        style={{ backgroundColor: 'transparent' }}
+        onPress={() => setSecureTextEntry(!secureTextEntry)}
+        renderLeft={() => {
+          return <Icon {...props} name={icon} />
+        }}
+      />
+    )
+  }
+}
+
 export const Input: React.FC<InputProps> = forwardRef(
   (props, ref: Ref<TextInput>) => {
     const {
@@ -38,10 +57,21 @@ export const Input: React.FC<InputProps> = forwardRef(
       format,
       ...rest
     } = props
+    const [secureTextEntry, setSecureTextEntry] = useState(
+      format?.type === 'password'
+    )
     const innerRef = useRef<TextInput>()
     let computedRenderRight = renderRight
-    if (!computedRenderRight && format?.type === 'search') {
-      computedRenderRight = renderSearch(format, innerRef.current?.value)
+    if (!computedRenderRight) {
+      if (format?.type === 'search') {
+        computedRenderRight = renderSearch(format, innerRef.current?.value)
+      }
+      if (format?.type === 'password') {
+        computedRenderRight = rednerPassword(
+          secureTextEntry,
+          setSecureTextEntry
+        )
+      }
     }
     const [focused, setFocused] = useState(autoFocus)
     const containerTs = StyleSheet.flatten([
@@ -84,6 +114,7 @@ export const Input: React.FC<InputProps> = forwardRef(
         <TextInput
           autoFocus={autoFocus}
           ref={combineRefs(innerRef, ref)}
+          secureTextEntry={secureTextEntry}
           onFocus={(e) => {
             setFocused(true)
             onFocus?.(e)

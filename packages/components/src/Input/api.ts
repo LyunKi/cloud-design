@@ -13,7 +13,8 @@ export interface PasswordFormat {
 
 export type InputFormat = SearchFormat | PasswordFormat
 
-export interface BasicInputProps extends Omit<TextInputProps, 'multiline'> {
+export interface BasicInputProps
+  extends Omit<TextInputProps, 'multiline' | 'secureTextEntry'> {
   placeholder?: string
   value?: string
   inputTs?: ThemeStyle

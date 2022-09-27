@@ -28,7 +28,7 @@ import { Input } from '@cloud-design/components'
 
 ## Usages
 
-### Basic Usage
+### Basic usage
 
 ```jsx
 import React from 'react'
@@ -36,12 +36,12 @@ import { FlexLayout, Input } from '@cloud-design/components'
 
 export default () => (
   <FlexLayout ts={{ width: 375 }} wrap spacing={16} align="center">
-    <Input placeholder="Basic Usage" />
+    <Input placeholder="Basic usage" />
   </FlexLayout>
 )
 ```
 
-### Input with Icons
+### Input with icons
 
 ```jsx
 import React from 'react'
@@ -50,7 +50,7 @@ import { FlexLayout, Input, Icon, Button } from '@cloud-design/components'
 export default () => (
   <FlexLayout ts={{ width: 375 }} wrap spacing={16} align="center">
     <Input
-      placeholder="Input with Icons"
+      placeholder="Input with icons"
       renderLeft={(props) => (
         <Button
           variant="ghost"
@@ -62,7 +62,7 @@ export default () => (
       )}
     />
     <Input
-      placeholder="Input with Icons"
+      placeholder="Input with icons"
       renderRight={(props) => (
         <Button
           variant="ghost"
@@ -86,12 +86,18 @@ import { FlexLayout, Input, Icon } from '@cloud-design/components'
 export default () => (
   <FlexLayout ts={{ width: 375 }} wrap spacing={16} align="center">
     <Input
-      placeholder="Search Input"
+      placeholder="Search input"
       format={{
         type: 'search',
         onSearch: (v) => {
           console.log('search', v)
         },
+      }}
+    />
+    <Input
+      placeholder="Password input"
+      format={{
+        type: 'password',
       }}
     />
   </FlexLayout>
