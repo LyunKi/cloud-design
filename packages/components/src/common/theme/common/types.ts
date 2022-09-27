@@ -27,3 +27,8 @@ export interface AccessoryProps {
   color: string
   size: number
 }
+
+export interface FormError {
+  type: 'warning' | 'error'
+  msg: string
+}

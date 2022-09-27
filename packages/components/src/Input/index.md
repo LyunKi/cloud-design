@@ -40,3 +40,39 @@ export default () => (
   </FlexLayout>
 )
 ```
+
+### Input with Icons
+
+```jsx
+import React from 'react'
+import { FlexLayout, Input, Icon } from '@cloud-design/components'
+
+export default () => (
+  <FlexLayout ts={{ width: 375 }} wrap spacing={16} align="center">
+    <Input
+      placeholder="Input with Icons"
+      renderLeft={({ color, size }) => (
+        <FlexLayout
+          ts={{ width: size, height: size }}
+          align="center"
+          justify="center"
+        >
+          <Icon color={color} size={size * 0.5} name="smartphone-outline" />
+        </FlexLayout>
+      )}
+    />
+    <Input
+      placeholder="Input with Icons"
+      renderRight={({ color, size }) => (
+        <FlexLayout
+          ts={{ width: size, height: size }}
+          align="center"
+          justify="center"
+        >
+          <Icon color={color} size={size * 0.5} name="eye-outline" />
+        </FlexLayout>
+      )}
+    />
+  </FlexLayout>
+)
+```

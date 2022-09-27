@@ -23,7 +23,7 @@ export const MenuContent = (props: PropsWithChildren<MenuContentProps>) => {
   )
 }
 
-export const MenuItem = (props: PropsWithChildren<MenuItemProps>) => {
+export const MenuItem = (props: MenuItemProps) => {
   const { ts, ...other } = props
   return (
     <Button
