@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react-native'
-import { Icon } from '@cloud-design/icons'
 import React from 'react'
+import { Icon } from '@cloud-design/icons'
 
 describe('<Icon />', () => {
   it('render correctly', () => {

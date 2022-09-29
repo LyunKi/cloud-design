@@ -30,9 +30,6 @@ export const Icon = React.forwardRef(function (
 ) {
   const { name, size = 24, color, animation } = props
   const Icon = findIconByName(name)
-  if (!Icon) {
-    return null
-  }
   const animationInstance = React.useMemo(() => {
     if (!animation) {
       return
@@ -47,12 +44,14 @@ export const Icon = React.forwardRef(function (
     }
   })
   return (
-    <Animated.View {...animationInstance?.toProps}>
-      {React.createElement(Icon, {
-        width: size,
-        height: size,
-        fill: color,
-      })}
-    </Animated.View>
+    Icon && (
+      <Animated.View {...animationInstance?.toProps}>
+        {React.createElement(Icon, {
+          width: size,
+          height: size,
+          fill: color,
+        })}
+      </Animated.View>
+    )
   )
 })
