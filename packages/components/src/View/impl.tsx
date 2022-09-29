@@ -9,7 +9,7 @@ import { withTheme } from '../common/theme'
 import { ViewProps } from './api'
 
 export const View: React.FC<ViewProps> = withTheme(
-  forwardRef((props, ref?: React.Ref<RnView>) => {
+  forwardRef((props: ViewProps, ref?: React.Ref<RnView>) => {
     const { style, children, onPress } = props
     const Inner = (
       <RnView

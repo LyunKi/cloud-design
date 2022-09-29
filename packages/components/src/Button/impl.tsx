@@ -229,7 +229,7 @@ export const Button: React.FC<ButtonProps> = withTheme(
     const disabled = status === 'disabled'
     return (
       <Pressable disabled={disabled} onPress={onPress}>
-        {({ pressed, hovered }) => {
+        {({ pressed, hovered }: any) => {
           const { computedViewStyle, computedTextStyle } = computeStyles({
             variant,
             status,

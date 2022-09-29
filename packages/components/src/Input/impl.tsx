@@ -60,11 +60,14 @@ export const Input: React.FC<InputProps> = forwardRef(
     const [secureTextEntry, setSecureTextEntry] = useState(
       format?.type === 'password'
     )
-    const innerRef = useRef<TextInput>()
+    const innerRef = useRef<any>()
     let computedRenderRight = renderRight
     if (!computedRenderRight) {
       if (format?.type === 'search') {
-        computedRenderRight = renderSearch(format, innerRef.current?.value)
+        computedRenderRight = renderSearch(
+          format,
+          (innerRef.current as any)?.value
+        )
       }
       if (format?.type === 'password') {
         computedRenderRight = rednerPassword(
@@ -113,7 +116,7 @@ export const Input: React.FC<InputProps> = forwardRef(
         {computedRenderLeft && computedRenderLeft(accessoryProps)}
         <TextInput
           autoFocus={autoFocus}
-          ref={combineRefs(innerRef, ref)}
+          ref={combineRefs(innerRef, ref as any)}
           secureTextEntry={secureTextEntry}
           onFocus={(e) => {
             setFocused(true)

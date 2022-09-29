@@ -13,7 +13,7 @@ import { ThemeManager } from './ThemeManager'
 
 export function withTheme<Props = any>(
   Component: ComponentType<Themed<PropsWithChildren<Props>>>
-) {
+): any {
   return forwardRef((props: any, ref) => {
     const ready = useContext(ConfigContext)
     const { ts = {}, children, style, ...others } = props
