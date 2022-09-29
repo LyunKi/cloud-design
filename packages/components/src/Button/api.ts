@@ -1,11 +1,10 @@
-import { ReactElement } from 'react'
 import {
   GestureResponderEvent,
   NativeSyntheticEvent,
   TargetedEvent,
   View,
 } from 'react-native'
-import { AccessoryProps, Themeable, ThemeStyle } from '../common'
+import { AccessoryRenderProp, Themeable, ThemeStyle } from '../common'
 
 export type ButtonStatus =
   | 'primary'
@@ -23,11 +22,11 @@ export interface BasicButtonProps {
    * Enum: 'primary'| 'normal' | 'info' | 'warning'  | 'success'  | 'error' | 'disabled'
    */
   status?: ButtonStatus
-  value?: string
+  value?: string | AccessoryRenderProp
   textTs?: ThemeStyle
   onPress?: (event?: GestureResponderEvent) => any
-  renderLeft?: (props?: AccessoryProps) => ReactElement
-  renderRight?: (props?: AccessoryProps) => ReactElement
+  renderLeft?: AccessoryRenderProp
+  renderRight?: AccessoryRenderProp
   onFocus?: (event: NativeSyntheticEvent<TargetedEvent>) => void
   onLongPress?: (event: GestureResponderEvent) => void
   onBlur?: (event: NativeSyntheticEvent<TargetedEvent>) => void

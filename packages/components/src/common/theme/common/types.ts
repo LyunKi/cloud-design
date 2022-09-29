@@ -1,4 +1,5 @@
 import { KV } from '@cloud-dragon/common-types'
+import { ReactElement } from 'react'
 
 export type CloudDesignTheme = KV<any>
 
@@ -27,6 +28,8 @@ export interface AccessoryProps {
   color: string
   size: number
 }
+
+export type AccessoryRenderProp = (props?: AccessoryProps) => ReactElement
 
 export interface FormError {
   type: 'warning' | 'error'

@@ -1,22 +1,22 @@
 import React from 'react'
 import { Text as RnText, StyleSheet } from 'react-native'
-import { ThemeManager, withTheme } from '../common/theme'
+import { ThemeManager } from '../common/theme'
 import { TextProps } from './api'
 
-export const Text: React.FC<TextProps> = withTheme((props) => {
-  const { value, style, numberOfLines, size = 'md' } = props
+export const Text: React.FC<TextProps> = (props) => {
+  const { value, ts, style, numberOfLines, size = 'md' } = props
   const fontSize = `$fontSize.${size}`
-  const defaultStyle = ThemeManager.themed({
+  const computedStyle = ThemeManager.themed({
     display: 'inline-block',
     color: '$color.font.default',
     fontSize,
+    ...ts,
   })
   return (
     <RnText
       numberOfLines={numberOfLines}
       style={StyleSheet.flatten([
-        defaultStyle,
-        style,
+        computedStyle,
         numberOfLines && {
           overflow: 'hidden',
           textOverflow: 'ellipsis',
@@ -24,9 +24,10 @@ export const Text: React.FC<TextProps> = withTheme((props) => {
           WebkitBoxOrient: 'vertical',
           WebkitLineClamp: numberOfLines,
         },
+        style,
       ])}
     >
       {value}
     </RnText>
   )
-})
+}

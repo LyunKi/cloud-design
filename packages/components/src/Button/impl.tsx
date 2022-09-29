@@ -1,7 +1,8 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import { Pressable } from 'react-native'
 import { KV } from '@cloud-dragon/common-types'
-import { ThemeManager, withTheme } from '../common/theme'
+import { isFunction, isString } from 'lodash'
+import { ThemeManager } from '../common/theme'
 import { View } from '../View'
 import { Text } from '../Text'
 import { opacity, styles } from '../common/utils'
@@ -212,68 +213,65 @@ function computeStyles({ variant, status, pressed, hovered }: any): any {
   return computeColoredStyle({ variant, status, pressed, hovered })
 }
 
-export const Button: React.FC<ButtonProps> = withTheme(
-  forwardRef((props: ButtonProps) => {
-    const {
-      value,
-      style,
-      variant,
-      status,
-      textTs,
-      onPress,
-      renderLeft,
-      renderRight,
-      viewRef,
-      isActive,
-    } = props
-    const disabled = status === 'disabled'
-    return (
-      <Pressable disabled={disabled} onPress={onPress}>
-        {({ pressed, hovered }: any) => {
-          const { computedViewStyle, computedTextStyle } = computeStyles({
-            variant,
-            status,
-            pressed: isActive || pressed,
-            hovered,
-          })
-          const mergedTs: KV = {
-            fontSize: '$fontSize.md',
-            fontWeight: '$fontWeight.semibold',
-            ...computedTextStyle,
-            ...textTs,
-          }
-          return (
-            <View
-              ref={viewRef}
-              ts={{
-                borderRadius: '$radius.md',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '$size.10',
-                paddingHorizontal: '$spacing.3',
-                gap: '$rem: 0.5',
-                ...computedViewStyle,
-                ...style,
-              }}
-            >
-              {renderLeft &&
-                renderLeft({
-                  color: mergedTs.color,
-                  size: mergedTs.fontSize,
-                })}
-              {value && <Text ts={mergedTs} value={value} />}
-              {renderRight &&
-                renderRight({
-                  color: mergedTs.color,
-                  size: mergedTs.fontSize,
-                })}
-            </View>
-          )
-        }}
-      </Pressable>
-    )
-  })
-)
+export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
+  const {
+    value,
+    ts,
+    style,
+    variant,
+    status,
+    textTs,
+    onPress,
+    renderLeft,
+    renderRight,
+    viewRef,
+    isActive,
+  } = props
+  const disabled = status === 'disabled'
+  return (
+    <Pressable disabled={disabled} onPress={onPress}>
+      {({ pressed, hovered }: any) => {
+        const { computedViewStyle, computedTextStyle } = computeStyles({
+          variant,
+          status,
+          pressed: isActive || pressed,
+          hovered,
+        })
+        const mergedTs: KV = {
+          fontSize: '$fontSize.md',
+          fontWeight: '$fontWeight.semibold',
+          ...computedTextStyle,
+          ...textTs,
+        }
+        const accessoryProps = {
+          color: mergedTs.color,
+          size: mergedTs.fontSize,
+        }
+        return (
+          <View
+            ref={viewRef}
+            ts={{
+              borderRadius: '$radius.md',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '$size.10',
+              paddingHorizontal: '$spacing.3',
+              gap: '$rem: 0.5',
+              ...computedViewStyle,
+              ...ts,
+            }}
+            style={style}
+          >
+            {renderLeft && renderLeft(accessoryProps)}
+            {isString(value) && <Text ts={mergedTs} value={value} />}
+            {isFunction(value) && value(accessoryProps)}
+            {renderRight && renderRight(accessoryProps)}
+          </View>
+        )
+      }}
+    </Pressable>
+  )
+}
 
 Button.defaultProps = {
   variant: 'solid',

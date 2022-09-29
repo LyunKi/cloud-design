@@ -17,7 +17,8 @@
   "dependencies": {
     "@cloud-design/icons": "0.2.1",
     "@cloud-dragon/react-utils": "^0.2.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "react-native-safe-area-context": "^4.3.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",

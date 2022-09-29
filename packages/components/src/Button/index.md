@@ -60,8 +60,7 @@ export default () => (
       value={'Button'}
       renderLeft={(props) => <Icon {...props} name="star" />}
     />
-    <Button renderLeft={(props) => <Icon {...props} name="star" />} />
-    <Button renderRight={(props) => <Icon {...props} name="star" />} />
+    <Button value={(props) => <Icon {...props} name="star" />} />
     <Button
       value={'Button'}
       renderRight={(props) => <Icon {...props} name="star" />}

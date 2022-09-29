@@ -4,19 +4,19 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native'
-import { styles } from '../common/utils'
-import { withTheme } from '../common/theme'
+import { ThemeManager, styles } from '../common'
 import { ViewProps } from './api'
 
-export const View: React.FC<ViewProps> = withTheme(
-  forwardRef((props: ViewProps, ref?: React.Ref<RnView>) => {
-    const { style, children, onPress } = props
+export const View: React.FC<ViewProps> = forwardRef(
+  (props: ViewProps, ref?: React.Ref<RnView>) => {
+    const { ts, style, children, onPress } = props
     const Inner = (
       <RnView
         ref={ref}
         style={StyleSheet.flatten([
           { flexDirection: 'row' },
           styles([!!onPress, { cursor: 'pointer' }]),
+          ThemeManager.themed(ts),
           style,
         ])}
       >
@@ -30,5 +30,5 @@ export const View: React.FC<ViewProps> = withTheme(
     ) : (
       Inner
     )
-  })
+  }
 )

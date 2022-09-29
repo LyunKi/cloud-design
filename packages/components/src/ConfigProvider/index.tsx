@@ -51,7 +51,7 @@ export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
       setReady(false)
       subscription?.remove()
     }
-  }, [locale, themePack, themeContext])
+  }, [locale, themeMode, themePack, themeContext])
   return (
     <ConfigContext.Provider value={ready}>
       {ready && children}
