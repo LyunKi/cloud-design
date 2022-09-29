@@ -12,7 +12,7 @@ function renderSearch({ onSearch }: SearchFormat, value?: string) {
     return (
       <Button
         variant="ghost"
-        style={{ backgroundColor: 'transparent' }}
+        style={{ width: 32, height: 32, marginHorizontal: 4 }}
         onPress={() => onSearch(value)}
         renderLeft={() => {
           return <Icon {...props} name="search" />
@@ -31,7 +31,7 @@ function rednerPassword(
     return (
       <Button
         variant="ghost"
-        style={{ backgroundColor: 'transparent' }}
+        style={{ width: 32, height: 32, marginHorizontal: 4 }}
         onPress={() => setSecureTextEntry(!secureTextEntry)}
         renderLeft={() => {
           return <Icon {...props} name={icon} />

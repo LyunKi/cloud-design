@@ -54,7 +54,7 @@ export default () => (
       renderLeft={(props) => (
         <Button
           variant="ghost"
-          style={{ backgroundColor: 'transparent' }}
+          style={{ width: 32, height: 32, marginHorizontal: 4 }}
           renderLeft={() => {
             return <Icon {...props} name="smartphone-outline" />
           }}
@@ -66,7 +66,7 @@ export default () => (
       renderRight={(props) => (
         <Button
           variant="ghost"
-          style={{ backgroundColor: 'transparent' }}
+          style={{ width: 32, height: 32, marginHorizontal: 4 }}
           renderLeft={() => {
             return <Icon {...props} name="eye-outline" />
           }}
