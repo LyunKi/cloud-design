@@ -43,15 +43,13 @@ export const Icon = React.forwardRef(function (
       stopAnimation: animationInstance?.stop,
     }
   })
-  return (
-    Icon && (
-      <Animated.View {...animationInstance?.toProps}>
-        {React.createElement(Icon, {
-          width: size,
-          height: size,
-          fill: color,
-        })}
-      </Animated.View>
-    )
-  )
+  return Icon ? (
+    <Animated.View {...animationInstance?.toProps}>
+      {React.createElement(Icon, {
+        width: size,
+        height: size,
+        fill: color,
+      })}
+    </Animated.View>
+  ) : null
 })
