@@ -13,9 +13,9 @@
     "test:watch": "jest --watch ",
     "test:updateSnap": "jest --updateSnapshot"
   },
-  "version": "0.3.0",
+  "version": "0.3.1",
   "dependencies": {
-    "@cloud-design/icons": "0.2.0",
+    "@cloud-design/icons": "0.2.1",
     "@cloud-dragon/react-utils": "^0.2.0",
     "lodash": "^4.17.21"
   },
