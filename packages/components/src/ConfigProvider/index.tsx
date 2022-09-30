@@ -1,9 +1,9 @@
 import React, { Fragment, PropsWithChildren, useEffect } from 'react'
 import { Dimensions } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { ConfigContext } from '../common/context'
 import { I18nManager, SupportedLocale } from '../common/i18n'
 import { ThemeContext, ThemeManager, ThemePack } from '../common/theme'
-
 export interface ThemeConfig {
   themePack?: ThemePack
   themeMode: string
@@ -57,7 +57,9 @@ export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
   }, [locale, themeMode, themePack, themeContext])
   return (
     <ConfigContext.Provider value={ready}>
-      {ready && <Fragment key={key}>{children}</Fragment>}
+      <SafeAreaProvider>
+        {ready && <Fragment key={key}>{children}</Fragment>}
+      </SafeAreaProvider>
     </ConfigContext.Provider>
   )
 }
