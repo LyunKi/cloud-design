@@ -172,6 +172,7 @@ const FONT_SIZE = {
 const FONT_WEIGHT = {
   light: 100,
   regular: 400,
+  default: 400,
   semibold: 700,
   bold: 900,
 }

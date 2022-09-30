@@ -14,7 +14,7 @@ function renderSearch({ onSearch }: SearchFormat, value?: string) {
         variant="ghost"
         style={{ width: 32, height: 32, marginHorizontal: 4 }}
         onPress={() => onSearch(value)}
-        renderLeft={() => {
+        value={() => {
           return <Icon {...props} name="search" />
         }}
       />
@@ -33,7 +33,7 @@ function rednerPassword(
         variant="ghost"
         style={{ width: 32, height: 32, marginHorizontal: 4 }}
         onPress={() => setSecureTextEntry(!secureTextEntry)}
-        renderLeft={() => {
+        value={() => {
           return <Icon {...props} name={icon} />
         }}
       />
@@ -60,7 +60,7 @@ export const Input: React.FC<InputProps> = forwardRef(
     const [secureTextEntry, setSecureTextEntry] = useState(
       format?.type === 'password'
     )
-    const innerRef = useRef<any>()
+    const innerRef = useRef<TextInput>()
     let computedRenderRight = renderRight
     if (!computedRenderRight) {
       if (format?.type === 'search') {
@@ -81,7 +81,7 @@ export const Input: React.FC<InputProps> = forwardRef(
       ThemeManager.themed({
         borderColor: '$color.border.input',
         borderWidth: 1,
-        height: '$rem:2.5',
+        height: '$size.10',
         borderRadius: '$radius.md',
         alignItems: 'center',
         width: '100%',
@@ -116,7 +116,7 @@ export const Input: React.FC<InputProps> = forwardRef(
         {computedRenderLeft && computedRenderLeft(accessoryProps)}
         <TextInput
           autoFocus={autoFocus}
-          ref={combineRefs(innerRef, ref as any)}
+          ref={combineRefs(innerRef, ref)}
           secureTextEntry={secureTextEntry}
           onFocus={(e) => {
             setFocused(true)

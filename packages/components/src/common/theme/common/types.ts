@@ -1,5 +1,5 @@
-import { KV } from '@cloud-dragon/common-types'
-import { ReactElement } from 'react'
+import { Fn, KV } from '@cloud-dragon/common-types'
+import { ReactNode } from 'react'
 
 export type CloudDesignTheme = KV<any>
 
@@ -18,18 +18,14 @@ export type Themeable<Props = any> = Props & {
   style?: RnStyle
 }
 
-export type Themed<Props = any> = Props & {
-  style?: ThemedStyle
-}
-
-export type ThemeComponent<Props = any> = React.FC<Props>
-
 export interface AccessoryProps {
   color: string
   size: number
 }
 
-export type AccessoryRenderProp = (props?: AccessoryProps) => ReactElement
+export type AccessoryRenderProp = (props?: AccessoryProps) => ReactNode
+
+export type RenderProp = Fn<any, ReactNode>
 
 export interface FormError {
   type: 'warning' | 'error'

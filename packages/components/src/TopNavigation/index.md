@@ -34,9 +34,5 @@ import { TopNavigation } from '@cloud-design/components'
 import React from 'react'
 import { TopNavigation } from '@cloud-design/components'
 
-export default () => <TopNavigation />
-```
-
-```
-
+export default () => <TopNavigation title={'Title'} />
 ```

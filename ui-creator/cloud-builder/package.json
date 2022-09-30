@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@cloud-design/components": "workspace:*",
-    "@cloud-dragon/common-types": "^0.1.0",
+    "@cloud-dragon/common-types": "^0.2.0",
     "@cloud-dragon/tsconfig-react": "^0.0.1",
     "@types/react": "^18.0.15",
     "@ui-creator/common": "workspace:*"
