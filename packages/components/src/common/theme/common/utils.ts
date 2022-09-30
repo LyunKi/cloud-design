@@ -1,10 +1,7 @@
 import { merge } from 'lodash'
-import { CloudDesignTheme, PresetThemePack } from './types'
-import { DEFAULT_THEME } from './constants'
+import { CLOUD_THEME_PACK } from '../cloud'
+import { CloudDesignTheme } from './types'
 
-export function extendTheme(
-  themePack: CloudDesignTheme,
-  presetThemePack: PresetThemePack = 'cloud-light'
-) {
-  return merge({}, DEFAULT_THEME[presetThemePack], themePack)
+export function extendTheme(themePack: CloudDesignTheme) {
+  return merge({}, CLOUD_THEME_PACK, themePack)
 }

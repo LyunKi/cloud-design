@@ -3,9 +3,7 @@ import { ReactNode } from 'react'
 
 export type CloudDesignTheme = KV<any>
 
-export type PresetThemePack = 'cloud-light' | 'cloud-dark'
-
-export type ThemePack = PresetThemePack | CloudDesignTheme
+export type ThemePack = KV<CloudDesignTheme>
 
 export type ThemeStyle = KV
 

@@ -1,12 +1,8 @@
 import { NestedString, KV } from '@cloud-dragon/common-types'
-import { reduce, isObject, get, isString, merge, mapValues } from 'lodash'
+import { reduce, isObject, get, isString, mapValues, merge } from 'lodash'
+import { CLOUD_THEME_PACK } from '../cloud'
 import { ThemeContext, DEFAULT_THEME_CONFIG } from './config'
-import { CloudDesignTheme, PresetThemePack, ThemePack } from './types'
-import { DEFAULT_THEME } from './constants'
-
-function isPresetThemePack(themePack: ThemePack): themePack is PresetThemePack {
-  return isString(themePack)
-}
+import { CloudDesignTheme, ThemePack } from './types'
 
 function isReferenceValue(value: string | NestedString): value is string {
   return isString(value) && value.startsWith('$') && !value.includes(':')
@@ -39,13 +35,33 @@ function handleVhValue(value: string, windowHeight: number) {
 }
 
 class ThemeManagerClass {
-  public themeContext: ThemeContext = DEFAULT_THEME_CONFIG
+  private themeContext: ThemeContext = DEFAULT_THEME_CONFIG
 
-  public theme: CloudDesignTheme = this.processThemePack(
-    DEFAULT_THEME['cloud-light']
-  )
+  public setThemeContext(themeContext?: Partial<ThemeContext>) {
+    this.themeContext = merge({}, DEFAULT_THEME_CONFIG, themeContext)
+  }
+
+  public updateThemeContext(themeContext?: Partial<ThemeContext>) {
+    merge(this.themeContext, themeContext)
+  }
+
+  private themePack: ThemePack = CLOUD_THEME_PACK
+
+  public setThemePack(themePack: ThemePack) {
+    this.themePack = themePack
+  }
 
   public mode = 'light'
+
+  public setMode(themeMode: string) {
+    this.mode = themeMode
+  }
+
+  public theme: CloudDesignTheme = this.processTheme()
+
+  public computeTheme() {
+    this.theme = this.processTheme()
+  }
 
   public get isDark() {
     return this.mode === 'dark'
@@ -65,15 +81,7 @@ class ThemeManagerClass {
     return value
   }
 
-  public themedValue(value: any) {
-    if (isReferenceValue(value)) {
-      const path = value.slice(1)
-      return get(this.theme, path)
-    }
-    return this.handlePresetThemeValue(value)
-  }
-
-  private processThemePack(themePack: CloudDesignTheme): CloudDesignTheme {
+  private processTheme(): CloudDesignTheme {
     const parseThemeVariables = (
       themeObject: CloudDesignTheme
     ): CloudDesignTheme => {
@@ -90,7 +98,7 @@ class ThemeManagerClass {
         {} as CloudDesignTheme
       )
     }
-    const variables = parseThemeVariables(themePack)
+    const variables = parseThemeVariables(this.themePack[this.mode])
     const parseTheme = (themeObject: CloudDesignTheme): CloudDesignTheme => {
       return reduce(
         themeObject,
@@ -110,25 +118,18 @@ class ThemeManagerClass {
     return parseTheme(variables)
   }
 
+  public themedValue(value: any) {
+    if (isReferenceValue(value)) {
+      const path = value.slice(1)
+      return get(this.theme, path)
+    }
+    return this.handlePresetThemeValue(value)
+  }
+
   public themed(style?: KV) {
     return mapValues(style, (value) => {
       return this.themedValue(value)
     })
-  }
-
-  public setThemeContext(themeContext?: Partial<ThemeContext>) {
-    this.themeContext = merge({}, DEFAULT_THEME_CONFIG, themeContext)
-  }
-
-  public updateThemeContext(themeContext?: Partial<ThemeContext>) {
-    merge(this.themeContext, themeContext)
-  }
-
-  public setTheme(themePack: ThemePack) {
-    const originThemePack = isPresetThemePack(themePack)
-      ? DEFAULT_THEME[themePack]
-      : themePack
-    this.theme = this.processThemePack(originThemePack)
   }
 }
 

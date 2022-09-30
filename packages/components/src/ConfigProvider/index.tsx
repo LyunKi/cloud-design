@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect } from 'react'
+import React, { Fragment, PropsWithChildren, useEffect } from 'react'
 import { Dimensions } from 'react-native'
 import { ConfigContext } from '../common/context'
 import { I18nManager, SupportedLocale } from '../common/i18n'
@@ -6,7 +6,7 @@ import { ThemeContext, ThemeManager, ThemePack } from '../common/theme'
 
 export interface ThemeConfig {
   themePack?: ThemePack
-  themeMode: 'dark' | 'light'
+  themeMode: string
   themeContext?: Partial<Omit<ThemeContext, 'windowWidth' | 'windowHeight'>>
 }
 
@@ -24,29 +24,32 @@ export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
     locale = 'zh_CN',
     children,
   } = props
-  const [ready, setReady] = React.useState<any>(false)
+  const [ready, setReady] = React.useState<boolean>(false)
+  const [key, setKey] = React.useState<number>(0)
   useEffect(() => {
     const window = Dimensions.get('window')
-    ThemeManager.mode = themeMode
+    ThemeManager.setMode(themeMode)
     ThemeManager.setThemeContext({
       ...themeContext,
       windowWidth: window.width,
       windowHeight: window.height,
     })
     if (themePack) {
-      ThemeManager.setTheme(themePack)
+      ThemeManager.setThemePack(themePack)
     }
     const subscription = Dimensions.addEventListener('change', ({ window }) => {
       ThemeManager.updateThemeContext({
         windowWidth: window.width,
         windowHeight: window.height,
       })
-      setReady({})
+      ThemeManager.computeTheme()
+      setKey((prev) => prev + 1)
     })
-
     I18nManager.setLocale(locale)
 
-    setReady({})
+    ThemeManager.computeTheme()
+    setKey((prev) => prev + 1)
+    setReady(true)
     return () => {
       setReady(false)
       subscription?.remove()
@@ -54,7 +57,7 @@ export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
   }, [locale, themeMode, themePack, themeContext])
   return (
     <ConfigContext.Provider value={ready}>
-      {ready && children}
+      {ready && <Fragment key={key}>{children}</Fragment>}
     </ConfigContext.Provider>
   )
 }

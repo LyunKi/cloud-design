@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from 'dumi-theme-default/es/layout'
-import { ConfigProvider, CLOUD_THEME_PACK } from '@cloud-design/components'
+import { ConfigProvider } from '@cloud-design/components'
 import { usePrefersColor } from 'dumi/theme'
 import { Appearance } from 'react-native'
 
@@ -9,12 +9,9 @@ export default ({ children, ...props }) => {
   const prefer =
     (color === 'auto' ? Appearance.getColorScheme() ?? 'light' : color) ??
     'light'
-  const themePack = CLOUD_THEME_PACK[prefer]
   return (
     <Layout {...props}>
-      <ConfigProvider themeMode={prefer} themePack={themePack}>
-        {children}
-      </ConfigProvider>
+      <ConfigProvider themeMode={prefer}>{children}</ConfigProvider>
     </Layout>
   )
 }
