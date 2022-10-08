@@ -55,6 +55,7 @@ export const Input: React.FC<InputProps> = forwardRef(
       renderLeft,
       renderRight,
       format,
+      error,
       ...rest
     } = props
     const [secureTextEntry, setSecureTextEntry] = useState(
@@ -85,13 +86,22 @@ export const Input: React.FC<InputProps> = forwardRef(
         borderRadius: '$radius.md',
         alignItems: 'center',
         width: '100%',
-        ...styles([
-          focused,
-          {
-            borderColor: '$color.blue.500',
-            borderWidth: 2,
-          },
-        ]),
+        ...styles(
+          [
+            focused,
+            {
+              borderColor: '$color.status.info',
+              borderWidth: 2,
+            },
+          ],
+          [
+            error,
+            {
+              borderColor: '$color.status.error',
+              borderWidth: 2,
+            },
+          ]
+        ),
         ...ts,
       }),
       style,

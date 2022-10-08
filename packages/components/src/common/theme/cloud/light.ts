@@ -3,6 +3,13 @@ import variables from './variables'
 
 const LIGHT_THEME = merge({}, variables, {
   color: {
+    status: {
+      info: '$color.blue.500',
+      warning: '$color.orange.500',
+      primary: '$color.brand.500',
+      error: '$color.red.500',
+      success: '$color.green.500',
+    },
     border: {
       default: '$color.gray.200',
       input: '$color.gray.300',

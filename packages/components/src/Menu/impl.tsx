@@ -12,7 +12,7 @@ export const MenuContent = (props: PropsWithChildren<MenuContentProps>) => {
         flexDirection: 'column',
         borderRadius: '$radius.md',
         backgroundColor: '$color.bg.layout',
-        paddingVertical: '$spacing.2',
+        paddingVertical: '$space.2',
         borderWidth: 1,
         borderColor: '$color.border.default',
         minWidth: '$size.3xs',

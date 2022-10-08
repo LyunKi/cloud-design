@@ -9,13 +9,15 @@ import { TopNavigationProps } from './api'
 function getRenderGoBack(props: any) {
   return () => {
     return (
-      <Button
-        variant="ghost"
-        value={(accessoryProps) => (
-          <Icon name="arrow-ios-back-outline" {...accessoryProps} />
-        )}
-        {...props}
-      />
+      <View style={{ position: 'absolute', left: 0, top: 0, zIndex: 1 }}>
+        <Button
+          variant="ghost"
+          value={(accessoryProps) => (
+            <Icon name="arrow-ios-back-outline" {...accessoryProps} />
+          )}
+          {...props}
+        />
+      </View>
     )
   }
 }
@@ -32,17 +34,17 @@ export const TopNavigation: React.FC<TopNavigationProps> = (props) => {
   }
   const containerTs = {
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '$color.bg.layout',
-    justifyContent: 'space-between',
     height: '$size.10',
     ...ts,
   }
   return (
     <View style={style} ts={containerTs}>
-      <View>{computedRenderLeft && computedRenderLeft()}</View>
+      {computedRenderLeft && computedRenderLeft()}
       {isString(title) && <Text ts={textTs} value={title} />}
       {isFunction(title) && title({ textTs })}
-      <View> {renderRight && renderRight()}</View>
+      {renderRight && renderRight()}
     </View>
   )
 }

@@ -32,14 +32,17 @@ import { TopNavigation } from '@cloud-design/components'
 
 ```jsx
 import React from 'react'
-import { TopNavigation } from '@cloud-design/components'
+import { FlexLayout, TopNavigation } from '@cloud-design/components'
 
 export default () => (
-  <TopNavigation
-    goBack={() => {
-      console.log('go back')
-    }}
-    title={'Title'}
-  />
+  <FlexLayout style={{ width: 375 }}>
+    <TopNavigation
+      style={{ width: '100%' }}
+      goBack={() => {
+        console.log('go back')
+      }}
+      title={'Title'}
+    />
+  </FlexLayout>
 )
 ```

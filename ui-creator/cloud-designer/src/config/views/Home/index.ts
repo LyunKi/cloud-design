@@ -20,7 +20,7 @@ const HOME: View = {
             { name: 'justify', value: 'space-between' },
             {
               name: 'ts',
-              value: { height: '$rem:4', paddingHorizontal: '$spacing.6' },
+              value: { height: '$rem:4', paddingHorizontal: '$space.6' },
               valueType: 'object',
             },
           ],

@@ -255,7 +255,7 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
               alignItems: 'center',
               justifyContent: 'center',
               height: '$size.10',
-              paddingHorizontal: '$spacing.3',
+              paddingHorizontal: '$space.3',
               gap: '$rem: 0.5',
               ...computedViewStyle,
               ...ts,

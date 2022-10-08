@@ -15,6 +15,7 @@ export type InputFormat = SearchFormat | PasswordFormat
 
 export interface BasicInputProps
   extends Omit<TextInputProps, 'multiline' | 'secureTextEntry'> {
+  error?: boolean
   placeholder?: string
   value?: string
   inputTs?: ThemeStyle

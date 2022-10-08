@@ -177,7 +177,7 @@ const FONT_WEIGHT = {
   bold: 700,
 }
 
-const SPACING = {
+const SPACE = {
   0.5: '$rem:0.125',
   1: '$rem:0.25',
   1.5: '$rem:0.375',
@@ -242,7 +242,7 @@ const _LARGE_SIZE = {
 }
 
 const SIZE = {
-  ...SPACING,
+  ...SPACE,
   ..._LARGE_SIZE,
   container: {
     sm: 640,
@@ -260,7 +260,7 @@ const VARIABLES = {
   fontSize: FONT_SIZE,
   color: COLOR,
   fontWeight: FONT_WEIGHT,
-  spacing: SPACING,
+  space: SPACE,
   radius: RADIUS,
   size: SIZE,
   opacity: OPACITY,
