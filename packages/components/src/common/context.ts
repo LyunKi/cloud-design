@@ -1,3 +1,3 @@
 import React from 'react'
 
-export const ConfigContext = React.createContext<any>(false)
+export const GlobalContext = React.createContext<any>(false)

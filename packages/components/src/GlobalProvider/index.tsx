@@ -1,7 +1,7 @@
 import React, { Fragment, PropsWithChildren, useEffect } from 'react'
 import { Dimensions } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { ConfigContext } from '../common/context'
+import { GlobalContext } from '../common/context'
 import { I18nManager, SupportedLocale } from '../common/i18n'
 import { ThemeContext, ThemeManager, ThemePack } from '../common/theme'
 export interface ThemeConfig {
@@ -14,9 +14,9 @@ export interface I18nConfig {
   locale?: SupportedLocale
 }
 
-export interface ConfigProviderProps extends ThemeConfig, I18nConfig {}
+export interface GlobalProviderProps extends ThemeConfig, I18nConfig {}
 
-export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
+export function GlobalProvider(props: PropsWithChildren<GlobalProviderProps>) {
   const {
     themePack,
     themeMode = 'light',
@@ -56,10 +56,10 @@ export function ConfigProvider(props: PropsWithChildren<ConfigProviderProps>) {
     }
   }, [locale, themeMode, themePack, themeContext])
   return (
-    <ConfigContext.Provider value={ready}>
+    <GlobalContext.Provider value={ready}>
       <SafeAreaProvider>
         {ready && <Fragment key={key}>{children}</Fragment>}
       </SafeAreaProvider>
-    </ConfigContext.Provider>
+    </GlobalContext.Provider>
   )
 }

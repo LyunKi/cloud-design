@@ -57,7 +57,7 @@ export const Overlay = (props: OverlayProps) => {
           {ModalContent}
         </View>
       </Modal>
-      {renderTrigger({
+      {renderTrigger?.({
         viewRef: triggerRef,
         onPress: toggle,
         isActive: !!visible,

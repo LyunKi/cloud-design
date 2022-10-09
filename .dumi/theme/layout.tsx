@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from 'dumi-theme-default/es/layout'
-import { ConfigProvider } from '@cloud-design/components'
+import { GlobalProvider } from '@cloud-design/components'
 import { usePrefersColor } from 'dumi/theme'
 import { Appearance } from 'react-native'
 
@@ -11,7 +11,7 @@ export default ({ children, ...props }) => {
     'light'
   return (
     <Layout {...props}>
-      <ConfigProvider themeMode={prefer}>{children}</ConfigProvider>
+      <GlobalProvider themeMode={prefer}>{children}</GlobalProvider>
     </Layout>
   )
 }

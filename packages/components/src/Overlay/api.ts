@@ -28,7 +28,7 @@ interface ContentProps {
 }
 
 export interface OverlayProps {
-  renderTrigger: (triggerProps: TriggerProps) => ReactElement
+  renderTrigger?: (triggerProps: TriggerProps) => ReactElement
   renderContent: (contentProps: ContentProps) => ReactElement
   mask?: MaskProps
   contentContainerTs?: KV
