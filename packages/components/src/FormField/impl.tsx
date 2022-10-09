@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useMemo } from 'react'
+import get from 'lodash/get'
 import { View } from '../View'
 import { Text } from '../Text'
 import { styles } from '../common'
-import { FormFieldProps } from './api'
+import { FormConfig, FormFieldProps } from './api'
 
 function renderLabel({ label, isRequired }: any) {
   const basicTextTs = {
@@ -43,15 +44,29 @@ function renderTip({ tip, error }: any) {
   )
 }
 
+function useFieldProps(name: string, formConfig: FormConfig = {}) {
+  return useMemo(() => {
+    const { errors, values, handleChange } = formConfig
+    const error = get(errors, name)
+    return {
+      error,
+      value: get(values, name),
+      onChange: handleChange?.(name),
+      name,
+    }
+  }, [name, formConfig])
+}
+
 export const FormField: React.FC<FormFieldProps> = (props) => {
-  const { label, renderField, tip, isRequired, error, ts, style } = props
+  const { label, renderField, name, tip, isRequired, formConfig, ts, style } =
+    props
   const containerTs = { flexDirection: 'column', width: '100%', ...ts }
+  const fieldProps = useFieldProps(name, formConfig)
+  const error = fieldProps.error
   return (
     <View style={style} ts={containerTs}>
       {label && renderLabel({ label, isRequired })}
-      {renderField({
-        error: !!error,
-      })}
+      {renderField(fieldProps)}
       {(error || tip) && renderTip({ tip, error })}
     </View>
   )

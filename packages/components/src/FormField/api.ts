@@ -1,12 +1,18 @@
-import { Fn } from '@cloud-dragon/common-types'
+import { Fn, KV } from '@cloud-dragon/common-types'
 import { ReactElement } from 'react'
 import { Themeable } from '../common'
 
 export interface FieldProps {
   value?: any
-  onBlur: Fn
-  error?: boolean
-  onChange: Fn
+  error?: string
+  name: string
+  onChange?: Fn
+}
+
+export interface FormConfig {
+  errors?: KV<any>
+  handleChange?: Fn
+  values?: KV<any>
 }
 
 export interface BasicFormFieldProps {
@@ -16,9 +22,9 @@ export interface BasicFormFieldProps {
   tip?: string
   isRequired?: boolean
   /**
-   * These props will be auto computed if wrapped by `Form` component
+   * use with formik
    */
-  error?: string
+  formConfig?: FormConfig
 }
 
 export type FormFieldProps = Themeable<BasicFormFieldProps>

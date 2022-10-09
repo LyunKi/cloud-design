@@ -13,7 +13,7 @@ function renderSearch({ onSearch }: SearchFormat, value?: string) {
       <Button
         variant="ghost"
         style={{ width: 32, height: 32, marginHorizontal: 4 }}
-        onPress={() => onSearch(value)}
+        onPress={() => onSearch?.(value)}
         value={() => {
           return <Icon {...props} name="search" />
         }}
@@ -55,6 +55,7 @@ export const Input: React.FC<InputProps> = forwardRef(
       renderLeft,
       renderRight,
       format,
+      onChange,
       error,
       ...rest
     } = props
@@ -132,6 +133,7 @@ export const Input: React.FC<InputProps> = forwardRef(
             setFocused(true)
             onFocus?.(e)
           }}
+          onChangeText={onChange}
           value={value}
           onBlur={(e) => {
             setFocused(false)

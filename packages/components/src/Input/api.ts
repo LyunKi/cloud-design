@@ -1,3 +1,4 @@
+import { Fn } from '@cloud-dragon/common-types'
 import { ReactElement } from 'react'
 import { TextInputProps } from 'react-native'
 import { AccessoryProps, Themeable, ThemeStyle } from '../common'
@@ -14,7 +15,10 @@ export interface PasswordFormat {
 export type InputFormat = SearchFormat | PasswordFormat
 
 export interface BasicInputProps
-  extends Omit<TextInputProps, 'multiline' | 'secureTextEntry'> {
+  extends Omit<
+    TextInputProps,
+    'multiline' | 'secureTextEntry' | 'onChangeText'
+  > {
   error?: boolean
   placeholder?: string
   value?: string
@@ -22,6 +26,7 @@ export interface BasicInputProps
   renderLeft?: (props: AccessoryProps) => ReactElement
   renderRight?: (props: AccessoryProps) => ReactElement
   format?: InputFormat
+  onChange?: Fn
 }
 
 export type InputProps = Themeable<BasicInputProps>
