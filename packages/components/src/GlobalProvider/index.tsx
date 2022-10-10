@@ -1,9 +1,11 @@
 import React, { Fragment, PropsWithChildren, useEffect } from 'react'
 import { Dimensions } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { PortalProvider, PortalHost } from '@gorhom/portal'
 import { GlobalContext } from '../common/context'
 import { I18nManager, SupportedLocale } from '../common/i18n'
 import { ThemeContext, ThemeManager, ThemePack } from '../common/theme'
+import { TOAST_HOST } from '../common/constants'
 export interface ThemeConfig {
   themePack?: ThemePack
   themeMode: string
@@ -57,9 +59,12 @@ export function GlobalProvider(props: PropsWithChildren<GlobalProviderProps>) {
   }, [locale, themeMode, themePack, themeContext])
   return (
     <GlobalContext.Provider value={ready}>
-      <SafeAreaProvider>
-        {ready && <Fragment key={key}>{children}</Fragment>}
-      </SafeAreaProvider>
+      <PortalProvider>
+        <PortalHost name={TOAST_HOST} />
+        <SafeAreaProvider>
+          {ready && <Fragment key={key}>{children}</Fragment>}
+        </SafeAreaProvider>
+      </PortalProvider>
     </GlobalContext.Provider>
   )
 }

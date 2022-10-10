@@ -252,6 +252,22 @@ const SIZE = {
   },
 }
 
+const Z_INDEX = {
+  hide: -1,
+  auto: 'auto',
+  base: 0,
+  docked: 10,
+  dropdown: 1000,
+  sticky: 1100,
+  banner: 1200,
+  overlay: 1300,
+  modal: 1400,
+  popover: 1500,
+  skipLink: 1600,
+  toast: 1700,
+  tooltip: 1800,
+}
+
 const OPACITY = {
   disabled: 0.4,
 }
@@ -264,6 +280,7 @@ const VARIABLES = {
   radius: RADIUS,
   size: SIZE,
   opacity: OPACITY,
+  zIndex: Z_INDEX,
 }
 
 export default VARIABLES
