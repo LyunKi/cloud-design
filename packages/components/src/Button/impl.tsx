@@ -6,6 +6,8 @@ import { ThemeManager } from '../common/theme'
 import { View } from '../View'
 import { Text } from '../Text'
 import { opacity, styles } from '../common/utils'
+import { Icon } from '../Icon'
+import { FlexLayout } from '../FlexLayout'
 import { ButtonProps, ButtonStatus } from './api'
 
 function getColorSchemeByStatus(status: ButtonStatus) {
@@ -226,6 +228,8 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     renderRight,
     viewRef,
     isActive,
+    loading,
+    loadingText,
   } = props
   const disabled = status === 'disabled'
   return (
@@ -260,12 +264,27 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
               outline: 'none',
               ...computedViewStyle,
               ...ts,
+              ...styles([
+                loading,
+                {
+                  cursor: 'not-allowed',
+                  opacity: `$opacity.disabled`,
+                },
+              ]),
             }}
             style={style}
           >
             {renderLeft && renderLeft(accessoryProps)}
-            {isString(value) && <Text ts={mergedTs} value={value} />}
-            {isFunction(value) && value(accessoryProps)}
+            {loading && (
+              <FlexLayout align="center" ts={{ gap: '$rem:0.5' }}>
+                <Icon {...accessoryProps} name="loading" />
+                {loadingText && <Text ts={mergedTs} value={loadingText} />}
+              </FlexLayout>
+            )}
+            {!loading && isString(value) && (
+              <Text ts={mergedTs} value={value} />
+            )}
+            {!loading && isFunction(value) && value(accessoryProps)}
             {renderRight && renderRight(accessoryProps)}
           </View>
         )

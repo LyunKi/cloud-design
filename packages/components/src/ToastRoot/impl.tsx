@@ -138,7 +138,7 @@ export class ToastManager {
   }
 
   private toast(options: ToastOptions) {
-    const { id, duration = 333333, ...rest } = options
+    const { id, duration = 3, ...rest } = options
     const items = this.instance?.getItems() ?? []
     const itemId = id ?? uniqueId('__toast-item-')
     const newItems = take(

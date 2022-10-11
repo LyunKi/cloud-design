@@ -24,6 +24,8 @@ export interface BasicButtonProps {
   onLongPress?: (event: GestureResponderEvent) => void
   onBlur?: (event: NativeSyntheticEvent<TargetedEvent>) => void
   viewRef?: React.Ref<View>
+  loading?: boolean
+  loadingText?: string
 }
 
 export type ButtonProps = Themeable<BasicButtonProps>

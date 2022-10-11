@@ -91,3 +91,51 @@ export default () => (
   </FlexLayout>
 )
 ```
+
+### Button with loading
+
+```jsx
+import React, { useState } from 'react'
+import { FlexLayout, Button } from '@cloud-design/components'
+
+export default () => {
+  const [loading, setLoading] = useState(false)
+  return (
+    <FlexLayout direction="vertical" spacing={16}>
+      <Button
+        onPress={() => setLoading((prev) => !prev)}
+        status="primary"
+        style={{ maxWidth: 200 }}
+        value={'Trigger loading'}
+      />
+      <FlexLayout wrap spacing={16} align="center">
+        {['primary', 'normal', 'info', 'success', 'warning', 'error'].map(
+          (status) => (
+            <Button
+              loading={loading}
+              loadingText={'Loading'}
+              key={status}
+              value={'Button'}
+              status={status}
+            />
+          )
+        )}
+      </FlexLayout>
+      <FlexLayout wrap spacing={16} align="center">
+        {['primary', 'normal', 'info', 'success', 'warning', 'error'].map(
+          (status) => (
+            <Button
+              variant="ghost"
+              loading={loading}
+              loadingText={'Loading'}
+              key={status}
+              value={'Button'}
+              status={status}
+            />
+          )
+        )}
+      </FlexLayout>
+    </FlexLayout>
+  )
+}
+```
