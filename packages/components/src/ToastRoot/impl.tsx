@@ -6,78 +6,231 @@ import React, {
   useState,
 } from 'react'
 import { Portal } from '@gorhom/portal'
+import { Scheduler, BASE_PERIOD } from '@cloud-dragon/common-utils'
+import { Platform } from 'react-native'
 import { View } from '../View'
 import { Text } from '../Text'
-import { TOAST_HOST } from '../common/constants'
 import { styles } from '../common'
+import { Icon } from '../Icon'
+import { Button, ButtonStatus } from '../Button'
 import {
   ToastInstance,
   ToastItemProps,
   ToastOptions,
   ToastRootProps,
+  ToastStatus,
 } from './api'
 
+function computePropsByStatus(status: ToastStatus) {
+  let backgroundColor
+  let closeStatus
+  let icon
+  switch (status) {
+    case 'success': {
+      backgroundColor = `$color.status.${status}`
+      closeStatus = status
+      icon = 'checkmark-circle-2'
+      break
+    }
+    case 'error': {
+      backgroundColor = `$color.status.${status}`
+      closeStatus = status
+      icon = 'alert-circle'
+      break
+    }
+    case 'warning': {
+      backgroundColor = `$color.status.${status}`
+      closeStatus = status
+      icon = 'alert-circle'
+      break
+    }
+    case 'info': {
+      backgroundColor = `$color.status.${status}`
+      closeStatus = status
+      icon = 'info'
+      break
+    }
+    case 'loading': {
+      backgroundColor = '$color.status.info'
+      closeStatus = 'info'
+      icon = 'loading'
+    }
+  }
+  const fontColor = `$color.font.reverse`
+  return {
+    backgroundColor,
+    fontColor,
+    icon,
+    closeStatus,
+  }
+}
+
 const ToastItem = (props: ToastItemProps) => {
+  const { status, closeable = true, title, description, onClose } = props
+  const { backgroundColor, fontColor, closeStatus, icon } =
+    computePropsByStatus(status!)
   return (
-    <View>
-      <Text value={props.id} />
+    <View
+      style={{ width: 300, alignItems: 'flex-start' }}
+      ts={{
+        backgroundColor,
+        borderRadius: '$radius.md',
+        marginHorizontal: '$rem:0.5',
+        marginVertical: '$rem:0.5',
+        paddingVertical: '$space.3',
+        paddingLeft: '$space.4',
+        paddingRight: '$space.8',
+      }}
+    >
+      <Icon color={fontColor} size="$rem:1.5" name={icon} />
+      <View ts={{ marginLeft: '$space.3', flexDirection: 'column' }}>
+        {title && (
+          <Text
+            numberOfLines={1}
+            ts={{
+              color: fontColor,
+              lineHeight: '$rem:1.5',
+              fontWeight: '$fontWeight.semibold',
+            }}
+            value={title}
+          />
+        )}
+        {description && (
+          <Text
+            numberOfLines={2}
+            ts={{ lineHeight: '$rem:1.5', maxWidth: 200, color: fontColor }}
+            value={description}
+          />
+        )}
+      </View>
+      {closeable && (
+        <View
+          ts={{
+            position: 'absolute',
+            top: '$space.1',
+            right: '$space.1',
+          }}
+        >
+          <Button
+            status={closeStatus as ButtonStatus}
+            onPress={onClose}
+            ts={{
+              width: '$size.6',
+              height: '$size.6',
+            }}
+            value={() => (
+              <Icon size={'$rem:1'} color={fontColor} name="close" />
+            )}
+          />
+        </View>
+      )}
     </View>
   )
 }
 
-class ToastClass {
+export class ToastManager {
   private instance?: ToastInstance
+  private scheduler?: Scheduler
 
   public init = (ref: ToastInstance) => {
     this.instance = ref
+    this.scheduler = Scheduler.newFixedInstance(100)
+  }
+
+  private toast(options: ToastOptions) {
+    const { id, duration = 333333, ...rest } = options
+    const items = this.instance?.getItems() ?? []
+    const itemId = id ?? uniqueId('__toast-item-')
+    const newItems = take(
+      [
+        { ...rest, id: itemId, duration },
+        ...items.filter((item) => item.id !== itemId),
+      ],
+      this.instance?.getMaxCount()
+    )
+
+    this.instance?.setItems(newItems)
+    this.scheduler?.registerTasks(
+      new Scheduler.Task({
+        id: id,
+        onComplete: () => this.close(itemId),
+        totalPeriod: (duration * 1000) / BASE_PERIOD,
+      })
+    )
+    return itemId
   }
 
   public info(options: ToastOptions) {
-    this.instance?.toast({
-      ...options,
-      status: 'info',
-    })
+    return this.toast({ ...options, status: 'info' })
+  }
+  public success(options: ToastOptions) {
+    return this.toast({ ...options, status: 'success' })
+  }
+  public error(options: ToastOptions) {
+    return this.toast({ ...options, status: 'error' })
+  }
+  public warning(options: ToastOptions) {
+    return this.toast({ ...options, status: 'warning' })
+  }
+  public loading(options: ToastOptions) {
+    return this.toast({ ...options, status: 'loading' })
   }
 
-  public closeAll() {
-    this.instance?.cleanToasts()
+  public update(options: ToastOptions) {
+    const targetId = options.id
+    const items = this.instance?.getItems() ?? []
+    const itemIndex = items.findIndex((item) => item.id === targetId)
+    if (itemIndex === -1) {
+      return
+    }
+    const item = items[itemIndex]
+    items.splice(itemIndex, 1, { ...item, ...options })
+    this.instance?.setItems([...items])
+  }
+
+  public close(id?: string) {
+    if (id) {
+      this.instance?.setItems((prev: ToastItemProps[]) =>
+        prev.filter((item) => item.id !== id)
+      )
+      return
+    }
+    this.instance?.setItems([])
   }
 }
 
-export const Toast = new ToastClass()
+export const Toast = new ToastManager()
 
 export const ToastRoot: React.FC<ToastRootProps> = forwardRef((props, ref) => {
-  const { maxCount = 3 } = props
+  const { maxCount, host } = props
   const [items, setItems] = useState<ToastItemProps[]>([])
   const visible = !isEmpty(items)
-  const cleanToasts = useCallback((id?: string) => {
-    if (id) {
-      setItems((prev) => prev.filter((item) => item.id !== id))
-    }
-    setItems([])
-  }, [])
   useImperativeHandle(
     ref,
     () => {
       return {
-        toast(options: ToastOptions) {
-          const { id, duration = 3, ...rest } = options
-          const itemId = id ?? uniqueId('__toast-item-')
-          setItems((prev) => take([{ ...rest, id: itemId }, ...prev], maxCount))
-          return id
+        setItems,
+        getItems() {
+          return items
         },
-        update(options: ToastOptions) {
-          const itemIndex = items.findIndex((item) => item.id === options.id)
-          const item = items[itemIndex]
-          items.splice(itemIndex, 1, { ...item, ...options })
+        getMaxCount() {
+          return maxCount
         },
-        cleanToasts,
       }
     },
-    [items, cleanToasts, maxCount]
+    [items, maxCount]
   )
+  const onClose = useCallback((id?: string) => {
+    if (id) {
+      setItems((prev: ToastItemProps[]) =>
+        prev.filter((item) => item.id !== id)
+      )
+      return
+    }
+    setItems([])
+  }, [])
   return (
-    <Portal hostName={TOAST_HOST}>
+    <Portal hostName={host}>
       <View
         ts={{ zIndex: '$zIndex.toast' }}
         style={{
@@ -85,19 +238,37 @@ export const ToastRoot: React.FC<ToastRootProps> = forwardRef((props, ref) => {
           flexDirection: 'column',
           alignItems: 'center',
           display: 'none',
-          position: 'fixed',
-          ...styles([
-            visible,
-            {
-              display: 'flex',
-            },
-          ]),
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          ...styles(
+            [
+              visible,
+              {
+                display: 'flex',
+              },
+            ],
+            [
+              Platform.OS === 'web',
+              {
+                position: 'fixed',
+              },
+            ]
+          ),
         }}
       >
         {items.map((item) => (
-          <ToastItem key={item.id} {...item} />
+          <ToastItem
+            key={item.id}
+            {...item}
+            onClose={onClose.bind(null, item.id)}
+          />
         ))}
       </View>
     </Portal>
   )
 })
+
+ToastRoot.defaultProps = {
+  maxCount: 1,
+}

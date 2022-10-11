@@ -32,13 +32,63 @@ import { ToastRoot } from '@cloud-design/components'
 
 ```jsx
 import React from 'react'
-import { FlexLayout, ToastRoot, Toast, Button } from '@cloud-design/components'
+import { PortalHost } from '@gorhom/portal'
+import {
+  FlexLayout,
+  ToastRoot,
+  Toast,
+  Button,
+  TOAST_HOST,
+} from '@cloud-design/components'
 
 export default () => {
   return (
-    <FlexLayout direction="column" style={{ width: 375 }}>
-      <ToastRoot ref={Toast.init} />
-      <Button value="Toast" onPress={() => Toast.info({ title: 'title' })} />
+    <FlexLayout direction="column" spacing={16} style={{ width: 200 }}>
+      <PortalHost name={TOAST_HOST} />
+      <ToastRoot host={TOAST_HOST} ref={Toast.init} />
+      <Button
+        value="simple info"
+        status="info"
+        onPress={() =>
+          Toast.info({
+            description: 'description',
+          })
+        }
+      />
+      <Button
+        value="info"
+        status="info"
+        onPress={() =>
+          Toast.info({ title: 'title', description: 'description' })
+        }
+      />
+      <Button
+        value="warning"
+        status="warning"
+        onPress={() =>
+          Toast.warning({ title: 'title', description: 'description' })
+        }
+      />
+      <Button
+        value="error"
+        status="error"
+        onPress={() =>
+          Toast.error({ title: 'title', description: 'description' })
+        }
+      />
+      <Button
+        value="success"
+        status="success"
+        onPress={() =>
+          Toast.success({ title: 'title', description: 'description' })
+        }
+      />
+      <Button
+        value="loading"
+        onPress={() =>
+          Toast.loading({ title: 'title', description: 'description' })
+        }
+      />
     </FlexLayout>
   )
 }

@@ -257,6 +257,7 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
               height: '$size.10',
               paddingHorizontal: '$space.3',
               gap: '$rem: 0.5',
+              outline: 'none',
               ...computedViewStyle,
               ...ts,
             }}

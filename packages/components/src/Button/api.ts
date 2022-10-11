@@ -4,16 +4,9 @@ import {
   TargetedEvent,
   View,
 } from 'react-native'
-import { AccessoryRenderProp, Themeable, ThemeStyle } from '../common'
+import { AccessoryRenderProp, Status, Themeable, ThemeStyle } from '../common'
 
-export type ButtonStatus =
-  | 'primary'
-  | 'normal'
-  | 'info'
-  | 'warning'
-  | 'success'
-  | 'error'
-  | 'disabled'
+export type ButtonStatus = Status | 'primary' | 'normal' | 'disabled'
 
 export interface BasicButtonProps {
   isActive?: boolean
