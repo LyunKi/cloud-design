@@ -1,0 +1,56 @@
+{
+  "US": {
+    "currency": ["USD"],
+    "callingCode": ["1"],
+    "region": "Americas",
+    "subregion": "North America",
+    "flag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAeCAMAAABpA6zvAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAj1QTFRF4bm96r/B6b/B3a6y5bO15bK1wltjyF1j8unr+vDx+vDwyHB2z3J31ZSZ3JicGS9dJTplITdjGjBdKDxnHjNhGzFfKT1oHzZjQjJXtzxFvT1EGjBedYKdXWyNFStaIDVih5OrRFV7FCpZLkJsjpmvdYKeGC5cWmyNQDFWuD5Hvj9GM0dwRlh9NEdwOEtzLEBqTF2BLUFrOUx0M0dvPVB2KT9pTFJ1HDJfeIWgFy1bJjpmhI+oNklxFi1bS12BY3KRFixbUmOF9/f5////aHaUVGSGIjdjPlF3Gi9dfYqkU2SGaHeVUGKFSk5ySlt/PlB3MkZvMUVuKz9qV2eJKz9pO093QDFVtjpCvDpBFSxbgo6nUWKEEilYJjtmj5qwOUxzEihYFCtaa3mXFCxbRDpfRFZ7KDxoJzxnXW2NKT5pYXCQQFJ5UF6BTl+DHjNgcH6aO051HjRhYnGQS1yAUGCD9fT1/vv8/vv7Fy1cfYmjT1+DiZSsZ3aUFS1cRkBkO011M0ZvMERtQVN5QlR6LEBrQ1V7Ok10N0pyL0VvQTBVtTc/uzc+coCcW2qLhJCpLkJri5atc4CcWGmLR0drHzRhITZiaXiWRVd8c4GdIDZiWGiKJTpmPE92YG+PL0NtKj5pJztnIDZjTlh76c/S8dbX8dXXdoOfXm2NiZWsEylZL0JskJuxd4SfFy5cW22OQDNXukZOwUZNwEZNJDllPVB3P1F4MkdwSzxfu0ZOzdLczNHbzdHbzNDb1tPb8NXXWNrergAAAA90Uk5T/v7+/v7+/v7+/v7+/v7+6a2FXwAAAAFiS0dEQ2fQDWIAAAAJcEhZcwAAAEgAAABIAEbJaz4AAAITSURBVDjLY+AXEOQXEhbhFxUT5RcRFuIXFODnFxCXkJRCAwzSMrJy8gqKSsoqykqKCvJysqpqaqrqGppaaICBX1tZR1dP38DQyNBAX09XR9nYxMTY1IyBkQkVMPDzm1sYWFpZ29jaWFtZ2lmYq9nbqzk4OjmjAQZpF1dpNwt3D0NPQw93CzdpL29zc28fX2YWVlTAwO/nryzmFRAYFBwUGOAlpuzvFxLiFxoWHoEGGPgjpaOiY2Lj4hPi42JjoqOkE5OS5JJT2NjRAIOQY2paeoZNpn6WfqZNRnpaqmNsrGN2DgcnFypg4M/KzXPLLyjUV9UvLMh3y8stKiwsKi4pLStHBQz8FaKVVYmx1XpKetWxiVWVog41Nba1ddw8aICBv77Bv7HJsLmltaXZsKnRv6Gtvb2to7OrGw0w8Pf0ysn3NSf2T+hPbO6Tl+udqKY2cdJkXj40wMA/Zeq06XnpM7TztGek502fNjNv1qxCaSwBzp8+e9YcMeG58+bPmyssNmfW7AXFxQsWLlq8ZCkqYOBftlxJfkXqylWrV61MXSGvtHzN2rVr1q3fsHETKmAQMNLdHLtFefP8rfM3K2+J3axrJCBgtG37DgyFO3ft2rlz1+6dO/fs3LkbxATjvfuWolvtTCRg4CMSMHQTCRh4iAQM5UQCBi4iAQM7kYAhgkjAwEokID7AmYgEDFpEAgYpIgEA2hc6qEvsr/QAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTMtMTAtMDdUMTM6MTU6MTUrMDI6MDDoZk8yAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDEzLTEwLTA3VDEzOjE1OjE1KzAyOjAwmTv3jgAAAABJRU5ErkJggg==",
+    "name": {
+      "common": "United States",
+      "ces": "Spojené státy",
+      "deu": "Vereinigte Staaten",
+      "fra": "États-Unis",
+      "hrv": "Sjedinjene Američke Države",
+      "ita": "Stati Uniti d'America",
+      "jpn": "アメリカ合衆国",
+      "nld": "Verenigde Staten",
+      "por": "Estados Unidos",
+      "rus": "Соединённые Штаты Америки",
+      "slk": "Spojené štáty americké",
+      "spa": "Estados Unidos",
+      "fin": "Yhdysvallat",
+      "est": "Ameerika Ühendriigid",
+      "zho": "美国",
+      "pol": "Stany Zjednoczone",
+      "urd": "ریاستہائے متحدہ",
+      "kor": "미국"
+    }
+  },
+  "CN": {
+    "currency": ["CNY"],
+    "callingCode": ["86"],
+    "region": "Asia",
+    "subregion": "Eastern Asia",
+    "flag": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAeCAMAAABpA6zvAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAVZQTFRF/zMA/zQA/zIA/y4A/y8A/zEA/zUA/zcA/0YA/08A/2kA/yIA/zYA/zkA/yoA/4UA//wA/8AA/0oA/50A/ykA/4cA//8A/8sA/1gA/ywA/04A//gA/1MA/ysA/2MA/3EA/x4A/yUA/4wA/y0A/8YA/80A/zAA/zwA//cA/1cA/0AA/3wA/+YA/+IA/9wA/98A/+gA/+sA/+AA/+cA/+0A/4IA/3YA//IA//4A/z0A/zsA/0kA/yQA/0EA/8UA//0A/8kA/0MA/9IA/7AA/7wA/ycA/3QA//UA//sA/7UA//oA/8cA/z8A/4MA/5EA/+4A/9sA/zgA/28A/4kA/3kA//AA/4QA/7oA/+kA/9cA/9EA/5gA/0sA/1YA/ygA/0QA/8gA/0gA/7MA/70A/zoA/30A/68A/4YA/1AA/20A/yAA/5MA/9QA/2UA/4AA/64A/2EA////WzUIRwAAAAFiS0dEca8HXOIAAAAJcEhZcwAAAEgAAABIAEbJaz4AAAGtSURBVDjLjZJpV9NAFIbnTjIzEUMbJVxIYYRYTQDZESglWBbjUitQNmVVFhVw4/9/IvVgM7Q5J7nzZc7MM+97lyGkGUCUoJrOOEkOqu6F8aDjoZkMdip7nstbjx5TSNLjXSLW5HY39vSyBBCcQl+/bGZFReHJwGCStXDz+NQV8YFTNNuKYQ3F3DN87hBKqXdn0W4LPmNcKwyhNawJ4CMxAaDioL0YHRufmETEqbHpmZez2v9L8BjTVWFnbh5LEYelEs7PyaaCZyyUF1WSB0uv0IrACi6vBM0SQF9YXjUcVVLo7hpaFQtfh5pQcnrz9l3eu1eUCN9jNVofpNIgwmsf1331IMpmaQMrm1XsKxRVAVn3pcoRM9zCoW17Zxf3AnUaQFuGaLqfPvcH3DX2D6R6Ay1dB692WLcFEU5x/Sj2Bq7xlvFQU3oNS07teL6gh8cnWit59xQ4jW2+DHzdOfWSvuT9fGj9DM8vaCoYVfjt+4/QTOUa/Q58k2YACTNZCsfhH5CaHs155SyOtHw5e3WdoQouf+Kv33p6X7j9Z+Nvhv5FpFG+kVlAorNiG3cLqPQrR7LSmnIAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTMtMTAtMDdUMTM6MTU6MDcrMDI6MDCzU16FAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDEzLTEwLTA3VDEzOjE1OjA3KzAyOjAwwg7mOQAAAABJRU5ErkJggg==",
+    "name": {
+      "common": "China",
+      "ces": "Čína",
+      "cym": "Tsieina",
+      "deu": "China",
+      "fra": "Chine",
+      "hrv": "Kina",
+      "ita": "Cina",
+      "jpn": "中国",
+      "nld": "China",
+      "por": "China",
+      "rus": "Китай",
+      "slk": "Čína",
+      "spa": "China",
+      "fin": "Kiina",
+      "est": "Hiina",
+      "pol": "Chiny",
+      "urd": "چین",
+      "kor": "중국"
+    }
+  }
+}
