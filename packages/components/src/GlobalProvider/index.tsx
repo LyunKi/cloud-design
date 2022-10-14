@@ -22,7 +22,7 @@ export function GlobalProvider(props: PropsWithChildren<GlobalProviderProps>) {
     themePack,
     themeMode = 'light',
     themeContext,
-    locale = 'zh_CN',
+    locale = 'en_US',
     children,
   } = props
   const [ready, setReady] = React.useState<boolean>(false)

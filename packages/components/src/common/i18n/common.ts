@@ -5,7 +5,7 @@ export type SupportedLocale = 'zh_CN' | 'en_US'
 export type CountryCode = keyof typeof countries
 
 class I18nManagerClass {
-  public locale: SupportedLocale = 'zh_CN'
+  public locale: SupportedLocale = 'en_US'
 
   public setLocale(locale: SupportedLocale) {
     this.locale = locale

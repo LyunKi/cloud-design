@@ -2,6 +2,7 @@ import { isEmpty, take, uniqueId } from 'lodash'
 import React, {
   forwardRef,
   useCallback,
+  useEffect,
   useImperativeHandle,
   useState,
 } from 'react'
@@ -128,6 +129,8 @@ const ToastItem = (props: ToastItemProps) => {
   )
 }
 
+const DEFAULT_DURATION = 1.5
+
 export class ToastManager {
   private instance?: ToastInstance
   private scheduler?: Scheduler
@@ -138,7 +141,7 @@ export class ToastManager {
   }
 
   private toast(options: ToastOptions) {
-    const { id, duration = 3, ...rest } = options
+    const { id, duration, ...rest } = options
     const items = this.instance?.getItems() ?? []
     const itemId = id ?? uniqueId('__toast-item-')
     const newItems = take(
@@ -150,30 +153,52 @@ export class ToastManager {
     )
 
     this.instance?.setItems(newItems)
-    this.scheduler?.registerTasks(
-      new Scheduler.Task({
-        id: id,
-        onComplete: () => this.close(itemId),
-        totalPeriod: (duration * 1000) / BASE_PERIOD,
-      })
-    )
+    if (duration) {
+      this.scheduler?.registerTasks(
+        new Scheduler.Task({
+          id: id,
+          onComplete: () => this.close(itemId),
+          totalPeriod: (duration * 1000) / BASE_PERIOD,
+        })
+      )
+    }
     return itemId
   }
 
   public info(options: ToastOptions) {
-    return this.toast({ ...options, status: 'info' })
+    return this.toast({
+      ...options,
+      status: 'info',
+      duration: DEFAULT_DURATION,
+    })
   }
   public success(options: ToastOptions) {
-    return this.toast({ ...options, status: 'success' })
+    return this.toast({
+      ...options,
+      status: 'success',
+      duration: DEFAULT_DURATION,
+    })
   }
   public error(options: ToastOptions) {
-    return this.toast({ ...options, status: 'error' })
+    return this.toast({
+      ...options,
+      status: 'error',
+      duration: DEFAULT_DURATION,
+    })
   }
   public warning(options: ToastOptions) {
-    return this.toast({ ...options, status: 'warning' })
+    return this.toast({
+      ...options,
+      status: 'warning',
+      duration: DEFAULT_DURATION,
+    })
   }
   public loading(options: ToastOptions) {
-    return this.toast({ ...options, status: 'loading' })
+    return this.toast({
+      ...options,
+      status: 'loading',
+      duration: DEFAULT_DURATION,
+    })
   }
 
   public update(options: ToastOptions) {
@@ -220,6 +245,11 @@ export const ToastRoot: React.FC<ToastRootProps> = forwardRef((props, ref) => {
     },
     [items, maxCount]
   )
+  useEffect(() => {
+    if (visible && Platform.OS === 'web') {
+    }
+    return () => {}
+  }, [visible])
   const onClose = useCallback((id?: string) => {
     if (id) {
       setItems((prev: ToastItemProps[]) =>
@@ -232,9 +262,12 @@ export const ToastRoot: React.FC<ToastRootProps> = forwardRef((props, ref) => {
   return (
     <Portal hostName={host}>
       <View
-        ts={{ zIndex: '$zIndex.toast' }}
-        style={{
+        onPress={() => onClose()}
+        ts={{
+          zIndex: '$zIndex.toast',
           width: '100%',
+        }}
+        style={{
           flexDirection: 'column',
           alignItems: 'center',
           display: 'none',

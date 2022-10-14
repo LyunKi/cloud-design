@@ -7,7 +7,7 @@ export type I18nPack = KV<NestedString>
 
 export type I18nPacks = KV<I18nPack>
 
-export const DEFAULT_LOCALE = 'zh_CN'
+export const DEFAULT_LOCALE = 'en_US'
 
 export class I18nManager {
   public locale = DEFAULT_LOCALE
