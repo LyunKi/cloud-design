@@ -5,7 +5,7 @@ import { AccessoryProps, Themeable, ThemeStyle } from '../common'
 
 export interface SearchFormat {
   type: 'search'
-  onSearch: (value?: string) => any
+  onSearch?: (value?: string) => any
 }
 
 export interface PasswordFormat {
