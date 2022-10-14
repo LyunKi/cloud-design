@@ -53,6 +53,7 @@ function useFieldProps(name: string, formConfig: FormConfig = {}) {
       value: get(values, name),
       onChange: handleChange?.(name),
       name,
+      formConfig,
     }
   }, [name, formConfig])
 }

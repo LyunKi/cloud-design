@@ -303,5 +303,5 @@ export const ToastRoot: React.FC<ToastRootProps> = forwardRef((props, ref) => {
 })
 
 ToastRoot.defaultProps = {
-  maxCount: 1,
+  maxCount: 5,
 }
