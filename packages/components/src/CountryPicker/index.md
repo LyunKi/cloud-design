@@ -31,12 +31,19 @@ import { CountryPicker } from '@cloud-design/components'
 ### Basic Usage
 
 ```jsx
-import React from 'react'
+import React, { useState } from 'react'
 import { FlexLayout, CountryPicker } from '@cloud-design/components'
 
-export default () => (
-  <FlexLayout style={{ width: 375 }}>
-    <CountryPicker value="CN" keyProp="callingCode" />
-  </FlexLayout>
-)
+export default () => {
+  const [code, setContryCode] = useState('CN')
+  return (
+    <FlexLayout style={{ width: 375 }}>
+      <CountryPicker
+        value={code}
+        onChange={(countryCode) => setContryCode(countryCode)}
+        keyProp="callingCode"
+      />
+    </FlexLayout>
+  )
+}
 ```
