@@ -1,1 +1,7 @@
-React Native 组件库，目前基于 chakra-ui 构建，会基于其进行组件数量和能力的扩展
+React Native UI Library, based on the design of chakra-ui.
+
+## Official website
+
+A simple official website
+
+https://lyunki.github.io/cloud-design/

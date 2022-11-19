@@ -1,5 +1,8 @@
 import countries from './assets/countries.json'
+
 export type CountryCode = keyof typeof countries
+
+export type SupportedLocale = 'zh_CN' | 'en_US'
 
 export type Country = {
   countryCode: CountryCode

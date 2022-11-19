@@ -2,9 +2,14 @@ import React, { Fragment, PropsWithChildren, useEffect } from 'react'
 import { Dimensions } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { PortalProvider } from '@gorhom/portal'
-import { GlobalContext } from '../common/context'
-import { I18nManager, SupportedLocale } from '../common/i18n'
-import { ThemeContext, ThemeManager, ThemePack } from '../common/theme'
+import {
+  SupportedLocale,
+  ThemeContext,
+  ThemeManager,
+  ThemePack,
+  I18nManager,
+  GlobalContext,
+} from '../common'
 export interface ThemeConfig {
   themePack?: ThemePack
   themeMode: string

@@ -1,8 +1,5 @@
-import countries from '../assets/countries.json'
 import { COUNTRIES } from '../constants'
-export type SupportedLocale = 'zh_CN' | 'en_US'
-
-export type CountryCode = keyof typeof countries
+import { CountryCode, SupportedLocale } from '../types'
 
 class I18nManagerClass {
   public locale: SupportedLocale = 'en_US'
