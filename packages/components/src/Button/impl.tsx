@@ -145,7 +145,7 @@ function computeColoredStyle({ variant, status, pressed, hovered }: any) {
         : `$color.${colorScheme}.100`
       return {
         computedViewStyle: {
-          backgroundColor: '$color.bg.layout',
+          backgroundColor: 'transparent',
           ...styles(
             [
               hovered,
