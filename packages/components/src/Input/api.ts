@@ -19,7 +19,7 @@ export interface BasicInputProps
     TextInputProps,
     'multiline' | 'secureTextEntry' | 'onChangeText'
   > {
-  error?: boolean
+  error?: any
   placeholder?: string
   value?: string
   inputTs?: ThemeStyle
