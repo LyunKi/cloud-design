@@ -1,6 +1,6 @@
 import { Fn, KV } from '@cloud-dragon/common-types'
 import { ReactElement } from 'react'
-import { Themeable } from '../common'
+import { Themeable, ThemeStyle } from '../common'
 
 export interface FieldProps {
   value?: any
@@ -21,6 +21,7 @@ export interface BasicFormFieldProps {
   label?: string
   tip?: string
   isRequired?: boolean
+  tipTs?: ThemeStyle
   /**
    * use with formik
    */

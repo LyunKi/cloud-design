@@ -26,7 +26,7 @@ function renderLabel({ label, isRequired }: any) {
   )
 }
 
-function renderTip({ tip, error }: any) {
+function renderTip({ tip, error, tipTs }: any) {
   const text = error || tip
   const basicTextTs = {
     fontSize: '$fontSize.sm',
@@ -38,7 +38,14 @@ function renderTip({ tip, error }: any) {
     ]),
   }
   return (
-    <View ts={{ marginTop: '$space.2' }}>
+    <View
+      ts={{
+        height: '$rem:1.5',
+        alignItems: 'center',
+        paddingHorizontal: '$rem:1',
+        ...tipTs,
+      }}
+    >
       <Text ts={basicTextTs} value={text}></Text>
     </View>
   )
@@ -59,8 +66,17 @@ function useFieldProps(name: string, formConfig: FormConfig = {}) {
 }
 
 export const FormField: React.FC<FormFieldProps> = (props) => {
-  const { label, renderField, name, tip, isRequired, formConfig, ts, style } =
-    props
+  const {
+    label,
+    renderField,
+    name,
+    tip,
+    isRequired,
+    formConfig,
+    ts,
+    style,
+    tipTs,
+  } = props
   const containerTs = { flexDirection: 'column', width: '100%', ...ts }
   const fieldProps = useFieldProps(name, formConfig)
   const error = fieldProps.error
@@ -68,7 +84,7 @@ export const FormField: React.FC<FormFieldProps> = (props) => {
     <View style={style} ts={containerTs}>
       {label && renderLabel({ label, isRequired })}
       {renderField(fieldProps)}
-      {(error || tip) && renderTip({ tip, error })}
+      {(error || tip) && renderTip({ tip, error, tipTs })}
     </View>
   )
 }
