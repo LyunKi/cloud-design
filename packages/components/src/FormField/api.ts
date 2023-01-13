@@ -11,7 +11,9 @@ export interface FieldProps {
 
 export interface FormConfig {
   errors?: KV<any>
+  touched?: KV<any>
   handleChange?: Fn
+  handleBlur?: Fn
   values?: KV<any>
 }
 

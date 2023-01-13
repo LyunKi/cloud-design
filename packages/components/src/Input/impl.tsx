@@ -12,7 +12,11 @@ function renderSearch({ onSearch }: SearchFormat, value?: string) {
     return (
       <Button
         variant="ghost"
-        style={{ width: 32, height: 32, marginHorizontal: 4 }}
+        ts={{
+          width: '$rem:2',
+          height: '$rem:2',
+          marginHorizontal: '$rem:0.25',
+        }}
         onPress={() => onSearch?.(value)}
         value={() => {
           return <Icon {...props} name="search" />
@@ -31,7 +35,11 @@ function rednerPassword(
     return (
       <Button
         variant="ghost"
-        style={{ width: 32, height: 32, marginHorizontal: 4 }}
+        ts={{
+          width: '$rem:2',
+          height: '$rem:2',
+          marginHorizontal: '$rem:0.25',
+        }}
         onPress={() => setSecureTextEntry(!secureTextEntry)}
         value={() => {
           return <Icon {...props} name={icon} />
