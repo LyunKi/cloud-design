@@ -202,7 +202,6 @@ export class ToastManager {
     return this.toast({
       ...options,
       status: 'loading',
-      duration: DEFAULT_DURATION,
     })
   }
 
