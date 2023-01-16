@@ -1,11 +1,14 @@
 import { Fn } from '@cloud-dragon/common-types'
 import { ReactNode } from 'react'
-import { Status } from '../common'
+import { MaskProps, Status, ThemedStyle } from '../common'
 
 export type ToastRootProps = {
   maxCount?: number
   host: string
   ref: any
+  closeable?:boolean
+  mask?: MaskProps
+  itemTs?:ThemedStyle
 }
 
 export type ToastStatus = Status | 'loading'
@@ -20,6 +23,7 @@ export interface ToastItemProps {
   // use -1 to represent no limit
   duration: number
   onClose: Fn
+  ts?:ThemedStyle
 }
 
 export interface ToastOptions
@@ -27,6 +31,7 @@ export interface ToastOptions
   id?: string
   duration?: number
   status?: ToastStatus
+  ts?:ThemedStyle
 }
 
 export interface ToastInstance {

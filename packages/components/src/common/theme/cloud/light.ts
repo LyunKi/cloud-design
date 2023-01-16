@@ -32,6 +32,7 @@ const LIGHT_THEME = merge({}, variables, {
     bg: {
       disabled: '$color.gray.100',
       layout: '$color.white',
+      mask: '$color.blackAlpha.600',
       normal: {
         pressed: '$color.gray.200',
         hovered: '$color.gray.100',

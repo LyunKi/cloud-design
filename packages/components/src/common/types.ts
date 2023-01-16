@@ -1,3 +1,4 @@
+import { KV } from '@cloud-dragon/common-types'
 import countries from './assets/countries.json'
 
 export type CountryCode = keyof typeof countries
@@ -18,3 +19,9 @@ export type Country = {
 export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type Status = 'success' | 'error' | 'warning' | 'info'
+
+export interface MaskProps {
+  ts?: KV
+  disableCloseOnPress?: boolean
+}
+

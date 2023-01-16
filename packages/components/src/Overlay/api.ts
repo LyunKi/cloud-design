@@ -1,6 +1,7 @@
 import { KV } from '@cloud-dragon/common-types'
 import { ReactElement } from 'react'
 import { View } from 'react-native'
+import { MaskProps } from '../common'
 
 interface TriggerRect {
   x: number
@@ -13,13 +14,8 @@ interface TriggerRect {
 
 interface TriggerProps {
   viewRef: React.RefObject<View>
-  onPress: Function
+  onPress: any
   isActive: boolean
-}
-
-interface MaskProps {
-  ts?: KV
-  disableCloseOnPress?: boolean
 }
 
 interface ContentProps {

@@ -67,7 +67,7 @@ function computePropsByStatus(status: ToastStatus) {
 }
 
 const ToastItem = (props: ToastItemProps) => {
-  const { status, closeable = true, title, description, onClose } = props
+  const { status, closeable, title, description, onClose, ts } = props
   const { backgroundColor, fontColor, closeStatus, icon } =
     computePropsByStatus(status!)
   return (
@@ -81,6 +81,7 @@ const ToastItem = (props: ToastItemProps) => {
         paddingVertical: '$space.3',
         paddingLeft: '$space.4',
         paddingRight: '$space.8',
+        ...ts,
       }}
     >
       <Icon color={fontColor} size="$rem:1.5" name={icon} />
@@ -134,6 +135,10 @@ const DEFAULT_DURATION = 1.5
 export class ToastManager {
   private instance?: ToastInstance
   private scheduler?: Scheduler
+
+  private get items() {
+    return this.instance?.getItems() ?? []
+  }
 
   public init = (ref: ToastInstance) => {
     this.instance = ref
@@ -214,20 +219,27 @@ export class ToastManager {
   }
 
   public close(id?: string) {
-    if (id) {
+    let closeId = id ?? this.items[0]?.id
+    if (closeId) {
       this.instance?.setItems((prev: ToastItemProps[]) =>
-        prev.filter((item) => item.id !== id)
+        prev.filter((item) => item.id !== closeId)
       )
-      return
     }
+  }
+
+  public closeAll() {
     this.instance?.setItems([])
+  }
+
+  public get isWorking() {
+    return this.items.length !== 0
   }
 }
 
 export const Toast = new ToastManager()
 
 export const ToastRoot: React.FC<ToastRootProps> = forwardRef((props, ref) => {
-  const { maxCount, host } = props
+  const { maxCount, host, closeable, mask, itemTs } = props
   const [items, setItems] = useState<ToastItemProps[]>([])
   const visible = !isEmpty(items)
   useImperativeHandle(
@@ -262,12 +274,14 @@ export const ToastRoot: React.FC<ToastRootProps> = forwardRef((props, ref) => {
   return (
     <Portal hostName={host}>
       <View
-        onPress={() => onClose()}
+        onPress={() => {
+          if (!mask?.disableCloseOnPress) {
+            onClose()
+          }
+        }}
         ts={{
           zIndex: '$zIndex.toast',
           width: '100%',
-        }}
-        style={{
           flexDirection: 'column',
           alignItems: 'center',
           display: 'none',
@@ -286,13 +300,23 @@ export const ToastRoot: React.FC<ToastRootProps> = forwardRef((props, ref) => {
               {
                 position: 'fixed',
               },
+            ],
+            [
+              !!mask,
+              {
+                height: '$vh:100',
+                background: '$color.bg.mask',
+              },
             ]
           ),
+          ...mask?.ts,
         }}
       >
         {items.map((item) => (
           <ToastItem
+            closeable={closeable}
             key={item.id}
+            ts={itemTs}
             {...item}
             onClose={onClose.bind(null, item.id)}
           />
@@ -303,5 +327,5 @@ export const ToastRoot: React.FC<ToastRootProps> = forwardRef((props, ref) => {
 })
 
 ToastRoot.defaultProps = {
-  maxCount: 5,
+  maxCount: 1,
 }

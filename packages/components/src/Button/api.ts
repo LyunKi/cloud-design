@@ -1,7 +1,5 @@
 import {
   GestureResponderEvent,
-  NativeSyntheticEvent,
-  TargetedEvent,
   View,
 } from 'react-native'
 import { AccessoryRenderProp, Status, Themeable, ThemeStyle } from '../common'
@@ -17,12 +15,12 @@ export interface BasicButtonProps {
   status?: ButtonStatus
   value?: string | AccessoryRenderProp
   textTs?: ThemeStyle
-  onPress?: (event?: GestureResponderEvent) => any
+  onPress?: (event?: any) => any
   renderLeft?: AccessoryRenderProp
   renderRight?: AccessoryRenderProp
-  onFocus?: (event: NativeSyntheticEvent<TargetedEvent>) => void
+  onFocus?: (event: any) => void
   onLongPress?: (event: GestureResponderEvent) => void
-  onBlur?: (event: NativeSyntheticEvent<TargetedEvent>) => void
+  onBlur?: (event: any) => void
   viewRef?: React.Ref<View>
   loading?: boolean
   loadingText?: string

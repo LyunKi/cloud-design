@@ -20,6 +20,7 @@ const DARK_THEME = merge({}, variables, {
     bg: {
       disabled: '$color.whiteAlpha.200',
       layout: '$color.gray.800',
+      mask: '$color.blackAlpha.600',
       normal: {
         pressed: '$color.whiteAlpha.300',
         hovered: '$color.whiteAlpha.200',
