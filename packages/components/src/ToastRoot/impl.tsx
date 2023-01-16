@@ -130,7 +130,7 @@ const ToastItem = (props: ToastItemProps) => {
   )
 }
 
-const DEFAULT_DURATION = 1.5
+const DEFAULT_DURATION = 3
 
 export class ToastManager {
   private instance?: ToastInstance
