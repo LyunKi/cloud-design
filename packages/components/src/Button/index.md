@@ -77,17 +77,11 @@ import { FlexLayout, Button } from '@cloud-design/components'
 
 export default () => (
   <FlexLayout wrap spacing={16} align="center">
-    {[
-      'primary',
-      'disabled',
-      'normal',
-      'info',
-      'success',
-      'warning',
-      'error',
-    ].map((status) => (
-      <Button key={status} value={'Button'} status={status} />
-    ))}
+    {['primary', 'normal', 'info', 'success', 'warning', 'error'].map(
+      (status) => (
+        <Button key={status} value={'Button'} status={status} />
+      )
+    )}
   </FlexLayout>
 )
 ```

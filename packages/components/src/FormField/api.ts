@@ -2,19 +2,20 @@ import { Fn, KV } from '@cloud-dragon/common-types'
 import { ReactElement } from 'react'
 import { Themeable, ThemeStyle } from '../common'
 
-export interface FieldProps {
-  value?: any
-  error?: string
-  name: string
-  onChange?: Fn
-}
-
 export interface FormConfig {
   errors?: KV<any>
   touched?: KV<any>
   handleChange?: Fn
   handleBlur?: Fn
   values?: KV<any>
+}
+
+export interface FieldProps {
+  value?: any
+  error?: string
+  name: string
+  onChange?: Fn
+  formConfig: FormConfig
 }
 
 export interface BasicFormFieldProps {

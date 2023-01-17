@@ -199,8 +199,14 @@ function computeColoredStyle({ variant, status, pressed, hovered }: any) {
   }
 }
 
-function computeStyles({ variant, status, pressed, hovered }: any): any {
-  if (status === 'disabled') {
+function computeStyles({
+  variant,
+  disabled,
+  status,
+  pressed,
+  hovered,
+}: any): any {
+  if (disabled) {
     return {
       computedViewStyle: {
         cursor: 'not-allowed',
@@ -230,8 +236,8 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     isActive,
     loading,
     loadingText,
+    disabled,
   } = props
-  const disabled = status === 'disabled'
   return (
     <Pressable disabled={disabled} onPress={onPress}>
       {({ pressed, hovered }: any) => {
@@ -239,6 +245,7 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
           variant,
           status,
           pressed: isActive || pressed,
+          disabled,
           hovered,
         })
         const mergedTs: KV = {
