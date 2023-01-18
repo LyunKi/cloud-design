@@ -16,14 +16,16 @@ export type Themeable<Props = any> = Props & {
   style?: RnStyle
 }
 
+export type RenderProp<T = any[]> = Fn<T, ReactNode>
+
+export type Id = Symbol | string | number
+
 export interface AccessoryProps {
   color: string
   size: number
 }
 
-export type AccessoryRenderProp = (props?: AccessoryProps) => ReactNode
-
-export type RenderProp = Fn<any, ReactNode>
+export type AccessoryRenderProp = RenderProp<[AccessoryProps]>
 
 export interface FormError {
   type: 'warning' | 'error'
