@@ -25,7 +25,7 @@ function getColorSchemeByStatus(status: ButtonStatus) {
   }
 }
 
-function computeNormalStyle({ variant, pressed, hovered }: any) {
+function computeNormalStyle({ variant, pressed, hovered, disabled }: any) {
   switch (variant) {
     case 'solid': {
       const colorScheme = ThemeManager.isDark ? 'whiteAlpha' : 'gray'
@@ -47,6 +47,13 @@ function computeNormalStyle({ variant, pressed, hovered }: any) {
               pressed,
               {
                 backgroundColor: pressedBg,
+              },
+            ],
+            [
+              disabled,
+              {
+                cursor: 'not-allowed',
+                opacity: `$opacity.disabled`,
               },
             ]
           ),
@@ -78,6 +85,13 @@ function computeNormalStyle({ variant, pressed, hovered }: any) {
                 borderWidth: 1,
                 borderStyle: 'solid',
               },
+            ],
+            [
+              disabled,
+              {
+                cursor: 'not-allowed',
+                opacity: `$opacity.disabled`,
+              },
             ]
           ),
         },
@@ -87,21 +101,36 @@ function computeNormalStyle({ variant, pressed, hovered }: any) {
       return {
         computedViewStyle: {},
         computedTextStyle: {
-          ...styles([
-            hovered || pressed,
-            {
-              textDecorationLine: 'underline',
-              textDecorationStyle: 'solid',
-              textDecorationColor: '$color.font.default',
-            },
-          ]),
+          ...styles(
+            [
+              hovered || pressed,
+              {
+                textDecorationLine: 'underline',
+                textDecorationStyle: 'solid',
+                textDecorationColor: '$color.font.default',
+              },
+            ],
+            [
+              disabled,
+              {
+                cursor: 'not-allowed',
+                opacity: `$opacity.disabled`,
+              },
+            ]
+          ),
         },
       }
     }
   }
 }
 
-function computeColoredStyle({ variant, status, pressed, hovered }: any) {
+function computeColoredStyle({
+  variant,
+  status,
+  pressed,
+  hovered,
+  disabled,
+}: any) {
   const colorScheme = getColorSchemeByStatus(status)
   const colorBase = ThemeManager.isDark ? 200 : 500
   const color = `$color.${colorScheme}.${colorBase}`
@@ -125,6 +154,13 @@ function computeColoredStyle({ variant, status, pressed, hovered }: any) {
               pressed,
               {
                 backgroundColor: pressedBg,
+              },
+            ],
+            [
+              disabled,
+              {
+                cursor: 'not-allowed',
+                opacity: `$opacity.disabled`,
               },
             ]
           ),
@@ -162,6 +198,13 @@ function computeColoredStyle({ variant, status, pressed, hovered }: any) {
             [
               variant === 'outline',
               { borderStyle: 'solid', borderWidth: 1, borderColor: color },
+            ],
+            [
+              disabled,
+              {
+                cursor: 'not-allowed',
+                opacity: `$opacity.disabled`,
+              },
             ]
           ),
         },
@@ -191,6 +234,13 @@ function computeColoredStyle({ variant, status, pressed, hovered }: any) {
                 color: pressedColor,
                 textDecorationColor: pressedColor,
               },
+            ],
+            [
+              disabled,
+              {
+                cursor: 'not-allowed',
+                opacity: `$opacity.disabled`,
+              },
             ]
           ),
         },
@@ -206,19 +256,10 @@ function computeStyles({
   pressed,
   hovered,
 }: any): any {
-  if (disabled) {
-    return {
-      computedViewStyle: {
-        cursor: 'not-allowed',
-        opacity: `$opacity.disabled`,
-        backgroundColor: '$color.bg.disabled',
-      },
-    }
-  }
   if (status === 'normal') {
-    return computeNormalStyle({ variant, pressed, hovered })
+    return computeNormalStyle({ variant, pressed, hovered, disabled })
   }
-  return computeColoredStyle({ variant, status, pressed, hovered })
+  return computeColoredStyle({ variant, status, pressed, hovered, disabled })
 }
 
 export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {

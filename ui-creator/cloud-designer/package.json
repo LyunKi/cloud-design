@@ -22,7 +22,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@cloud-dragon/common-types": "^0.2.0",
-    "@types/react": "~18.0.14",
+    "@types/react": "~18.0.15",
     "@types/react-native": "~0.70.1",
     "@ui-creator/common": "workspace:0.1.0",
     "react-native-svg-transformer": "^1.0.0",

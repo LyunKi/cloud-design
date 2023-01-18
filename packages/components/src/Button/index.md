@@ -86,6 +86,36 @@ export default () => (
 )
 ```
 
+### Disabled buttons
+
+```jsx
+import React from 'react'
+import { FlexLayout, Button } from '@cloud-design/components'
+
+export default () => (
+  <FlexLayout wrap spacing={16} align="center">
+    {['solid', 'outline', 'ghost', 'link'].map((variant) => (
+      <Button
+        status="primary"
+        key={variant}
+        disabled
+        value={'Button'}
+        variant={variant}
+      />
+    ))}
+    {['solid', 'outline', 'ghost', 'link'].map((variant) => (
+      <Button
+        status="normal"
+        key={variant}
+        disabled
+        value={'Button'}
+        variant={variant}
+      />
+    ))}
+  </FlexLayout>
+)
+```
+
 ### Button with loading
 
 ```jsx
