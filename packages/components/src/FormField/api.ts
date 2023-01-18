@@ -20,7 +20,7 @@ export interface FieldProps {
 
 export interface BasicFormFieldProps {
   name: string
-  renderField: (props?: FieldProps) => ReactElement
+  renderField: (props: FieldProps) => ReactElement
   label?: string
   tip?: string
   isRequired?: boolean
