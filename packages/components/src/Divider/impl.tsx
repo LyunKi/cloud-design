@@ -4,7 +4,7 @@ import { View } from '../View'
 import { DividerProps } from './api'
 
 export const Divider = (props: DividerProps) => {
-  const { orientation, padding, color } = props
+  const { orientation, padding, color, size, ts } = props
   return (
     <View
       ts={{
@@ -26,6 +26,7 @@ export const Divider = (props: DividerProps) => {
             },
           ]
         ),
+        ...ts,
       }}
     >
       <View
@@ -35,13 +36,13 @@ export const Divider = (props: DividerProps) => {
             [
               orientation === 'horizontal',
               {
-                height: 1,
+                height: size,
               },
             ],
             [
               orientation === 'vertical',
               {
-                width: 1,
+                width: size,
               },
             ]
           ),
@@ -54,5 +55,6 @@ export const Divider = (props: DividerProps) => {
 Divider.defaultProps = {
   orientation: 'horizontal',
   padding: 0,
-  color: '$color.gray.200',
+  size: 1,
+  color: '$color.border.default',
 }

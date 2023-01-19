@@ -1,18 +1,25 @@
 import { Fn } from '@cloud-dragon/common-types'
-import { Id, RenderProp, Themeable, ThemedStyle } from '../common'
+import { ReactNode } from 'react'
+import { Id, RenderProp, ThemedStyle } from '../common'
+
+export interface RenderItemOptions {
+  onItemChange: Fn
+  id: Id
+  isSelected: boolean
+}
 
 export interface TabItem {
   id?: Id
-  title: string | RenderProp
-  renderContent?: RenderProp
+  title: string | RenderProp<[RenderItemOptions]>
+  renderContent: RenderProp<[RenderItemOptions]>
 }
 
-export interface BasicTabsProps {
+export interface TabsProps {
   items: TabItem[]
   value: string
   onChange?: Fn<[Id]>
   titleTs?: ThemedStyle
   contentTs?: ThemedStyle
+  separator?: ReactNode
+  ts: ThemedStyle
 }
-
-export type TabsProps = Themeable<BasicTabsProps>

@@ -280,7 +280,11 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
     disabled,
   } = props
   return (
-    <Pressable disabled={disabled} onPress={onPress}>
+    <Pressable
+      pointerEvents="auto"
+      disabled={disabled || loading}
+      onPress={onPress}
+    >
       {({ pressed, hovered }: any) => {
         const { computedViewStyle, computedTextStyle } = computeStyles({
           variant,

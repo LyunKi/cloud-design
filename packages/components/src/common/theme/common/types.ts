@@ -18,7 +18,7 @@ export type Themeable<Props = any> = Props & {
 
 export type RenderProp<T = any[]> = Fn<T, ReactNode>
 
-export type Id = Symbol | string | number
+export type Id = string | number
 
 export interface AccessoryProps {
   color: string
