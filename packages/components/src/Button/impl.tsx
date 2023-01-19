@@ -22,6 +22,8 @@ function getColorSchemeByStatus(status: ButtonStatus) {
       return 'green'
     case 'error':
       return 'red'
+    case 'secondary':
+      return 'blackAlpha'
   }
 }
 

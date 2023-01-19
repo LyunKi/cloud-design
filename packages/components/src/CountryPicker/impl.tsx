@@ -67,7 +67,7 @@ function useCountryItems(params: {
 }
 
 export function CountryPicker(props: CountryPickerProps) {
-  const { value, keyProp, onChange } = props
+  const { value, keyProp, onChange, hideFilter, title } = props
   const country = value ? I18nManager.getCountryByCode(value) : undefined
   const [searchValue, setSearchValue] = React.useState<string | undefined>(
     undefined
@@ -82,14 +82,19 @@ export function CountryPicker(props: CountryPickerProps) {
   })
   return (
     <View style={{ flex: 1, flexDirection: 'column' }}>
-      <View ts={{ padding: '$rem:1' }}>
-        <Input
-          format={{ type: 'search' }}
-          value={searchValue}
-          onChange={seachCountry}
-        />
-      </View>
-      <Divider />
+      {title}
+      {!hideFilter && (
+        <>
+          <View ts={{ padding: '$rem:1' }}>
+            <Input
+              format={{ type: 'search' }}
+              value={searchValue}
+              onChange={seachCountry}
+            />
+          </View>
+          <Divider />
+        </>
+      )}
       <View style={{ flex: 1 }}>
         <FlatList
           ItemSeparatorComponent={() => <Divider />}

@@ -1,14 +1,14 @@
 import { GestureResponderEvent, View } from 'react-native'
 import { AccessoryRenderProp, Status, Themeable, ThemeStyle } from '../common'
 
-export type ButtonStatus = Status | 'primary' | 'normal'
+export type ButtonStatus = Status | 'primary' | 'normal' | 'secondary'
 
 export interface BasicButtonProps {
   isActive?: boolean
   variant?: 'solid' | 'outline' | 'ghost' | 'link'
   disabled?: boolean
   /**
-   * Enum: 'primary'| 'normal' | 'info' | 'warning'  | 'success'  | 'error' | 'disabled'
+   * Enum: 'primary'| 'normal' | 'info' | 'warning'  | 'success'  | 'error' | 'secondary'
    */
   status?: ButtonStatus
   value?: string | AccessoryRenderProp

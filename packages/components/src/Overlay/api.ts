@@ -1,4 +1,4 @@
-import { KV } from '@cloud-dragon/common-types'
+import { Fn, KV } from '@cloud-dragon/common-types'
 import { ReactElement } from 'react'
 import { View } from 'react-native'
 import { MaskProps } from '../common'
@@ -20,7 +20,7 @@ interface TriggerProps {
 
 interface ContentProps {
   ts?: KV
-  onPress: Function
+  onPress: Fn
 }
 
 export interface OverlayProps {

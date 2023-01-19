@@ -9,7 +9,7 @@ import { ViewProps } from './api'
 
 export const View: React.FC<ViewProps> = forwardRef(
   (props: ViewProps, ref?: React.Ref<RnView>) => {
-    const { ts, style, children, onPress } = props
+    const { ts, style, children, onPress, stopPropagation } = props
     const Inner = (
       <RnView
         ref={ref}
@@ -23,7 +23,7 @@ export const View: React.FC<ViewProps> = forwardRef(
         {children}
       </RnView>
     )
-    return onPress ? (
+    return onPress || stopPropagation ? (
       <TouchableWithoutFeedback onPress={onPress}>
         {Inner}
       </TouchableWithoutFeedback>

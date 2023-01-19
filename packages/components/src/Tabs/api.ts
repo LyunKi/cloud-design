@@ -16,7 +16,7 @@ export interface TabItem {
 
 export interface TabsProps {
   items: TabItem[]
-  value: string
+  value: Id
   onChange?: Fn<[Id]>
   titleTs?: ThemedStyle
   contentTs?: ThemedStyle

@@ -32,13 +32,18 @@ import { CountryPicker } from '@cloud-design/components'
 
 ```jsx
 import React, { useState } from 'react'
-import { FlexLayout, CountryPicker } from '@cloud-design/components'
+import {
+  FlexLayout,
+  CountryPicker,
+  TopNavigation,
+} from '@cloud-design/components'
 
 export default () => {
   const [code, setContryCode] = useState('CN')
   return (
     <FlexLayout style={{ width: 375 }}>
       <CountryPicker
+        title={<TopNavigation title="Country Picker" />}
         value={code}
         onChange={(countryCode) => setContryCode(countryCode)}
         keyProp="callingCode"

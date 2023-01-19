@@ -30,8 +30,8 @@ export const Overlay = (props: OverlayProps) => {
     <View
       ts={{
         position: 'absolute',
-        ...contentContainerTs,
         ...position,
+        ...contentContainerTs,
       }}
     >
       {renderContent({ onPress: toggle })}

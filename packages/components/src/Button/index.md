@@ -133,31 +133,43 @@ export default () => {
         value={'Trigger loading'}
       />
       <FlexLayout wrap spacing={16} align="center">
-        {['primary', 'normal', 'info', 'success', 'warning', 'error'].map(
-          (status) => (
-            <Button
-              loading={loading}
-              loadingText={'Loading'}
-              key={status}
-              value={'Button'}
-              status={status}
-            />
-          )
-        )}
+        {[
+          'primary',
+          'normal',
+          'info',
+          'success',
+          'warning',
+          'error',
+          'secondary',
+        ].map((status) => (
+          <Button
+            loading={loading}
+            loadingText={'Loading'}
+            key={status}
+            value={'Button'}
+            status={status}
+          />
+        ))}
       </FlexLayout>
       <FlexLayout wrap spacing={16} align="center">
-        {['primary', 'normal', 'info', 'success', 'warning', 'error'].map(
-          (status) => (
-            <Button
-              variant="ghost"
-              loading={loading}
-              loadingText={'Loading'}
-              key={status}
-              value={'Button'}
-              status={status}
-            />
-          )
-        )}
+        {[
+          'primary',
+          'normal',
+          'info',
+          'success',
+          'warning',
+          'error',
+          'secondary',
+        ].map((status) => (
+          <Button
+            variant="ghost"
+            loading={loading}
+            loadingText={'Loading'}
+            key={status}
+            value={'Button'}
+            status={status}
+          />
+        ))}
       </FlexLayout>
     </FlexLayout>
   )
