@@ -25,7 +25,7 @@ export interface AccessoryProps {
   size: number
 }
 
-export type AccessoryRenderProp = RenderProp<[AccessoryProps]>
+export type AccessoryRenderProp = (props?: AccessoryProps) => ReactNode
 
 export interface FormError {
   type: 'warning' | 'error'
