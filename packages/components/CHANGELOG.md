@@ -1,5 +1,11 @@
 # @cloud-design/components
 
+## 0.5.0
+
+### Minor Changes
+
+- add some components and fix some bugs
+
 ## 0.4.0
 
 ### Minor Changes
