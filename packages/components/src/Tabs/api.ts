@@ -1,6 +1,6 @@
 import { Fn } from '@cloud-dragon/common-types'
 import { ReactNode } from 'react'
-import { Id, RenderProp, ThemedStyle } from '../common'
+import { Id, RenderProp, ThemeStyle } from '../common'
 
 export interface RenderItemOptions {
   onItemChange: Fn
@@ -18,8 +18,8 @@ export interface TabsProps {
   items: TabItem[]
   value: Id
   onChange?: Fn<[Id]>
-  titleTs?: ThemedStyle
-  contentTs?: ThemedStyle
+  titleTs?: ThemeStyle
+  contentTs?: ThemeStyle
   separator?: ReactNode
-  ts: ThemedStyle
+  ts: ThemeStyle
 }

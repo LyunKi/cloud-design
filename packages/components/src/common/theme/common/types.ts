@@ -9,8 +9,6 @@ export type ThemeStyle = KV
 
 export type RnStyle = KV
 
-export type ThemedStyle = KV
-
 export type Themeable<Props = any> = Props & {
   ts?: ThemeStyle
   style?: RnStyle
