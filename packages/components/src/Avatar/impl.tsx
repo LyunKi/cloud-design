@@ -7,13 +7,13 @@ import { AvatarProps } from './api'
 
 export const Avatar: React.FC<AvatarProps> = (props) => {
   const { ts, style, size, src } = props
-  const themedStyle = ThemeManager.themed({
+  const themeStyle = ThemeManager.themed({
     borderRadius: '$radius.full',
     width: size,
     height: size,
     ...ts,
   })
-  const computedStyle = StyleSheet.flatten([themedStyle, style])
+  const computedStyle = StyleSheet.flatten([themeStyle, style])
   if (!src) {
     return (
       <View ts={{ ...computedStyle, backgroundColor: '$color.gray.400' }}>
