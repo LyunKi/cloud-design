@@ -123,7 +123,7 @@ export const Input: React.FC<InputProps> = forwardRef(
       fontSize: '$fontSize.default',
       color: '$color.font.default',
       flex: 1,
-      minWidth: 100,
+      minWidth: 0,
       ...inputTs,
     })
     const accessoryProps = {
