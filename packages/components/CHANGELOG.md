@@ -1,5 +1,11 @@
 # @cloud-design/components
 
+## 0.5.1
+
+### Patch Changes
+
+- fix some styles
+
 ## 0.5.0
 
 ### Minor Changes
