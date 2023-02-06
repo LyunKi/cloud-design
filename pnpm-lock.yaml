@@ -143,11 +143,11 @@ importers:
   ui-creator/cloud-designer:
     specifiers:
       '@babel/core': ^7.12.9
-      '@cloud-design/components': workspace:0.5.0
+      '@cloud-design/components': workspace:0.5.1
       '@cloud-dragon/common-types': ^0.2.0
       '@types/react': ~18.0.15
       '@types/react-native': ~0.70.1
-      '@ui-creator/cloud-builder': workspace:2.0.0
+      '@ui-creator/cloud-builder': workspace:2.0.1
       '@ui-creator/common': workspace:0.1.0
       expo: ~45.0.0
       expo-app-loading: ^2.1.0
