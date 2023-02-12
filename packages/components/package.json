@@ -16,7 +16,7 @@
   "version": "0.5.1",
   "dependencies": {
     "@cloud-design/icons": "0.2.1",
-    "@cloud-dragon/react-utils": "^0.3.0",
+    "@cloud-dragon/react-utils": "^0.5.0",
     "@gorhom/portal": "^1.0.14",
     "lodash": "^4.17.21",
     "react-native-safe-area-context": "^4.3.1"
