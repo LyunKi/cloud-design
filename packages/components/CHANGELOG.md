@@ -1,5 +1,11 @@
 # @cloud-design/components
 
+## 0.6.0
+
+### Minor Changes
+
+- add new components
+
 ## 0.5.1
 
 ### Patch Changes
