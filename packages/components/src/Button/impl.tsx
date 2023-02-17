@@ -176,10 +176,10 @@ function computeColoredStyle({
     case 'ghost': {
       const darkBg = ThemeManager.themedValue(`$color.${colorScheme}.200`)
       const hoveredBg = ThemeManager.isDark
-        ? opacity(darkBg, '1f')
+        ? opacity(darkBg, 0.12)
         : `$color.${colorScheme}.50`
       const pressedBg = ThemeManager.isDark
-        ? opacity(darkBg, '3d')
+        ? opacity(darkBg, 0.24)
         : `$color.${colorScheme}.100`
       return {
         computedViewStyle: {

@@ -1,0 +1,26 @@
+{
+  "name": "@cloud-design/core",
+  "description": "React Native UI Components",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p ./tsconfig.build.json",
+    "prepublish": "pnpm build",
+    "test": "jest",
+    "test:watch": "jest --watch ",
+    "test:updateSnap": "jest --updateSnapshot"
+  },
+  "version": "0.0.0",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-native": "^0.70.1"
+  },
+  "devDependencies": {
+    "react": "^18.2.0",
+    "react-native": "^0.70.1"
+  }
+}
