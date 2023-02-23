@@ -1,5 +1,5 @@
 {
-  "extends": "@cloud-dragon/tsconfig-react",
+  "extends": "@cloud-dragon/tsconfig/react",
   "compilerOptions": {
     "declaration": true
   }
