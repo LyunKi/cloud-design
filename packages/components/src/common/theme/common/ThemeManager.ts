@@ -47,6 +47,10 @@ class ThemeManagerClass {
 
   private themePack: ThemePack = CLOUD_THEME_PACK
 
+  public getThemePack() {
+    return this.themePack
+  }
+
   public setThemePack(themePack: ThemePack) {
     this.themePack = themePack
   }
@@ -57,7 +61,49 @@ class ThemeManagerClass {
     this.mode = themeMode
   }
 
-  public theme: CloudDesignTheme = this.processTheme()
+  private processThemePresets = (theme: CloudDesignTheme): CloudDesignTheme => {
+    return reduce(
+      theme,
+      (records, value, key) => {
+        if (isObject(value)) {
+          records[key] = this.processThemePresets(value)
+        } else {
+          records[key] = this.handlePresetThemeValue(value)
+        }
+        return records
+      },
+      {} as CloudDesignTheme
+    )
+  }
+
+  private processThemeRefernces = (
+    theme: CloudDesignTheme,
+    fullTheme?: CloudDesignTheme
+  ): CloudDesignTheme => {
+    const fullRecords = fullTheme ?? theme
+    return reduce(
+      theme,
+      (records, value, key) => {
+        if (isObject(value)) {
+          records[key] = this.processThemeRefernces(value, fullRecords)
+        } else if (isReferenceValue(value)) {
+          records[key] = get(fullRecords, value.slice(1))
+        } else {
+          records[key] = value
+        }
+        return records
+      },
+      {} as CloudDesignTheme
+    )
+  }
+
+  private processTheme = (): CloudDesignTheme => {
+    return this.processThemeRefernces(
+      this.processThemePresets(this.themePack[this.mode])
+    )
+  }
+
+  public theme: CloudDesignTheme = {}
 
   public computeTheme() {
     this.theme = this.processTheme()
@@ -79,43 +125,6 @@ class ThemeManagerClass {
       return handleVhValue(value, windowHeight)
     }
     return value
-  }
-
-  private processTheme(): CloudDesignTheme {
-    const parseThemeVariables = (
-      themeObject: CloudDesignTheme
-    ): CloudDesignTheme => {
-      return reduce(
-        themeObject,
-        (records, value, key) => {
-          if (isObject(value)) {
-            records[key] = parseThemeVariables(value)
-          } else {
-            records[key] = this.handlePresetThemeValue(value)
-          }
-          return records
-        },
-        {} as CloudDesignTheme
-      )
-    }
-    const variables = parseThemeVariables(this.themePack[this.mode])
-    const parseTheme = (themeObject: CloudDesignTheme): CloudDesignTheme => {
-      return reduce(
-        themeObject,
-        (records, value, key) => {
-          if (isObject(value)) {
-            records[key] = parseTheme(value)
-          } else if (isReferenceValue(value)) {
-            records[key] = get(variables, value.slice(1))
-          } else {
-            records[key] = value
-          }
-          return records
-        },
-        {} as CloudDesignTheme
-      )
-    }
-    return parseTheme(variables)
   }
 
   public themedValue(value: any) {

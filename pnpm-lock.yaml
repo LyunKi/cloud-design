@@ -75,7 +75,7 @@ importers:
     specifiers:
       '@cloud-design/icons': 0.2.1
       '@cloud-dragon/common-types': ^0.2.0
-      '@cloud-dragon/react-utils': ^0.3.0
+      '@cloud-dragon/react-utils': ^0.5.0
       '@gorhom/portal': ^1.0.14
       '@types/lodash': ^4.14.182
       '@types/react': ^18.0.15
@@ -87,7 +87,7 @@ importers:
       yup: ^0.32.11
     dependencies:
       '@cloud-design/icons': link:../icons
-      '@cloud-dragon/react-utils': 0.3.0_react@18.0.0
+      '@cloud-dragon/react-utils': 0.5.0_dci7eziz7zqe5fgbctoxv6f5oq
       '@gorhom/portal': 1.0.14_dci7eziz7zqe5fgbctoxv6f5oq
       lodash: 4.17.21
       react-native-safe-area-context: 4.5.0_dci7eziz7zqe5fgbctoxv6f5oq
@@ -143,11 +143,11 @@ importers:
   ui-creator/cloud-designer:
     specifiers:
       '@babel/core': ^7.12.9
-      '@cloud-design/components': workspace:0.5.0
+      '@cloud-design/components': workspace:0.6.0
       '@cloud-dragon/common-types': ^0.2.0
       '@types/react': ~18.0.15
       '@types/react-native': ~0.70.1
-      '@ui-creator/cloud-builder': workspace:2.0.0
+      '@ui-creator/cloud-builder': workspace:3.0.0
       '@ui-creator/common': workspace:0.1.0
       expo: ~45.0.0
       expo-app-loading: ^2.1.0
@@ -379,7 +379,7 @@ packages:
       '@babel/core': 7.20.12
       '@babel/helper-annotate-as-pure': 7.18.6
       '@babel/helper-environment-visitor': 7.18.9
-      '@babel/helper-function-name': 7.18.9
+      '@babel/helper-function-name': 7.19.0
       '@babel/helper-member-expression-to-functions': 7.18.9
       '@babel/helper-optimise-call-expression': 7.18.6
       '@babel/helper-replace-supers': 7.18.9
@@ -1164,6 +1164,7 @@ packages:
     dependencies:
       '@babel/core': 7.18.10
       '@babel/helper-plugin-utils': 7.18.9
+    dev: false
 
   /@babel/plugin-syntax-class-properties/7.12.13_@babel+core@7.20.12:
     resolution: {integrity: sha512-fm4idjKla0YahUNgFNLCB0qySdsoPiZP3iQE3rky0mBUtMZ23yDJ9SJdg6dXTSDnulOVqiF3Hgr9nbXvXTQZYA==}
@@ -1631,6 +1632,7 @@ packages:
     dependencies:
       '@babel/core': 7.18.10
       '@babel/helper-plugin-utils': 7.18.9
+    dev: false
 
   /@babel/plugin-transform-block-scoped-functions/7.18.6_@babel+core@7.20.12:
     resolution: {integrity: sha512-ExUcOqpPWnliRcPqves5HJcJOvHvIIWfuS4sroBUenPuMdmW+SMHDakmtS7qOo13sVppmUijqeTv7qqGsvURpQ==}
@@ -1821,6 +1823,7 @@ packages:
     dependencies:
       '@babel/core': 7.18.10
       '@babel/helper-plugin-utils': 7.18.9
+    dev: false
 
   /@babel/plugin-transform-for-of/7.18.8_@babel+core@7.20.12:
     resolution: {integrity: sha512-yEfTRnjuskWYo0k1mHUqrVWaZwrdq8AYbfrpqULOJOaucGSp4mNMVps+YtA8byoevxS/urwU75vyhQIxcCgiBQ==}
@@ -1879,6 +1882,7 @@ packages:
     dependencies:
       '@babel/core': 7.18.10
       '@babel/helper-plugin-utils': 7.18.9
+    dev: false
 
   /@babel/plugin-transform-member-expression-literals/7.18.6_@babel+core@7.20.12:
     resolution: {integrity: sha512-qSF1ihLGO3q+/g48k85tUjD033C29TNTVB2paCwZPVmOsjn9pClvYYrM2VeJpBY2bcNkuny0YUyTNRyRxJ54KA==}
@@ -2064,6 +2068,7 @@ packages:
       '@babel/helper-replace-supers': 7.18.9
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /@babel/plugin-transform-object-super/7.18.6_@babel+core@7.20.12:
     resolution: {integrity: sha512-uvGz6zk+pZoS1aTZrOvrbj6Pp/kK2mp45t2B+bTDre2UgsZZ8EZLSJtUg7m/no0zOJUWgFONpB7Zv9W2tSaFlA==}
@@ -2103,6 +2108,7 @@ packages:
     dependencies:
       '@babel/core': 7.18.10
       '@babel/helper-plugin-utils': 7.18.9
+    dev: false
 
   /@babel/plugin-transform-property-literals/7.18.6_@babel+core@7.20.12:
     resolution: {integrity: sha512-cYcs6qlgafTud3PAzrrRNbQtfpQ8+y/+M5tKmksS9+M1ckbH6kzY8MrexEM9mcA6JDsukE19iIRvAyYl463sMg==}
@@ -3020,12 +3026,15 @@ packages:
     resolution: {integrity: sha512-NCiCGhJF5ZdDwUxQwFD/D3IkmQMM6FI73n/XHy1I0XU622a2hZLVCirXzfui/A6JQ8X26r43vHmVV0RXCzqyeQ==}
     dev: true
 
-  /@cloud-dragon/react-utils/0.3.0_react@18.0.0:
-    resolution: {integrity: sha512-vPIH8SgVYLDXvm6k7danZwHf/KngZwC7doKyF+iEt4qkakpdqsZb1UaD4EtPQcOlI5xhKWAMIy7p0bl9PmG0GQ==}
+  /@cloud-dragon/react-utils/0.5.0_dci7eziz7zqe5fgbctoxv6f5oq:
+    resolution: {integrity: sha512-dXE+3F6PzkRrGzQX2yDBprkckU2mJKv6AEnHXOnltPdLkxERgRh53jGwVviHZCOF6mQB7l2hwowkZFBIYJRrlg==}
     peerDependencies:
       react: 18.2.0
     dependencies:
+      '@react-native-async-storage/async-storage': 1.17.11_react-native@0.70.6
       react: 18.0.0
+    transitivePeerDependencies:
+      - react-native
     dev: false
 
   /@cloud-dragon/stylelint-config-standard/0.0.1_stylelint@14.9.1:
@@ -4124,6 +4133,15 @@ packages:
       tiny-glob: 0.2.9
       tslib: 2.4.0
     dev: true
+
+  /@react-native-async-storage/async-storage/1.17.11_react-native@0.70.6:
+    resolution: {integrity: sha512-bzs45n5HNcDq6mxXnSsOHysZWn1SbbebNxldBXCQs8dSvF8Aor9KCdpm+TpnnGweK3R6diqsT8lFhX77VX0NFw==}
+    peerDependencies:
+      react-native: ^0.0.0-0 || 0.60 - 0.71 || 1000.0.0
+    dependencies:
+      merge-options: 3.0.4
+      react-native: 0.70.6_react@18.0.0
+    dev: false
 
   /@react-native-community/cli-clean/9.2.1:
     resolution: {integrity: sha512-dyNWFrqRe31UEvNO+OFWmQ4hmqA07bR9Ief/6NnGwx67IO9q83D5PEAf/o96ML6jhSbDwCmpPKhPwwBbsyM3mQ==}
@@ -6070,42 +6088,6 @@ packages:
       - '@babel/core'
       - supports-color
     dev: false
-
-  /babel-preset-fbjs/3.4.0_@babel+core@7.18.10:
-    resolution: {integrity: sha512-9ywCsCvo1ojrw0b+XYk7aFvTH6D9064t0RIL1rtMf3nsa02Xw41MS7sZw216Im35xj/UY0PDBQsa1brUDDF1Ow==}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-    dependencies:
-      '@babel/core': 7.18.10
-      '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-proposal-object-rest-spread': 7.18.9_@babel+core@7.18.10
-      '@babel/plugin-syntax-class-properties': 7.12.13_@babel+core@7.18.10
-      '@babel/plugin-syntax-flow': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-syntax-jsx': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-syntax-object-rest-spread': 7.8.3_@babel+core@7.18.10
-      '@babel/plugin-transform-arrow-functions': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-transform-block-scoped-functions': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-transform-block-scoping': 7.18.9_@babel+core@7.18.10
-      '@babel/plugin-transform-classes': 7.18.9_@babel+core@7.18.10
-      '@babel/plugin-transform-computed-properties': 7.18.9_@babel+core@7.18.10
-      '@babel/plugin-transform-destructuring': 7.18.9_@babel+core@7.18.10
-      '@babel/plugin-transform-flow-strip-types': 7.18.9_@babel+core@7.18.10
-      '@babel/plugin-transform-for-of': 7.18.8_@babel+core@7.18.10
-      '@babel/plugin-transform-function-name': 7.18.9_@babel+core@7.18.10
-      '@babel/plugin-transform-literals': 7.18.9_@babel+core@7.18.10
-      '@babel/plugin-transform-member-expression-literals': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-transform-modules-commonjs': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-transform-object-super': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-transform-parameters': 7.18.8_@babel+core@7.18.10
-      '@babel/plugin-transform-property-literals': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-transform-react-display-name': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-transform-react-jsx': 7.18.10_@babel+core@7.18.10
-      '@babel/plugin-transform-shorthand-properties': 7.18.6_@babel+core@7.18.10
-      '@babel/plugin-transform-spread': 7.18.9_@babel+core@7.18.10
-      '@babel/plugin-transform-template-literals': 7.18.9_@babel+core@7.18.10
-      babel-plugin-syntax-trailing-function-commas: 7.0.0-beta.0
-    transitivePeerDependencies:
-      - supports-color
 
   /babel-preset-fbjs/3.4.0_@babel+core@7.20.12:
     resolution: {integrity: sha512-9ywCsCvo1ojrw0b+XYk7aFvTH6D9064t0RIL1rtMf3nsa02Xw41MS7sZw216Im35xj/UY0PDBQsa1brUDDF1Ow==}
@@ -10720,7 +10702,6 @@ packages:
   /is-plain-obj/2.1.0:
     resolution: {integrity: sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA==}
     engines: {node: '>=8'}
-    dev: true
 
   /is-plain-object/2.0.4:
     resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
@@ -12338,6 +12319,13 @@ packages:
       yargs-parser: 20.2.9
     dev: true
 
+  /merge-options/3.0.4:
+    resolution: {integrity: sha512-2Sug1+knBjkaMsMgf1ctR1Ujx+Ayku4EdJN4Z+C2+JzoeF7A3OZ9KM2GY0CpQS51NR61LTurMJrRKPhSs3ZRTQ==}
+    engines: {node: '>=10'}
+    dependencies:
+      is-plain-obj: 2.1.0
+    dev: false
+
   /merge-stream/2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
 
@@ -12589,8 +12577,8 @@ packages:
   /metro-react-native-babel-transformer/0.72.3:
     resolution: {integrity: sha512-Ogst/M6ujYrl/+9mpEWqE3zF7l2mTuftDTy3L8wZYwX1pWUQWQpfU1aJBeWiLxt1XlIq+uriRjKzKoRoIK57EA==}
     dependencies:
-      '@babel/core': 7.18.10
-      babel-preset-fbjs: 3.4.0_@babel+core@7.18.10
+      '@babel/core': 7.20.12
+      babel-preset-fbjs: 3.4.0_@babel+core@7.20.12
       hermes-parser: 0.8.0
       metro-babel-transformer: 0.72.3
       metro-react-native-babel-preset: 0.72.3
@@ -12633,8 +12621,8 @@ packages:
   /metro-source-map/0.72.3:
     resolution: {integrity: sha512-eNtpjbjxSheXu/jYCIDrbNEKzMGOvYW6/ePYpRM7gDdEagUOqKOCsi3St8NJIQJzZCsxD2JZ2pYOiomUSkT1yQ==}
     dependencies:
-      '@babel/traverse': 7.18.10
-      '@babel/types': 7.18.10
+      '@babel/traverse': 7.20.12
+      '@babel/types': 7.20.7
       invariant: 2.2.4
       metro-symbolicate: 0.72.3
       nullthrows: 1.1.1
@@ -17363,6 +17351,7 @@ packages:
   /unified/8.4.2:
     resolution: {integrity: sha512-JCrmN13jI4+h9UAyKEoGcDZV+i1E7BLFuG7OsaDvTXI5P0qhHX+vZO/kOhz9jn8HGENDKbwSeB0nVOg4gVStGA==}
     dependencies:
+      '@types/unist': 2.0.6
       bail: 1.0.5
       extend: 3.0.2
       is-plain-obj: 2.1.0

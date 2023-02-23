@@ -34,15 +34,19 @@ export function GlobalProvider(props: PropsWithChildren<GlobalProviderProps>) {
   const [key, setKey] = React.useState<number>(0)
   useEffect(() => {
     const window = Dimensions.get('window')
-    ThemeManager.setMode(themeMode)
+    I18nManager.setLocale(locale)
+
     ThemeManager.setThemeContext({
       ...themeContext,
       windowWidth: window.width,
       windowHeight: window.height,
     })
+    ThemeManager.setMode(themeMode)
     if (themePack) {
       ThemeManager.setThemePack(themePack)
     }
+    ThemeManager.computeTheme()
+
     const subscription = Dimensions.addEventListener('change', ({ window }) => {
       ThemeManager.updateThemeContext({
         windowWidth: window.width,
@@ -51,9 +55,6 @@ export function GlobalProvider(props: PropsWithChildren<GlobalProviderProps>) {
       ThemeManager.computeTheme()
       setKey((prev) => prev + 1)
     })
-    I18nManager.setLocale(locale)
-
-    ThemeManager.computeTheme()
     setKey((prev) => prev + 1)
     setReady(true)
     return () => {
