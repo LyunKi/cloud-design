@@ -17,8 +17,6 @@
     "@changesets/cli": "^2.19.0",
     "@cloud-dragon/eslint-config": "^0.1.0",
     "@cloud-dragon/prettier-config": "^0.0.3",
-    "@cloud-dragon/stylelint-config-standard": "^0.0.1",
-    "@cloud-dragon/tsconfig-recommended": "^0.0.1",
     "@commitlint/cli": "^16.0.2",
     "@commitlint/config-conventional": "^16.0.0",
     "@testing-library/jest-native": "^4.0.5",
